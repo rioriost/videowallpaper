@@ -38,7 +38,7 @@ GIT_BRANCH="${GIT_BRANCH:-main}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-${AC_PROFILE:-}}"
 APPLE_ID="${APPLE_ID:-}"
 TEAM_ID="${TEAM_ID:-}"
-APP_PASSWORD="${APP_PASSWORD:-}"
+APP_PASSWORD="${APP_PASSWORD:-${APP_SPECIFIC_PASSWORD:-}}"
 
 require_cmd() {
   local cmd="$1"
@@ -107,6 +107,8 @@ build_app() {
     -configuration "$CONFIGURATION" \
     -destination "platform=macOS,arch=arm64" \
     -derivedDataPath "$DERIVED_DATA" \
+    CODE_SIGNING_ALLOWED=NO \
+    CODE_SIGNING_REQUIRED=NO \
     build
 
   if [[ ! -d "$APP_PATH" ]]; then

@@ -25,7 +25,7 @@ ZIP_PATH="${ZIP_PATH:-$ROOT_DIR/build/$ZIP_NAME}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-${AC_PROFILE:-}}"
 APPLE_ID="${APPLE_ID:-}"
 TEAM_ID="${TEAM_ID:-}"
-APP_PASSWORD="${APP_PASSWORD:-}"
+APP_PASSWORD="${APP_PASSWORD:-${APP_SPECIFIC_PASSWORD:-}}"
 
 require_cmd() {
   local cmd="$1"
@@ -84,7 +84,7 @@ ensure_notary_credentials() {
 
   echo "ERROR: Notary credentials not configured."
   echo "Set NOTARY_PROFILE to an existing keychain profile, or set:"
-  echo "  APPLE_ID, TEAM_ID, APP_PASSWORD"
+  echo "  APPLE_ID, TEAM_ID, APP_PASSWORD (or APP_SPECIFIC_PASSWORD)"
   exit 1
 }
 
