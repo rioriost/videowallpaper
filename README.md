@@ -6,10 +6,13 @@ VideoWallpaper is a lightweight macOS menu bar app that lets you play a video as
 
 - Plays a video behind your desktop icons
 - Works across multiple displays
+- Shares one playback pipeline across displays to avoid duplicate decoding
 - Loops the selected video automatically
 - Lives in the menu bar for quick access
 - Lets you change the video at any time
 - Starts automatically when you log in
+- Skips audible playback and pauses when the display sleeps or another app covers the screen
+- Warns when the selected video may be inefficient for wallpaper playback
 
 ## Requirements
 
@@ -36,6 +39,12 @@ brew install --cask rioriost/cask/videowallpaper
 - Your selected video is remembered for the next launch.
 - If your display configuration changes, the app reloads the video for the current screens.
 - Mouse clicks pass through the wallpaper layer, so you can use your desktop normally.
+- Videos are rendered through AVFoundation and are best used in hardware-accelerated formats such as H.264 or HEVC.
+- Very high-resolution videos may be downscaled by the display but still cost extra decode power.
+
+## Profiling
+
+Use Xcode Instruments Time Profiler to confirm CPU usage. A healthy run should spend most time in AVFoundation/CoreMedia system threads with little self time in `VideoWallpaper`; compare one display versus multiple displays to verify the shared playback pipeline. If CPU time is already low, use Energy Log or GPU/Metal profiling before considering a custom renderer.
 
 ## License
 

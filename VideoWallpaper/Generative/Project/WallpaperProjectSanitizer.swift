@@ -1,0 +1,238 @@
+//
+//  WallpaperProjectSanitizer.swift
+//  VideoWallpaper
+//
+
+import Foundation
+
+struct WallpaperProjectSanitizationResult: Equatable {
+    var project: WallpaperProject
+    var adjustedRenderParameters: Bool
+    var adjustedExportSettings: Bool
+    var adjustedVisualIntent: Bool
+    var removedVisualIntent: Bool
+    var invalidatedOutputVideo: Bool
+
+    var madeChanges: Bool {
+        adjustedRenderParameters || adjustedExportSettings || adjustedVisualIntent || removedVisualIntent
+    }
+}
+
+enum WallpaperProjectSanitizer {
+    static func sanitized(_ project: WallpaperProject, reducedMotion: Bool = false) -> WallpaperProject {
+        sanitize(project, reducedMotion: reducedMotion).project
+    }
+
+    static func sanitize(_ project: WallpaperProject, reducedMotion: Bool = false) -> WallpaperProjectSanitizationResult {
+        var sanitizedProject = project
+        let originalRenderParameters = project.renderParameters
+        let originalExportSettings = project.exportSettings
+        let originalVisualIntent = project.visualIntent
+        let originalOutputVideoPath = project.assets.outputVideoPath
+
+        let capabilities = RendererCapabilities.capabilities(for: project.rendererFamily)
+        sanitizedProject.exportSettings = project.exportSettings.normalizedForExport()
+
+        if let visualIntent = project.visualIntent,
+           let normalizedIntent = try? VisualIntentValidator.normalized(
+            visualIntent,
+            capabilities: capabilities,
+            reducedMotion: reducedMotion
+           ) {
+            sanitizedProject.visualIntent = normalizedIntent
+            sanitizedProject.renderParameters = IntentToRenderParametersMapper.renderParameters(
+                from: normalizedIntent,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            )
+            sanitizedProject.exportSettings = IntentToRenderParametersMapper.exportSettings(
+                sanitizedProject.exportSettings,
+                applying: normalizedIntent
+            )
+        } else {
+            sanitizedProject.visualIntent = nil
+            sanitizedProject.renderParameters = sanitizedRenderParameters(
+                project.renderParameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            )
+        }
+
+        let adjustedRenderParameters = sanitizedProject.renderParameters != originalRenderParameters
+        let adjustedExportSettings = sanitizedProject.exportSettings != originalExportSettings
+        let adjustedVisualIntent = sanitizedProject.visualIntent != originalVisualIntent
+        let removedVisualIntent = originalVisualIntent != nil && sanitizedProject.visualIntent == nil
+        let madeChanges = adjustedRenderParameters || adjustedExportSettings || adjustedVisualIntent || removedVisualIntent
+
+        if madeChanges {
+            sanitizedProject.assets.outputVideoPath = nil
+            sanitizedProject.updatedAt = Date()
+        }
+
+        return WallpaperProjectSanitizationResult(
+            project: sanitizedProject,
+            adjustedRenderParameters: adjustedRenderParameters,
+            adjustedExportSettings: adjustedExportSettings,
+            adjustedVisualIntent: adjustedVisualIntent,
+            removedVisualIntent: removedVisualIntent,
+            invalidatedOutputVideo: madeChanges && originalOutputVideoPath != nil
+        )
+    }
+
+    private static func sanitizedRenderParameters(
+        _ renderParameters: RenderParameters,
+        capabilities: RendererCapabilities,
+        reducedMotion: Bool
+    ) -> RenderParameters {
+        guard renderParameters.rendererFamily == capabilities.rendererFamily else {
+            return .defaultParameters(for: capabilities.rendererFamily)
+        }
+
+        switch renderParameters {
+        case .fieldLines(let parameters):
+            return .fieldLines(PhotosensitivitySafetyPolicy.safeFieldLinesParameters(
+                capabilities.fieldLinesLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .orbital(let parameters):
+            return .orbital(PhotosensitivitySafetyPolicy.safeOrbitalParameters(
+                capabilities.orbitalLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .softVolumetric(let parameters):
+            return .softVolumetric(PhotosensitivitySafetyPolicy.safeSoftVolumetricParameters(
+                capabilities.softVolumetricLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .gridCity(let parameters):
+            return .gridCity(PhotosensitivitySafetyPolicy.safeGridCityParameters(
+                capabilities.gridCityLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .interferenceField(let parameters):
+            return .interferenceField(PhotosensitivitySafetyPolicy.safeInterferenceFieldParameters(
+                capabilities.interferenceFieldLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .periodicNoise(let parameters):
+            return .periodicNoise(PhotosensitivitySafetyPolicy.safePeriodicNoiseParameters(
+                capabilities.periodicNoiseLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .cyclicAutomata(let parameters):
+            return .cyclicAutomata(PhotosensitivitySafetyPolicy.safeCyclicAutomataParameters(
+                capabilities.cyclicAutomataLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .agentSwarm(let parameters):
+            return .agentSwarm(PhotosensitivitySafetyPolicy.safeAgentSwarmParameters(
+                capabilities.agentSwarmLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .kaleidoscope(let parameters):
+            return .kaleidoscope(PhotosensitivitySafetyPolicy.safeKaleidoscopeParameters(
+                capabilities.kaleidoscopeLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .voronoiFlow(let parameters):
+            return .voronoiFlow(PhotosensitivitySafetyPolicy.safeVoronoiFlowParameters(
+                capabilities.voronoiFlowLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .reactionDiffusion(let parameters):
+            return .reactionDiffusion(PhotosensitivitySafetyPolicy.safeReactionDiffusionParameters(
+                capabilities.reactionDiffusionLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .plasmaField(let parameters):
+            return .plasmaField(PhotosensitivitySafetyPolicy.safePlasmaFieldParameters(
+                capabilities.plasmaFieldLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .harmonicTunnel(let parameters):
+            return .harmonicTunnel(PhotosensitivitySafetyPolicy.safeHarmonicTunnelParameters(
+                capabilities.harmonicTunnelLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .lissajousWeave(let parameters):
+            return .lissajousWeave(PhotosensitivitySafetyPolicy.safeLissajousWeaveParameters(
+                capabilities.lissajousWeaveLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .phyllotaxisBloom(let parameters):
+            return .phyllotaxisBloom(PhotosensitivitySafetyPolicy.safePhyllotaxisBloomParameters(
+                capabilities.phyllotaxisBloomLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .hexPulseLattice(let parameters):
+            return .hexPulseLattice(PhotosensitivitySafetyPolicy.safeHexPulseLatticeParameters(
+                capabilities.hexPulseLatticeLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .superformulaMorph(let parameters):
+            return .superformulaMorph(PhotosensitivitySafetyPolicy.safeSuperformulaMorphParameters(
+                capabilities.superformulaMorphLimits.clamped(parameters),
+                reducedMotion: reducedMotion
+            ))
+        case .closedFlowParticles(let parameters):
+            return .closedFlowParticles(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .sdfTunnel(let parameters):
+            return .sdfTunnel(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .feedbackSynth(let parameters):
+            return .feedbackSynth(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .guillocheRose(let parameters):
+            return .guillocheRose(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .instancedGeometry(let parameters):
+            return .instancedGeometry(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .metaballField(let parameters):
+            return .metaballField(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .penroseTiling(let parameters):
+            return .penroseTiling(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .waveTerrain(let parameters):
+            return .waveTerrain(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        }
+    }
+
+    private static func sanitizedProceduralPatternParameters(
+        _ parameters: ProceduralPatternParameters,
+        capabilities: RendererCapabilities,
+        reducedMotion: Bool
+    ) -> ProceduralPatternParameters {
+        PhotosensitivitySafetyPolicy.safeProceduralPatternParameters(
+            capabilities.proceduralPatternLimits.clamped(parameters),
+            reducedMotion: reducedMotion
+        )
+    }
+}

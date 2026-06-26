@@ -3,10 +3,55 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1.0</string>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>0</string>
+	<string>1</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>videowallpaperproject</string>
+			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<true/>
+			<key>CFBundleTypeName</key>
+			<string>VideoWallpaper Project</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>st.rio.videowallpaper.project</string>
+			</array>
+		</dict>
+	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSUIElement</key>
 	<true/>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.json</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>VideoWallpaper Project</string>
+			<key>UTTypeIdentifier</key>
+			<string>st.rio.videowallpaper.project</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>videowallpaperproject</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/vnd.st.rio.videowallpaper.project+json</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

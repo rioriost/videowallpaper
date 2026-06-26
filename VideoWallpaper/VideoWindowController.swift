@@ -9,43 +9,74 @@ import Cocoa
 import AVFoundation
 import os
 
-/// 各スクリーンに透明ウィンドウ＋AVPlayerLayer で動画をループ再生するコントローラ
+/// 各スクリーンにデスクトップレベルのウィンドウ＋AVPlayerLayer で動画をループ再生するコントローラ
 class VideoWindowController {
-    var videoURL: URL
+    var videoURL: URL {
+        assignment.defaultVideoURL
+    }
+    private var assignment: DisplayVideoAssignment
     private var windowItems: [VideoWindowItem] = []
+    private var playbackSessions: [URL: VideoPlaybackSession] = [:]
+    private var sessionTask: Task<Void, Never>?
+    private var isPlaybackSuspended = false
     
     init(videoURL: URL) {
-        self.videoURL = videoURL
+        assignment = DisplayVideoAssignment(defaultVideoURL: videoURL, videoURLByDisplayID: [:])
+    }
+
+    init(assignment: DisplayVideoAssignment) {
+        self.assignment = assignment
     }
     
     /// すべてのスクリーンにウィンドウを作成し、動画をループ再生
     func showWindows() {
         // 既存ウィンドウを閉じる
         closeAllWindows()
-        // フェイラブルイニシャライザで生成に失敗したものはスキップ
-        let newItems = NSScreen.screens.compactMap { VideoWindowItem(screen: $0, videoURL: videoURL) }
-        if newItems.isEmpty {
-            os_log("VideoWindowItem を生成できませんでした: videoURL=%@", videoURL.path)
-            return
-        }
-        newItems.forEach { item in
-            windowItems.append(item)
-            item.show()
+        closePlaybackSession()
+        sessionTask?.cancel()
+
+        let requestedAssignment = assignment
+        sessionTask = Task { [weak self] in
+            var sessionsByURL: [URL: VideoPlaybackSession] = [:]
+            for videoURL in Set([requestedAssignment.defaultVideoURL] + Array(requestedAssignment.videoURLByDisplayID.values)) {
+                guard let session = await VideoPlaybackSession(videoURL: videoURL) else {
+                    os_log("VideoPlaybackSession を生成できませんでした: videoURL=%@", videoURL.path)
+                    continue
+                }
+                sessionsByURL[videoURL] = session
+            }
+            let completedSessionsByURL = sessionsByURL
+
+            await MainActor.run { [weak self] in
+                guard let controller = self, !Task.isCancelled, controller.assignment == requestedAssignment else {
+                    completedSessionsByURL.values.forEach { $0.close() }
+                    return
+                }
+                controller.install(sessionsByURL: completedSessionsByURL, assignment: requestedAssignment)
+            }
         }
     }
     
     /// 動画URL を差し替えて各ウィンドウを再生成
     func updateVideoURL(_ newURL: URL) {
-        DispatchQueue.main.async {
-            // 1) 古いアイテムを安全に閉じる
-            let oldItems = self.windowItems
-            oldItems.forEach { $0.close() }
-            self.windowItems.removeAll()
+        updateAssignment(DisplayVideoAssignment(defaultVideoURL: newURL, videoURLByDisplayID: [:]))
+    }
 
-            // 2) 新しいアイテムを生成・表示
-            let newItems = NSScreen.screens.compactMap { VideoWindowItem(screen: $0, videoURL: newURL) }
-            newItems.forEach { $0.show() }
-            self.windowItems = newItems
+    func updateAssignment(_ newAssignment: DisplayVideoAssignment) {
+        DispatchQueue.main.async {
+            self.assignment = newAssignment
+            self.showWindows()
+        }
+    }
+
+    /// 画面スリープやフルスクリーン表示など、壁紙が見えない状況では再生を止める
+    func setPlaybackSuspended(_ suspended: Bool) {
+        DispatchQueue.main.async {
+            guard self.isPlaybackSuspended != suspended else { return }
+            self.isPlaybackSuspended = suspended
+            for session in self.playbackSessions.values {
+                suspended ? session.pause() : session.play()
+            }
         }
     }
     
@@ -56,30 +87,106 @@ class VideoWindowController {
         }
         windowItems.removeAll()
     }
+
+    @MainActor
+    private func install(sessionsByURL: [URL: VideoPlaybackSession], assignment: DisplayVideoAssignment) {
+        closeAllWindows()
+        closePlaybackSession()
+
+        let newItems = NSScreen.screens.compactMap { screen -> VideoWindowItem? in
+            let videoURL = assignment.videoURL(for: screen)
+            guard let session = sessionsByURL[videoURL] else {
+                os_log("ディスプレイ用の再生セッションがありません: display=%@ videoURL=%@", DisplayIdentifier.id(for: screen), videoURL.path)
+                return nil
+            }
+            return VideoWindowItem(screen: screen, player: session.player)
+        }
+        if newItems.isEmpty {
+            os_log("VideoWindowItem を生成できませんでした")
+            sessionsByURL.values.forEach { $0.close() }
+            return
+        }
+
+        playbackSessions = sessionsByURL
+        windowItems = newItems
+        newItems.forEach { $0.show() }
+        if !isPlaybackSuspended {
+            sessionsByURL.values.forEach { $0.play() }
+        }
+    }
+
+    private func closePlaybackSession() {
+        playbackSessions.values.forEach { $0.close() }
+        playbackSessions.removeAll()
+    }
     
     deinit {
+        sessionTask?.cancel()
         closeAllWindows()
+        closePlaybackSession()
     }
 }
 
 
-/// １スクリーン分のウィンドウを管理し、AVPlayerLayer でループ再生するクラス
-private class VideoWindowItem {
-    private let screen: NSScreen
-    private let window: NSWindow
-    private let player: AVPlayer
-    private var playerLayer: AVPlayerLayer!
-    private var observerToken: NSObjectProtocol?
-    
-    init?(screen: NSScreen, videoURL: URL) {
-        self.screen = screen
-        
-        // ファイル存在チェック
+/// 全スクリーンで共有する再生パイプライン。複数の AVPlayerLayer から同じ player を参照して重複デコードを避ける。
+private class VideoPlaybackSession {
+    let player: AVQueuePlayer
+    private let playerLooper: AVPlayerLooper
+    private var isClosed = false
+
+    init?(videoURL: URL) async {
         guard FileManager.default.fileExists(atPath: videoURL.path) else {
             os_log("動画ファイルが見つかりません: %@", videoURL.path)
             return nil
         }
-        
+
+        let asset = AVURLAsset(url: videoURL)
+        let playerItem = AVPlayerItem(asset: asset)
+        do {
+            if let audioGroup = try await asset.loadMediaSelectionGroup(for: .audible) {
+                playerItem.select(nil, in: audioGroup)
+            }
+        } catch {
+            os_log("音声トラックの無効化に失敗しました: %@", String(describing: error))
+        }
+        player = AVQueuePlayer()
+        player.actionAtItemEnd = .none
+        player.automaticallyWaitsToMinimizeStalling = false
+        player.isMuted = true
+        player.preventsDisplaySleepDuringVideoPlayback = false
+        playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
+    }
+
+    func play() {
+        player.play()
+    }
+
+    func pause() {
+        player.pause()
+    }
+
+    func close() {
+        guard !isClosed else { return }
+        isClosed = true
+        playerLooper.disableLooping()
+        player.pause()
+        player.removeAllItems()
+    }
+
+    deinit {
+        close()
+    }
+}
+
+/// １スクリーン分のウィンドウを管理し、共有 AVPlayer を AVPlayerLayer で表示するクラス
+private class VideoWindowItem {
+    private let screen: NSScreen
+    private let window: NSWindow
+    private var playerLayer: AVPlayerLayer!
+    
+    init(screen: NSScreen, player: AVPlayer) {
+        self.screen = screen
+
         // 1. 各スクリーンのフレームを取得
         let frame = screen.frame
         
@@ -92,8 +199,8 @@ private class VideoWindowItem {
         )
         
         // 3. ウィンドウの基本設定
-        window.isOpaque = false               // 背景を透過
-        window.backgroundColor = .clear       // 完全に透明
+        window.isOpaque = true                // 背景合成コストを避ける
+        window.backgroundColor = .black
         window.hasShadow = false              // 影も不要
         window.ignoresMouseEvents = true      // クリック透過
         window.collectionBehavior = [
@@ -111,51 +218,30 @@ private class VideoWindowItem {
         
         let contentFrame = NSRect(origin: .zero, size: frame.size)
 
-        // 6. AVAsset と AVPlayerItem を生成
-        let asset = AVURLAsset(url: videoURL)
-        let playerItem = AVPlayerItem(asset: asset)
-        player = AVPlayer(playerItem: playerItem)
-
-        // 7. AVPlayerLayer を貼り付け
+        // 6. AVPlayerLayer を貼り付け
         playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = .resizeAspectFill
+        playerLayer.isOpaque = true
         let contentView = NSView(frame: contentFrame)
         contentView.wantsLayer = true
+        contentView.layer?.backgroundColor = NSColor.black.cgColor
+        contentView.layer?.isOpaque = true
         window.contentView = contentView
 
         playerLayer.frame = contentView.bounds
+        playerLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
         contentView.layer?.addSublayer(playerLayer)
-        
-        // 8. 再生終了通知を監視し、動画をループ再生
-        observerToken = NotificationCenter.default.addObserver(
-            forName: .AVPlayerItemDidPlayToEndTime,
-            object: playerItem,
-            queue: .main
-        ) { [weak self] _ in
-            // 再生完了後に先頭へシークして再生を再開
-            guard let self = self else { return }
-            self.player.seek(to: .zero)
-            self.player.play()
-        }
     }
     
-    /// ウィンドウを前面に出し、再生開始
+    /// ウィンドウを前面に出す
     func show() {
         // 強制的に最前面表示
         window.orderFrontRegardless()
-        player.play()
     }
     
-    /// ウィンドウを閉じて通知を解除
+    /// ウィンドウを閉じる
     func close() {
-        NotificationCenter.default.removeObserver(observerToken as Any)
-        player.pause()
+        playerLayer.player = nil
         window.orderOut(nil)
-    }
-    
-    deinit {
-        if let token = observerToken {
-            NotificationCenter.default.removeObserver(token)
-        }
-        player.pause()
     }
 }
