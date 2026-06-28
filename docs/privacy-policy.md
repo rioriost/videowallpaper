@@ -1,30 +1,30 @@
-# VideoWallpaper Privacy Policy
+# RioVideoWallpaper Privacy Policy
 
-Effective date: 2026-06-24
+Effective date: 2026-06-28
 
-VideoWallpaper is designed to run locally on your Mac.
+RioVideoWallpaper is designed to run locally on your Mac.
 
 ## Data Collection
 
-VideoWallpaper does not collect, sell, or share personal data with the developer.
+RioVideoWallpaper does not collect, sell, share, or transmit personal data to the developer.
+
+RioVideoWallpaper does not use analytics services, advertising SDKs, tracking technologies, or third-party cloud services.
 
 ## Local Files
 
-When you choose a video file, VideoWallpaper stores a local security-scoped bookmark so it can reopen that same file on future launches. The selected video remains on your Mac and is used only for wallpaper playback.
+When you choose a video file for wallpaper playback, RioVideoWallpaper stores a local security-scoped bookmark so it can reopen that same file on future launches. The selected video remains on your Mac and is used only for wallpaper playback.
 
-## Generated Wallpapers
+When you use the generative wallpaper feature, RioVideoWallpaper stores generated wallpaper projects, thumbnails, history entries, and exported video files locally on your Mac. These files are used to let you preview, export, delete, and set generated wallpapers as your desktop wallpaper.
 
-If you use the generative wallpaper feature, VideoWallpaper stores generated wallpaper projects, prompt history, thumbnails, and exported video files locally on your Mac. These files are used to let you reopen, export, delete, and set generated wallpapers as your desktop wallpaper.
-
-By default, prompt interpretation is performed locally on your Mac. If you choose the optional OpenAI provider and save your own OpenAI API key, the text prompt and current visual intent needed to interpret that prompt are sent to OpenAI. Generated videos, rendered frames, selected video files, file paths, thumbnails, and local project files are not uploaded by VideoWallpaper.
-
-You can remove generated wallpaper files from the app's generated wallpaper history, use the orphaned asset cleanup control, or delete the app's local Application Support files from your Mac.
+You can choose the folder used to store generated wallpaper history. You can remove generated wallpaper entries from the app's history, delete exported files, or delete the app's local Application Support files from your Mac.
 
 ## Network Access
 
-VideoWallpaper does not use analytics, advertising SDKs, or tracking technologies.
+RioVideoWallpaper does not send selected video files, generated videos, rendered frames, thumbnails, file paths, settings, diagnostics, usage events, or generated wallpaper history over the network.
 
-Network access is used only when you explicitly select the optional OpenAI provider and save an OpenAI API key. In that mode, prompt text is sent to OpenAI to generate structured visual intent. VideoWallpaper does not send selected video paths, generated wallpaper metadata, diagnostics, usage events, generated videos, or rendered frames over the network.
+## Launch at Login
+
+RioVideoWallpaper can be configured to launch when you log in to your Mac. This setting is optional and is enabled only when you turn on the Launch at Login checkbox in the app's General settings.
 
 ## Contact
 
@@ -32,34 +32,34 @@ For questions about this privacy policy, contact the app developer through the s
 
 ---
 
-# VideoWallpaper プライバシーポリシー
+# RioVideoWallpaper プライバシーポリシー
 
-施行日: 2026-06-24
+施行日: 2026-06-28
 
-VideoWallpaper は、Mac 上でローカルに動作するよう設計されています。
+RioVideoWallpaper は、Mac 上でローカルに動作するよう設計されています。
 
 ## データの収集
 
-VideoWallpaper は、開発者に対して個人データを収集、販売、共有しません。
+RioVideoWallpaper は、開発者に対して個人データを収集、販売、共有、送信しません。
+
+RioVideoWallpaper は、解析サービス、広告 SDK、トラッキング技術、第三者のクラウドサービスを使用しません。
 
 ## ローカルファイル
 
-ユーザーが動画ファイルを選択すると、VideoWallpaper は次回以降の起動時に同じファイルを開けるよう、ローカルにセキュリティスコープ付きブックマークを保存します。選択された動画はユーザーのMac上に残り、壁紙として再生する目的にのみ使用されます。
+ユーザーが壁紙として再生する動画ファイルを選択すると、RioVideoWallpaper は次回以降の起動時に同じファイルを開けるよう、ローカルにセキュリティスコープ付きブックマークを保存します。選択された動画はユーザーの Mac 上に残り、壁紙として再生する目的にのみ使用されます。
 
-## 生成された壁紙
+生成壁紙機能を使用した場合、RioVideoWallpaper は生成された壁紙プロジェクト、サムネイル、履歴項目、書き出された動画ファイルを Mac 上にローカル保存します。これらのファイルは、生成壁紙をプレビュー、書き出し、削除、デスクトップ壁紙として設定するために使用されます。
 
-生成壁紙機能を使用した場合、VideoWallpaper は生成された壁紙プロジェクト、プロンプト履歴、サムネイル、書き出された動画ファイルをMac上にローカル保存します。これらのファイルは、生成壁紙を再度開く、書き出す、削除する、デスクトップ壁紙として設定するために使用されます。
-
-初期設定では、プロンプト解釈はMac上でローカルに実行されます。ユーザーが任意の OpenAI provider を選択し、自分の OpenAI API key を保存した場合のみ、プロンプトの解釈に必要なテキストプロンプトと現在の visual intent が OpenAI に送信されます。生成された動画、レンダリング済みフレーム、選択された動画ファイル、ファイルパス、サムネイル、ローカルのプロジェクトファイルは、VideoWallpaper によってアップロードされません。
-
-生成壁紙ファイルは、アプリ内の生成壁紙履歴から削除できます。また、孤立アセット削除コントロールを使用するか、Mac上のアプリ用ローカル Application Support ファイルを削除することでも取り除けます。
+生成壁紙の履歴を保存するフォルダは、ユーザーが選択できます。生成壁紙の項目はアプリ内の履歴から削除できます。また、書き出したファイルや、Mac 上のアプリ用ローカル Application Support ファイルを削除することもできます。
 
 ## ネットワークアクセス
 
-VideoWallpaper は、解析サービス、広告SDK、トラッキング技術を使用しません。
+RioVideoWallpaper は、選択された動画ファイル、生成された動画、レンダリング済みフレーム、サムネイル、ファイルパス、設定、診断情報、利用イベント、生成壁紙履歴をネットワーク経由で送信しません。
 
-ネットワークアクセスは、ユーザーが任意の OpenAI provider を明示的に選択し、OpenAI API key を保存した場合にのみ使用されます。このモードでは、構造化された visual intent を生成するためにプロンプトテキストが OpenAI に送信されます。VideoWallpaper は、選択された動画のパス、生成壁紙メタデータ、診断情報、利用イベント、生成された動画、レンダリング済みフレームをネットワーク経由で送信しません。
+## ログイン時に起動
+
+RioVideoWallpaper は、Mac へのログイン時に起動するよう設定できます。この設定は任意であり、アプリの一般設定にある「ログイン時に起動」チェックボックスをオンにした場合のみ有効になります。
 
 ## お問い合わせ
 
-このプライバシーポリシーに関するお問い合わせは、App Storeの製品ページに記載されたサポート窓口からご連絡ください。
+このプライバシーポリシーに関するお問い合わせは、App Store の製品ページに記載されたサポート窓口からご連絡ください。

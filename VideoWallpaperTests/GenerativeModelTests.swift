@@ -477,7 +477,7 @@ struct GenerativeModelTests {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
-        #expect(RendererFamily.allCases.count == 25)
+        #expect(RendererFamily.allCases.count == 60)
 
         for rendererFamily in RendererFamily.allCases {
             let project = WallpaperProject.newProject(rendererFamily: rendererFamily, appVersion: "test")
@@ -698,7 +698,7 @@ struct GenerativeModelTests {
 
         #expect(FileManager.default.fileExists(atPath: olderURL.path))
         #expect(FileManager.default.fileExists(atPath: newerURL.path))
-        #expect(entries.map(\.id) == [newerProject.id, olderProject.id])
+        #expect(entries.map(\.projectID) == [newerProject.id, olderProject.id])
         #expect(entries.first?.outputVideoPath == "/tmp/generated.mp4")
         #expect(entries.last?.promptPreview == "calm blue lines")
     }
@@ -751,8 +751,8 @@ struct GenerativeModelTests {
         let ownedProjectURL = try library.save(projectWithOwnedAssets)
         let externalProjectURL = try library.save(projectWithExternalVideo)
         let entries = try library.listProjects()
-        let ownedEntry = try #require(entries.first { $0.id == projectWithOwnedAssets.id })
-        let externalEntry = try #require(entries.first { $0.id == projectWithExternalVideo.id })
+        let ownedEntry = try #require(entries.first { $0.projectID == projectWithOwnedAssets.id })
+        let externalEntry = try #require(entries.first { $0.projectID == projectWithExternalVideo.id })
 
         try library.delete(ownedEntry)
         try library.delete(externalEntry)
@@ -1513,10 +1513,22 @@ struct GenerativeModelTests {
         #expect(PromptInterpreter.interpret("closed flow curl noise vector field", seed: 1).rendererFamily == .closedFlowParticles)
         #expect(PromptInterpreter.interpret("SDF raymarch tunnel through hyperspace", seed: 1).rendererFamily == .sdfTunnel)
         #expect(PromptInterpreter.interpret("Hydra video synth feedback echo", seed: 1).rendererFamily == .feedbackSynth)
+        #expect(PromptInterpreter.interpret("Chladni plate standing wave", seed: 1).rendererFamily == .chladniPlate)
+        #expect(PromptInterpreter.interpret("circuit trace signal routing", seed: 1).rendererFamily == .circuitTracer)
+        #expect(PromptInterpreter.interpret("crystal lattice refractive geometry", seed: 1).rendererFamily == .crystalLattice)
+        #expect(PromptInterpreter.interpret("electric storm lightning plasma arcs", seed: 1).rendererFamily == .electricStorm)
+        #expect(PromptInterpreter.interpret("Fourier knot harmonic ribbon", seed: 1).rendererFamily == .fourierKnots)
+        #expect(PromptInterpreter.interpret("growing network node graph edge growth", seed: 1).rendererFamily == .growingNetwork)
         #expect(PromptInterpreter.interpret("guilloche rose engine banknote ornament", seed: 1).rendererFamily == .guillocheRose)
         #expect(PromptInterpreter.interpret("instanced geometry triangle array", seed: 1).rendererFamily == .instancedGeometry)
+        #expect(PromptInterpreter.interpret("laser ribbons nightclub beams", seed: 1).rendererFamily == .laserRibbons)
         #expect(PromptInterpreter.interpret("liquid metaballs soft blobs", seed: 1).rendererFamily == .metaballField)
+        #expect(PromptInterpreter.interpret("moire rings optical beats", seed: 1).rendererFamily == .moireRings)
+        #expect(PromptInterpreter.interpret("neon vortex energy funnel", seed: 1).rendererFamily == .neonVortex)
         #expect(PromptInterpreter.interpret("Penrose aperiodic tiling golden ratio", seed: 1).rendererFamily == .penroseTiling)
+        #expect(PromptInterpreter.interpret("radial oscilloscope circular signal", seed: 1).rendererFamily == .radialOscilloscope)
+        #expect(PromptInterpreter.interpret("rain curtain falling droplets", seed: 1).rendererFamily == .rainCurtain)
+        #expect(PromptInterpreter.interpret("Truchet tiles arc maze", seed: 1).rendererFamily == .truchetFlow)
         #expect(PromptInterpreter.interpret("wave terrain topographic height field", seed: 1).rendererFamily == .waveTerrain)
     }
 
@@ -1682,7 +1694,7 @@ struct GenerativeModelTests {
         let capabilities = RendererCapabilities.catalog(preferred: .fieldLines)
         let catalogFamilies = capabilities.rendererCatalog.map(\.family)
 
-        #expect(RendererFamily.allCases.count == 25)
+        #expect(RendererFamily.allCases.count == 60)
         #expect(capabilities.supportedRendererFamilies == RendererFamily.allCases)
         #expect(catalogFamilies == RendererFamily.allCases)
 
@@ -1695,14 +1707,49 @@ struct GenerativeModelTests {
 
     @Test func proceduralRendererIntentMappingStaysWithinLimits() {
         let proceduralFamilies: [RendererFamily] = [
+            .auroraCurtain,
+            .cityLightsBokeh,
+            .digitalSand,
+            .inkInWater,
+            .origamiTessellation,
+            .sakuraDrift,
+            .snowfallDepth,
+            .solarCorona,
+            .underwaterCaustics,
+            .volumetricNebula,
+            .bloomingCircuits,
+            .cellularBloom,
+            .chladniPlate,
+            .circuitTracer,
             .closedFlowParticles,
+            .constellationDrift,
+            .crystalLattice,
+            .dataMesh,
+            .electricStorm,
             .sdfTunnel,
             .feedbackSynth,
+            .fireworksShow,
+            .fluidNodes,
+            .fourierKnots,
+            .growingNetwork,
             .guillocheRose,
             .instancedGeometry,
+            .laserRibbons,
+            .luminousBubbles,
             .metaballField,
+            .moireRings,
+            .neonVortex,
+            .particleFountain,
             .penroseTiling,
-            .waveTerrain
+            .pulseNetwork,
+            .radialOscilloscope,
+            .rainCurtain,
+            .ribbonCascade,
+            .scanlineTopography,
+            .schoolingSwarm,
+            .truchetFlow,
+            .waveTerrain,
+            .wireframeMorph
         ]
 
         var intent = PromptInterpreter.interpret("dense bright fast cosmic flowing geometric loop", seed: 25)
@@ -1720,14 +1767,49 @@ struct GenerativeModelTests {
             )
 
             switch renderParameters {
-            case .closedFlowParticles(let parameters),
+            case .auroraCurtain(let parameters),
+                    .cityLightsBokeh(let parameters),
+                    .digitalSand(let parameters),
+                    .inkInWater(let parameters),
+                    .origamiTessellation(let parameters),
+                    .sakuraDrift(let parameters),
+                    .snowfallDepth(let parameters),
+                    .solarCorona(let parameters),
+                    .underwaterCaustics(let parameters),
+                    .volumetricNebula(let parameters),
+                    .bloomingCircuits(let parameters),
+                    .cellularBloom(let parameters),
+                    .chladniPlate(let parameters),
+                    .circuitTracer(let parameters),
+                    .closedFlowParticles(let parameters),
+                    .constellationDrift(let parameters),
+                    .crystalLattice(let parameters),
+                    .dataMesh(let parameters),
+                    .electricStorm(let parameters),
                     .sdfTunnel(let parameters),
                     .feedbackSynth(let parameters),
+                    .fireworksShow(let parameters),
+                    .fluidNodes(let parameters),
+                    .fourierKnots(let parameters),
+                    .growingNetwork(let parameters),
                     .guillocheRose(let parameters),
                     .instancedGeometry(let parameters),
+                    .laserRibbons(let parameters),
+                    .luminousBubbles(let parameters),
                     .metaballField(let parameters),
+                    .moireRings(let parameters),
+                    .neonVortex(let parameters),
+                    .particleFountain(let parameters),
                     .penroseTiling(let parameters),
-                    .waveTerrain(let parameters):
+                    .pulseNetwork(let parameters),
+                    .radialOscilloscope(let parameters),
+                    .rainCurtain(let parameters),
+                    .ribbonCascade(let parameters),
+                    .scanlineTopography(let parameters),
+                    .schoolingSwarm(let parameters),
+                    .truchetFlow(let parameters),
+                    .waveTerrain(let parameters),
+                    .wireframeMorph(let parameters):
                 #expect(renderParameters.rendererFamily == rendererFamily)
                 assertProceduralParameters(parameters, capabilities: capabilities)
             default:

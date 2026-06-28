@@ -572,9 +572,97 @@ final class GenerativeFrameRenderer {
                 commandBuffer: commandBuffer,
                 renderPassDescriptor: renderPassDescriptor
             )
+        case .bloomingCircuits(let proceduralParameters):
+            renderProceduralPattern(
+                family: .bloomingCircuits,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .cellularBloom(let proceduralParameters):
+            renderProceduralPattern(
+                family: .cellularBloom,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .chladniPlate(let proceduralParameters):
+            renderProceduralPattern(
+                family: .chladniPlate,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .circuitTracer(let proceduralParameters):
+            renderProceduralPattern(
+                family: .circuitTracer,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
         case .closedFlowParticles(let proceduralParameters):
             renderProceduralPattern(
                 family: .closedFlowParticles,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .constellationDrift(let proceduralParameters):
+            renderProceduralPattern(
+                family: .constellationDrift,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .crystalLattice(let proceduralParameters):
+            renderProceduralPattern(
+                family: .crystalLattice,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .dataMesh(let proceduralParameters):
+            renderProceduralPattern(
+                family: .dataMesh,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .electricStorm(let proceduralParameters):
+            renderProceduralPattern(
+                family: .electricStorm,
                 parameters: proceduralParameters,
                 seed: seed,
                 frameIndex: frameIndex,
@@ -605,9 +693,163 @@ final class GenerativeFrameRenderer {
                 commandBuffer: commandBuffer,
                 renderPassDescriptor: renderPassDescriptor
             )
+        case .fireworksShow(let proceduralParameters):
+            renderProceduralPattern(
+                family: .fireworksShow,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .auroraCurtain(let proceduralParameters):
+            renderProceduralPattern(
+                family: .auroraCurtain,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .cityLightsBokeh(let proceduralParameters):
+            renderProceduralPattern(
+                family: .cityLightsBokeh,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .digitalSand(let proceduralParameters):
+            renderProceduralPattern(
+                family: .digitalSand,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .inkInWater(let proceduralParameters):
+            renderProceduralPattern(
+                family: .inkInWater,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .origamiTessellation(let proceduralParameters):
+            renderProceduralPattern(
+                family: .origamiTessellation,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .sakuraDrift(let proceduralParameters):
+            renderProceduralPattern(
+                family: .sakuraDrift,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .snowfallDepth(let proceduralParameters):
+            renderProceduralPattern(
+                family: .snowfallDepth,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .solarCorona(let proceduralParameters):
+            renderProceduralPattern(
+                family: .solarCorona,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .underwaterCaustics(let proceduralParameters):
+            renderProceduralPattern(
+                family: .underwaterCaustics,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .volumetricNebula(let proceduralParameters):
+            renderProceduralPattern(
+                family: .volumetricNebula,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .fluidNodes(let proceduralParameters):
+            renderProceduralPattern(
+                family: .fluidNodes,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .fourierKnots(let proceduralParameters):
+            renderProceduralPattern(
+                family: .fourierKnots,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
         case .guillocheRose(let proceduralParameters):
             renderProceduralPattern(
                 family: .guillocheRose,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .growingNetwork(let proceduralParameters):
+            renderProceduralPattern(
+                family: .growingNetwork,
                 parameters: proceduralParameters,
                 seed: seed,
                 frameIndex: frameIndex,
@@ -627,9 +869,75 @@ final class GenerativeFrameRenderer {
                 commandBuffer: commandBuffer,
                 renderPassDescriptor: renderPassDescriptor
             )
+        case .laserRibbons(let proceduralParameters):
+            renderProceduralPattern(
+                family: .laserRibbons,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .luminousBubbles(let proceduralParameters):
+            renderProceduralPattern(
+                family: .luminousBubbles,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
         case .metaballField(let proceduralParameters):
             renderProceduralPattern(
                 family: .metaballField,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .moireRings(let proceduralParameters):
+            renderProceduralPattern(
+                family: .moireRings,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .neonVortex(let proceduralParameters):
+            renderProceduralPattern(
+                family: .neonVortex,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .particleFountain(let proceduralParameters):
+            renderProceduralPattern(
+                family: .particleFountain,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .rainCurtain(let proceduralParameters):
+            renderProceduralPattern(
+                family: .rainCurtain,
                 parameters: proceduralParameters,
                 seed: seed,
                 frameIndex: frameIndex,
@@ -649,9 +957,97 @@ final class GenerativeFrameRenderer {
                 commandBuffer: commandBuffer,
                 renderPassDescriptor: renderPassDescriptor
             )
+        case .pulseNetwork(let proceduralParameters):
+            renderProceduralPattern(
+                family: .pulseNetwork,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .radialOscilloscope(let proceduralParameters):
+            renderProceduralPattern(
+                family: .radialOscilloscope,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .ribbonCascade(let proceduralParameters):
+            renderProceduralPattern(
+                family: .ribbonCascade,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .scanlineTopography(let proceduralParameters):
+            renderProceduralPattern(
+                family: .scanlineTopography,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .schoolingSwarm(let proceduralParameters):
+            renderProceduralPattern(
+                family: .schoolingSwarm,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .truchetFlow(let proceduralParameters):
+            renderProceduralPattern(
+                family: .truchetFlow,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
         case .waveTerrain(let proceduralParameters):
             renderProceduralPattern(
                 family: .waveTerrain,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .wireframeMorph(let proceduralParameters):
+            renderProceduralPattern(
+                family: .wireframeMorph,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                in: view,
+                commandBuffer: commandBuffer,
+                renderPassDescriptor: renderPassDescriptor
+            )
+        case .proceduralPattern(let family, let proceduralParameters):
+            renderProceduralPattern(
+                family: family,
                 parameters: proceduralParameters,
                 seed: seed,
                 frameIndex: frameIndex,
@@ -843,9 +1239,97 @@ final class GenerativeFrameRenderer {
                 outputTexture: outputTexture,
                 commandBuffer: commandBuffer
             )
+        case .bloomingCircuits(let proceduralParameters):
+            renderProceduralPattern(
+                family: .bloomingCircuits,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .cellularBloom(let proceduralParameters):
+            renderProceduralPattern(
+                family: .cellularBloom,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .chladniPlate(let proceduralParameters):
+            renderProceduralPattern(
+                family: .chladniPlate,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .circuitTracer(let proceduralParameters):
+            renderProceduralPattern(
+                family: .circuitTracer,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
         case .closedFlowParticles(let proceduralParameters):
             renderProceduralPattern(
                 family: .closedFlowParticles,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .constellationDrift(let proceduralParameters):
+            renderProceduralPattern(
+                family: .constellationDrift,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .crystalLattice(let proceduralParameters):
+            renderProceduralPattern(
+                family: .crystalLattice,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .dataMesh(let proceduralParameters):
+            renderProceduralPattern(
+                family: .dataMesh,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .electricStorm(let proceduralParameters):
+            renderProceduralPattern(
+                family: .electricStorm,
                 parameters: proceduralParameters,
                 seed: seed,
                 frameIndex: frameIndex,
@@ -876,9 +1360,163 @@ final class GenerativeFrameRenderer {
                 outputTexture: outputTexture,
                 commandBuffer: commandBuffer
             )
+        case .fireworksShow(let proceduralParameters):
+            renderProceduralPattern(
+                family: .fireworksShow,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .auroraCurtain(let proceduralParameters):
+            renderProceduralPattern(
+                family: .auroraCurtain,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .cityLightsBokeh(let proceduralParameters):
+            renderProceduralPattern(
+                family: .cityLightsBokeh,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .digitalSand(let proceduralParameters):
+            renderProceduralPattern(
+                family: .digitalSand,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .inkInWater(let proceduralParameters):
+            renderProceduralPattern(
+                family: .inkInWater,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .origamiTessellation(let proceduralParameters):
+            renderProceduralPattern(
+                family: .origamiTessellation,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .sakuraDrift(let proceduralParameters):
+            renderProceduralPattern(
+                family: .sakuraDrift,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .snowfallDepth(let proceduralParameters):
+            renderProceduralPattern(
+                family: .snowfallDepth,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .solarCorona(let proceduralParameters):
+            renderProceduralPattern(
+                family: .solarCorona,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .underwaterCaustics(let proceduralParameters):
+            renderProceduralPattern(
+                family: .underwaterCaustics,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .volumetricNebula(let proceduralParameters):
+            renderProceduralPattern(
+                family: .volumetricNebula,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .fluidNodes(let proceduralParameters):
+            renderProceduralPattern(
+                family: .fluidNodes,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .fourierKnots(let proceduralParameters):
+            renderProceduralPattern(
+                family: .fourierKnots,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
         case .guillocheRose(let proceduralParameters):
             renderProceduralPattern(
                 family: .guillocheRose,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .growingNetwork(let proceduralParameters):
+            renderProceduralPattern(
+                family: .growingNetwork,
                 parameters: proceduralParameters,
                 seed: seed,
                 frameIndex: frameIndex,
@@ -898,9 +1536,75 @@ final class GenerativeFrameRenderer {
                 outputTexture: outputTexture,
                 commandBuffer: commandBuffer
             )
+        case .laserRibbons(let proceduralParameters):
+            renderProceduralPattern(
+                family: .laserRibbons,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .luminousBubbles(let proceduralParameters):
+            renderProceduralPattern(
+                family: .luminousBubbles,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
         case .metaballField(let proceduralParameters):
             renderProceduralPattern(
                 family: .metaballField,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .moireRings(let proceduralParameters):
+            renderProceduralPattern(
+                family: .moireRings,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .neonVortex(let proceduralParameters):
+            renderProceduralPattern(
+                family: .neonVortex,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .particleFountain(let proceduralParameters):
+            renderProceduralPattern(
+                family: .particleFountain,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .rainCurtain(let proceduralParameters):
+            renderProceduralPattern(
+                family: .rainCurtain,
                 parameters: proceduralParameters,
                 seed: seed,
                 frameIndex: frameIndex,
@@ -920,9 +1624,97 @@ final class GenerativeFrameRenderer {
                 outputTexture: outputTexture,
                 commandBuffer: commandBuffer
             )
+        case .pulseNetwork(let proceduralParameters):
+            renderProceduralPattern(
+                family: .pulseNetwork,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .radialOscilloscope(let proceduralParameters):
+            renderProceduralPattern(
+                family: .radialOscilloscope,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .ribbonCascade(let proceduralParameters):
+            renderProceduralPattern(
+                family: .ribbonCascade,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .scanlineTopography(let proceduralParameters):
+            renderProceduralPattern(
+                family: .scanlineTopography,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .schoolingSwarm(let proceduralParameters):
+            renderProceduralPattern(
+                family: .schoolingSwarm,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .truchetFlow(let proceduralParameters):
+            renderProceduralPattern(
+                family: .truchetFlow,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
         case .waveTerrain(let proceduralParameters):
             renderProceduralPattern(
                 family: .waveTerrain,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .wireframeMorph(let proceduralParameters):
+            renderProceduralPattern(
+                family: .wireframeMorph,
+                parameters: proceduralParameters,
+                seed: seed,
+                frameIndex: frameIndex,
+                clock: clock,
+                drawableSize: drawableSize,
+                outputTexture: outputTexture,
+                commandBuffer: commandBuffer
+            )
+        case .proceduralPattern(let family, let proceduralParameters):
+            renderProceduralPattern(
+                family: family,
                 parameters: proceduralParameters,
                 seed: seed,
                 frameIndex: frameIndex,
@@ -3805,11 +4597,12 @@ final class PlasmaFieldRenderer {
                     (y * 0.5 + 0.5) * height
                 )
                 let hue = hueBase + hueSpread * shaped + 24.0 * sin(phase + shaped * .pi)
-                let color = hsvToRGB(hueDegrees: hue, saturation: saturation, value: brightness)
+                let colorValue = brightness * (0.68 + shaped * 0.48)
+                let color = hsvToRGB(hueDegrees: hue, saturation: saturation, value: colorValue)
                 vertices.append(FieldLinesVertex(
                     position: normalizedPosition(screen, width: width, height: height),
-                    color: SIMD4<Float>(color.x, color.y, color.z, alpha * alphaBoost * pulse),
-                    pointSize: pointSize * (0.82 + shaped * 0.54)
+                    color: SIMD4<Float>(color.x, color.y, color.z, alpha * alphaBoost * (0.74 + pulse * 0.30)),
+                    pointSize: pointSize * (1.04 + shaped * 0.82)
                 ))
             }
         }
@@ -4692,7 +5485,8 @@ final class HexPulseLatticeRenderer {
         let sqrt3 = Float(sqrt(3.0))
         let horizontalSpan = Float(columns) * 1.5 + 0.5
         let verticalSpan = (Float(rows) + 0.75) * sqrt3
-        let radius = min(width / horizontalSpan, height / verticalSpan) * 1.06
+        let coverSpan = hypot(width, height) * 1.10
+        let radius = max(coverSpan / horizontalSpan, coverSpan / verticalSpan)
         let gridWidth = horizontalSpan * radius
         let gridHeight = verticalSpan * radius
         let origin = SIMD2<Float>((width - gridWidth) * 0.5, (height - gridHeight) * 0.5)
@@ -4952,9 +5746,9 @@ final class SuperformulaMorphRenderer {
             let layerScale = 0.18 + (0.82 * pow(layer, 0.72)) * (0.55 + contourSpread * 0.45)
             let layerPhase = phase + layer * .pi * 2.0 + seedPhase * 0.19
             let m = harmonicA + (harmonicB - harmonicA) * (0.5 + 0.5 * sin(layerPhase)) * morphAmount
-            let n1 = 0.34 + 1.20 * (0.5 + 0.5 * sin(layerPhase * 0.73 + 0.8))
-            let n2 = 0.42 + 1.36 * (0.5 + 0.5 * cos(layerPhase * 0.61 + 1.3))
-            let n3 = 0.42 + 1.36 * (0.5 + 0.5 * sin(layerPhase * 0.53 - 0.4))
+            let n1 = 0.34 + 1.20 * (0.5 + 0.5 * sin(phase + layer * .pi * 2.0 + seedPhase * 0.19 + 0.8))
+            let n2 = 0.42 + 1.36 * (0.5 + 0.5 * cos(phase * 2.0 + layer * .pi * 2.0 + seedPhase * 0.19 + 1.3))
+            let n3 = 0.42 + 1.36 * (0.5 + 0.5 * sin(phase * 3.0 + layer * .pi * 2.0 + seedPhase * 0.19 - 0.4))
             let layerRotation = rotation + layer * 0.38 + 0.16 * morphAmount * sin(layerPhase)
             let hue = Float(parameters.hueBaseDegrees) +
                 Float(parameters.hueSpreadDegrees) * layer +
@@ -5045,6 +5839,24 @@ final class SuperformulaMorphRenderer {
 final class ProceduralPatternRenderer {
     private let device: MTLDevice
     private let pointPipelineState: MTLRenderPipelineState
+    private var schoolingSwarmSimulationCache: SchoolingSwarmSimulationCache?
+
+    private struct SchoolingSwarmSimulationCache {
+        var key: Key
+        var positionsByStep: [[SIMD2<Float>]]
+        var headingsByStep: [[Float]]
+
+        struct Key: Equatable {
+            var agentCount: Int
+            var simulationResolution: Int
+            var firstWaveDirection: Float
+            var seedPhase: Float
+            var horizontalRadius: Float
+            var verticalRadius: Float
+            var modulation: Float
+            var maxRadius: Float
+        }
+    }
 
     init(device: MTLDevice, colorPixelFormat: MTLPixelFormat) throws {
         self.device = device
@@ -5170,7 +5982,12 @@ final class ProceduralPatternRenderer {
         let scale = min(width, height) / 1080.0
         let elementCount = max(1, min(parameters.elementCount, 160))
         let samplesPerElement = max(2, min(parameters.samplesPerElement, 1600))
-        let harmonicA = Float(max(1, min(parameters.harmonicA, 32)))
+        let harmonicA: Float
+        if family == .schoolingSwarm {
+            harmonicA = Float(max(0, min(parameters.harmonicA, 15)))
+        } else {
+            harmonicA = Float(max(1, min(parameters.harmonicA, 32)))
+        }
         let harmonicB = Float(max(1, min(parameters.harmonicB, 40)))
         let cycleCount = max(1, min(5, Int((parameters.speed * 2.0).rounded())))
         let phase = Float(clock.phase(frameIndex: frameIndex)) * Float(cycleCount)
@@ -5202,6 +6019,64 @@ final class ProceduralPatternRenderer {
         }
 
         switch family {
+        case .bloomingCircuits:
+            makeBloomingCircuitsVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .cellularBloom, .chromaticBloom:
+            makeCellularBloomVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .chladniPlate:
+            makeChladniPlateVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .circuitTracer:
+            makeCircuitTracerVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
         case .closedFlowParticles:
             makeClosedFlowVertices(
                 append: appendVertex,
@@ -5214,6 +6089,66 @@ final class ProceduralPatternRenderer {
                 harmonicA: harmonicA,
                 harmonicB: harmonicB,
                 modulation: modulation,
+                rotation: rotation
+            )
+        case .constellationDrift:
+            makeConstellationDriftVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .crystalLattice, .vortexLattice:
+            makeCrystalLatticeVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .dataMesh:
+            makeDataMeshVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .electricStorm:
+            makeElectricStormVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
                 rotation: rotation
             )
         case .sdfTunnel:
@@ -5245,6 +6180,200 @@ final class ProceduralPatternRenderer {
                 feedback: feedback,
                 rotation: rotation
             )
+        case .fireworksShow:
+            makeFireworksShowVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .auroraCurtain:
+            makeAuroraCurtainVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .cityLightsBokeh:
+            makeCityLightsBokehVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .digitalSand:
+            makeDigitalSandVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .inkInWater:
+            makeInkInWaterVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .origamiTessellation:
+            makeOrigamiTessellationVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .sakuraDrift:
+            makeSakuraDriftVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .snowfallDepth:
+            makeSnowfallDepthVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .solarCorona:
+            makeSolarCoronaVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .underwaterCaustics:
+            makeUnderwaterCausticsVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .volumetricNebula:
+            makeVolumetricNebulaVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .fluidNodes:
+            makeFluidNodesVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .fourierKnots:
+            makeFourierKnotsVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                rotation: rotation
+            )
         case .guillocheRose:
             makeGuillocheVertices(
                 append: appendVertex,
@@ -5256,6 +6385,21 @@ final class ProceduralPatternRenderer {
                 harmonicA: harmonicA,
                 harmonicB: harmonicB,
                 modulation: modulation,
+                rotation: rotation
+            )
+        case .growingNetwork:
+            makeGrowingNetworkVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
                 rotation: rotation
             )
         case .instancedGeometry:
@@ -5273,7 +6417,66 @@ final class ProceduralPatternRenderer {
                 depth: depth,
                 rotation: rotation
             )
-        case .metaballField:
+        case .labyrinthTrace:
+            makeLabyrinthTraceVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .laserRibbons, .photonStreams:
+            makeLaserRibbonsVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                rotation: rotation
+            )
+        case .luminousBubbles:
+            makeLuminousBubblesVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .luminousStrings:
+            makeLuminousStringsVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .metaballField, .quantumFoam:
             makeMetaballVertices(
                 append: appendVertex,
                 elementCount: elementCount,
@@ -5287,6 +6490,49 @@ final class ProceduralPatternRenderer {
                 modulation: modulation,
                 rotation: rotation
             )
+        case .moireRings:
+            makeMoireRingsVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                rotation: rotation
+            )
+        case .neonVortex, .stardustVortex:
+            makeNeonVortexVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .particleFountain:
+            makeParticleFountainVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
         case .penroseTiling:
             makePenroseVertices(
                 append: appendVertex,
@@ -5297,6 +6543,108 @@ final class ProceduralPatternRenderer {
                 phase: phase,
                 seedPhase: seedPhase,
                 harmonicA: harmonicA,
+                modulation: modulation,
+                rotation: rotation
+            )
+        case .pulseNetwork:
+            makePulseNetworkVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .radialOscilloscope:
+            makeRadialOscilloscopeVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                rotation: rotation
+            )
+        case .ribbonCascade:
+            makeRibbonCascadeVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .scanlineTopography:
+            makeScanlineTopographyVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .schoolingSwarm:
+            makeSchoolingSwarmVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .rainCurtain:
+            makeRainCurtainVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
+        case .truchetFlow:
+            makeTruchetFlowVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
                 modulation: modulation,
                 rotation: rotation
             )
@@ -5314,11 +6662,1377 @@ final class ProceduralPatternRenderer {
                 depth: depth,
                 rotation: rotation
             )
+        case .wireframeMorph:
+            makeWireframeMorphVertices(
+                append: appendVertex,
+                elementCount: elementCount,
+                samplesPerElement: samplesPerElement,
+                center: center,
+                maxRadius: maxRadius,
+                phase: phase,
+                seedPhase: seedPhase,
+                harmonicA: harmonicA,
+                harmonicB: harmonicB,
+                modulation: modulation,
+                depth: depth,
+                rotation: rotation
+            )
         default:
             break
         }
 
         return vertices
+    }
+
+    private func makeBloomingCircuitsVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let branchCount = max(12, min(72, elementCount))
+        let samples = max(8, samplesPerElement)
+        let phaseUnit = phase / (.pi * 2.0)
+        for branch in 0..<branchCount {
+            let layer = Float(branch) / Float(max(1, branchCount - 1))
+            let laneSeed = seedPhase + Float(branch) * 17.173
+            let trunkX = (fract(sin(laneSeed) * 49382.13) - 0.5) * maxRadius * 2.62
+            let trunkY = (fract(cos(laneSeed * 0.73) * 39211.47) - 0.5) * maxRadius * 1.72
+            let birth = fract(layer * 0.41 + seedPhase * 0.03)
+            let age = fract(phaseUnit - birth + 1.0)
+            let growth = min(1.0, age / (0.42 + modulation * 0.20))
+            let life = smoothEnvelope(age, attack: 0.10, release: 0.92)
+            if life <= 0.02 { continue }
+            let direction = fract(sin(laneSeed * 1.9) * 79.31) > 0.5 ? Float(1.0) : Float(-1.0)
+            let horizontal = maxRadius * (0.26 + depth * 0.20) * direction
+            let vertical = maxRadius * (0.10 + modulation * 0.14) * sin(layer * harmonicA + phase)
+            let corner = SIMD2<Float>(trunkX, trunkY)
+            let elbow = corner + SIMD2<Float>(horizontal, vertical)
+            let end = elbow + SIMD2<Float>(
+                horizontal * (0.40 + 0.26 * sin(layer * harmonicB + phase)),
+                maxRadius * (fract(cos(laneSeed * 2.1) * 61.9) - 0.5) * 0.38
+            )
+            for sample in 0..<samples {
+                let t = Float(sample) / Float(max(1, samples - 1))
+                if t > growth { break }
+                let pathT = t * 2.0
+                let point = pathT < 1.0 ? corner + (elbow - corner) * pathT : elbow + (end - elbow) * (pathT - 1.0)
+                append(rotate(point, by: rotation) + center, layer, 0.36 + life * 0.72, 0.78 + life * 0.66)
+            }
+            append(rotate(end, by: rotation) + center, layer, 0.52 + life * 0.70, 1.28 + life)
+        }
+    }
+
+    private func makeCellularBloomVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let columns = max(12, min(76, elementCount))
+        let rows = max(8, min(48, samplesPerElement))
+        let width = maxRadius * (2.84 + depth * 0.26)
+        let height = maxRadius * (2.00 + depth * 0.28)
+        let phaseUnit = fract(phase / (.pi * 2.0))
+        for column in 0..<columns {
+            let xLayer = Float(column) / Float(max(1, columns - 1))
+            for row in 0..<rows {
+                let yLayer = Float(row) / Float(max(1, rows - 1))
+                let x = (xLayer - 0.5) * width
+                let y = (yLayer - 0.5) * height
+                let distance = hypot(xLayer - 0.5, yLayer - 0.5)
+                let noise = fract(sin(Float(column) * 12.989 + Float(row) * 78.233) * 43758.54)
+                let wave = fract(phaseUnit + distance * (1.5 + modulation * 1.1) - noise * 0.16)
+                let pulse = exp(-pow((wave - 0.18) * (8.0 + depth * 8.0), 2.0))
+                if pulse < 0.08 { continue }
+                let local = SIMD2<Float>(
+                    x + sin(phase + yLayer * harmonicA) * maxRadius * modulation * 0.018,
+                    y + cos(phase + xLayer * harmonicB) * maxRadius * modulation * 0.018
+                )
+                append(rotate(local, by: rotation) + center, (xLayer + yLayer) * 0.5, 0.32 + pulse * 0.86, 0.92 + pulse * 1.20)
+            }
+        }
+    }
+
+    private func makeConstellationDriftVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let nodeCount = max(24, min(140, elementCount))
+        let edgeSamples = max(5, min(28, samplesPerElement))
+        var nodes: [SIMD2<Float>] = []
+        nodes.reserveCapacity(nodeCount)
+        for node in 0..<nodeCount {
+            let id = Float(node)
+            let a = fract(sin(seedPhase + id * 21.17) * 48291.3) * .pi * 2.0
+            let r = sqrt(fract(cos(seedPhase * 0.83 + id * 39.7) * 19371.2)) * maxRadius * (1.10 + depth * 0.26)
+            let driftA = phase + id * 0.33
+            let drift = SIMD2<Float>(
+                sin(driftA * harmonicA / 5.0) * maxRadius * modulation * 0.10,
+                cos(driftA * harmonicB / 7.0) * maxRadius * modulation * 0.10
+            )
+            nodes.append(SIMD2<Float>(cos(a) * r * 1.42, sin(a) * r * 1.04) + drift)
+        }
+        for node in 0..<nodeCount {
+            let layer = Float(node) / Float(max(1, nodeCount - 1))
+            let nodePulse = 0.82 + 0.18 * sin(phase + layer * .pi * 2.0)
+            append(rotate(nodes[node], by: rotation) + center, layer, nodePulse, 1.58)
+            let target = (node + Int(harmonicA) + Int(fract(sin(layer + seedPhase) * 7.0))) % nodeCount
+            let distance = simd_length(nodes[target] - nodes[node]) / max(1.0, maxRadius)
+            let edgePulse = max(0.0, 1.22 - distance) * (0.72 + 0.28 * sin(phase + layer * harmonicB))
+            if edgePulse <= 0.06 { continue }
+            for sample in 0..<edgeSamples {
+                let t = Float(sample) / Float(max(1, edgeSamples - 1))
+                let point = nodes[node] + (nodes[target] - nodes[node]) * t
+                append(rotate(point, by: rotation) + center, layer, 0.44 + edgePulse * 0.72, 0.82 + edgePulse * 0.72)
+            }
+        }
+    }
+
+    private func makeParticleFountainVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let particleCount = max(36, min(150, elementCount))
+        let trailSamples = max(4, min(24, samplesPerElement))
+        let phaseUnit = phase / (.pi * 2.0)
+        for particle in 0..<particleCount {
+            let layer = Float(particle) / Float(max(1, particleCount - 1))
+            let id = seedPhase + Float(particle) * 23.91
+            let ageCycle = 1.0 + floor(fract(sin(id) * 4.0) * 2.0)
+            let age = fract(phaseUnit * ageCycle + fract(cos(id) * 17.7))
+            let side = fract(sin(id * 1.7) * 91.1) > 0.5 ? Float(1.0) : Float(-1.0)
+            let launchX = (fract(cos(id * 0.47) * 142.7) - 0.5) * maxRadius * 0.62
+            let velocityX = side * maxRadius * (0.46 + modulation * 0.34) * (0.45 + fract(sin(id * 2.1) * 0.7))
+            let velocityY = maxRadius * (1.55 + depth * 0.60) * (0.72 + fract(cos(id * 2.3) * 0.42))
+            for sample in 0..<trailSamples {
+                let t = max(0.0, age - Float(sample) / Float(trailSamples) * 0.10)
+                let x = launchX + velocityX * (t - 0.5)
+                let y = maxRadius * 1.18 - velocityY * sin(t * .pi) + maxRadius * 0.08 * sin(phase + layer * harmonicA)
+                let pulse = smoothEnvelope(age, attack: 0.06, release: 0.92) * pow(1.0 - Float(sample) / Float(trailSamples), 1.2)
+                append(rotate(SIMD2<Float>(x, y), by: rotation) + center, layer, 0.36 + pulse * 0.78, 0.76 + pulse * 0.96)
+            }
+        }
+    }
+
+    private func makePulseNetworkVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let nodeCount = max(18, min(110, elementCount))
+        let edgeSamples = max(5, min(30, samplesPerElement))
+        let phaseUnit = phase / (.pi * 2.0)
+        var nodes: [SIMD2<Float>] = []
+        nodes.reserveCapacity(nodeCount)
+        for node in 0..<nodeCount {
+            let layer = Float(node) / Float(max(1, nodeCount - 1))
+            let angle = layer * .pi * 2.0 * (1.0 + harmonicA * 0.04) + seedPhase
+            let radius = maxRadius * (0.18 + sqrt(layer) * (1.18 + depth * 0.22))
+            let wobble = maxRadius * modulation * 0.05 * sin(phase + layer * harmonicB)
+            nodes.append(SIMD2<Float>(cos(angle) * (radius + wobble) * 1.30, sin(angle) * radius * 0.94))
+        }
+        for node in 0..<nodeCount {
+            let layer = Float(node) / Float(max(1, nodeCount - 1))
+            append(rotate(nodes[node], by: rotation) + center, layer, 0.58, 0.88)
+            for offset in [Int(harmonicA), Int(harmonicB)] {
+                let target = (node + offset) % nodeCount
+                let pulseCenter = fract(phaseUnit + layer * 0.63)
+                for sample in 0..<edgeSamples {
+                    let t = Float(sample) / Float(max(1, edgeSamples - 1))
+                    let distance = abs(t - pulseCenter)
+                    let wrappedDistance = min(distance, 1.0 - distance)
+                    let pulse = exp(-pow(wrappedDistance * (12.0 + modulation * 10.0), 2.0))
+                    let base = 0.22 + pulse * 0.90
+                    let point = nodes[node] + (nodes[target] - nodes[node]) * t
+                    append(rotate(point, by: rotation) + center, layer, base, 0.58 + pulse * 1.10)
+                }
+            }
+        }
+    }
+
+    private func makeRibbonCascadeVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let ribbonCount = max(8, min(42, elementCount))
+        for ribbon in 0..<ribbonCount {
+            let layer = Float(ribbon) / Float(max(1, ribbonCount - 1))
+            let lane = (layer - 0.5) * maxRadius * (2.10 + depth * 0.32)
+            let ribbonPhase = seedPhase + layer * .pi * 2.0
+            for sample in 0..<samplesPerElement {
+                let t = Float(sample) / Float(max(1, samplesPerElement - 1))
+                let y = (t - 0.5) * maxRadius * 2.66
+                let x = lane +
+                    sin(t * .pi * 2.0 * harmonicA + phase + ribbonPhase) * maxRadius * modulation * 0.24 +
+                    cos(t * .pi * 2.0 * harmonicB - phase) * maxRadius * modulation * 0.12
+                let flow = wrapCentered(y + phase / (.pi * 2.0) * maxRadius * 2.66, span: maxRadius * 2.66)
+                append(rotate(SIMD2<Float>(x, flow), by: rotation) + center, layer, 0.58 + 0.42 * sin(t * .pi), 0.84 + modulation * 0.64)
+            }
+        }
+    }
+
+    private func makeScanlineTopographyVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let rows = max(22, min(112, elementCount))
+        for row in 0..<rows {
+            let layer = Float(row) / Float(max(1, rows - 1))
+            let yBase = (layer - 0.5) * maxRadius * (2.18 + depth * 0.34)
+            for sample in 0..<samplesPerElement {
+                let t = Float(sample) / Float(max(1, samplesPerElement - 1))
+                let x = (t - 0.5) * maxRadius * 3.30
+                let ridgeA = sin(t * .pi * 2.0 * harmonicA + phase + layer * .pi)
+                let ridgeB = cos(t * .pi * 2.0 * harmonicB - phase + layer * .pi * 2.0)
+                let envelope = pow(sin(t * .pi), 0.34)
+                let y = yBase + (ridgeA * 0.62 + ridgeB * 0.42) * maxRadius * modulation * 0.30 * envelope
+                let pulse = 0.58 + 0.52 * abs(ridgeA * ridgeB)
+                append(rotate(SIMD2<Float>(x, y), by: rotation) + center, layer, pulse, 1.00 + depth * 0.72)
+            }
+        }
+    }
+
+    private func makeDataMeshVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let columns = max(10, min(48, elementCount))
+        let rows = max(8, min(38, samplesPerElement))
+        let width = maxRadius * (2.86 + depth * 0.26)
+        let height = maxRadius * (2.00 + depth * 0.22)
+        var nodes = Array(repeating: SIMD2<Float>.zero, count: columns * rows)
+
+        func index(_ column: Int, _ row: Int) -> Int { row * columns + column }
+
+        for row in 0..<rows {
+            let yLayer = Float(row) / Float(max(1, rows - 1))
+            for column in 0..<columns {
+                let xLayer = Float(column) / Float(max(1, columns - 1))
+                let wave = sin(xLayer * harmonicA * .pi * 2.0 + phase) *
+                    cos(yLayer * harmonicB * .pi * 2.0 - phase)
+                let warp = SIMD2<Float>(
+                    sin(phase + yLayer * .pi * 2.0) * maxRadius * modulation * 0.035,
+                    wave * maxRadius * modulation * (0.10 + depth * 0.06)
+                )
+                nodes[index(column, row)] = SIMD2<Float>(
+                    (xLayer - 0.5) * width,
+                    (yLayer - 0.5) * height
+                ) + warp
+            }
+        }
+
+        let edgeSamples = 5
+        for row in 0..<rows {
+            for column in 0..<columns {
+                let layer = Float(row * columns + column) / Float(max(1, rows * columns - 1))
+                let from = nodes[index(column, row)]
+                let targets: [(Int, Int)] = [
+                    (column + 1, row),
+                    (column, row + 1),
+                    (column + 1, row + 1)
+                ]
+                for target in targets where target.0 < columns && target.1 < rows {
+                    let to = nodes[index(target.0, target.1)]
+                    let pulse = 0.56 + 0.44 * sin(phase + layer * .pi * 2.0)
+                    for sample in 0..<edgeSamples {
+                        let t = Float(sample) / Float(edgeSamples - 1)
+                        append(rotate(from + (to - from) * t, by: rotation) + center, layer, pulse, 0.74 + pulse * 0.36)
+                    }
+                }
+            }
+        }
+    }
+
+    private func makeFireworksShowVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let phaseUnit = fract(phase / (.pi * 2.0))
+        let blackBoundary: Float = 0.0018
+        guard phaseUnit > blackBoundary, phaseUnit < 1.0 - blackBoundary else { return }
+
+        let shellCount = max(6, min(28, elementCount))
+        let sparkCount = max(72, min(520, samplesPerElement))
+        let launchDuration: Float = 0.052
+        let baseSparkLife: Float = 0.128 + depth * 0.062
+        let gravity = maxRadius * (0.92 + depth * 0.74)
+        let drag: Float = 0.44 + modulation * 0.22
+        let launchY = maxRadius * 1.08
+        let minX = -maxRadius * 1.02
+        let maxX = maxRadius * 1.02
+
+        func emit(_ point: SIMD2<Float>, hue: Float, pulse: Float, size: Float) {
+            append(point + center, hue, pulse, size)
+        }
+
+        for shell in 0..<shellCount {
+            let layer = Float(shell) / Float(max(1, shellCount - 1))
+            let shellSeed = seedPhase + Float(shell) * 31.731
+            let shellType = shell % 7
+            let sparkLifeMultiplier: Float
+            switch shellType {
+            case 2:
+                sparkLifeMultiplier = 1.68
+            case 3:
+                sparkLifeMultiplier = 1.22
+            case 6:
+                sparkLifeMultiplier = 0.74
+            default:
+                sparkLifeMultiplier = 0.96 + 0.28 * fract(sin(shellSeed * 0.67) * 317.3)
+            }
+            let sparkLife = baseSparkLife * sparkLifeMultiplier
+            let earliestLaunchStart: Float = 0.010
+            let latestLaunchStart = max(
+                earliestLaunchStart,
+                1.0 - blackBoundary - 0.006 - launchDuration - sparkLife
+            )
+            let launchStart = earliestLaunchStart + layer * (latestLaunchStart - earliestLaunchStart)
+            let burstTime = launchStart + launchDuration
+            let endTime = burstTime + sparkLife
+            guard phaseUnit >= launchStart, phaseUnit <= endTime else { continue }
+
+            let xSeed = fract(sin(shellSeed * 0.43) * 43758.5453)
+            let burstX = min(max((xSeed - 0.5) * maxRadius * (1.86 + modulation * 0.18), minX), maxX)
+            let burstY = -maxRadius * (0.22 + 0.64 * fract(cos(shellSeed * 0.37) * 193.4))
+
+            if phaseUnit < burstTime {
+                let launchAge = max(0.0, min(1.0, (phaseUnit - launchStart) / launchDuration))
+                let rocketY = launchY + (burstY - launchY) * launchAge
+                let rocketX = burstX
+                let trailSamples = 12
+                for sample in 0..<trailSamples {
+                    let trail = Float(sample) / Float(max(1, trailSamples - 1))
+                    let fade = pow(1.0 - trail, 1.35) * launchAge
+                    let point = SIMD2<Float>(
+                        rocketX,
+                        rocketY + maxRadius * 0.16 * trail
+                    )
+                    emit(point, hue: layer, pulse: 0.32 + fade * 0.76, size: 0.70 + fade * 0.92)
+                }
+                continue
+            }
+
+            let burstAge = max(0.0, min(1.0, (phaseUnit - burstTime) / sparkLife))
+            let burnEnvelope = smoothEnvelope(burstAge, attack: 0.030, release: shellType == 2 ? 0.96 : 0.88)
+            guard burnEnvelope > 0.001 else { continue }
+
+            let burstCenter = SIMD2<Float>(burstX, burstY)
+            let hueLayer = fract(layer + fract(sin(shellSeed) * 0.37))
+            let isKiku = shellType == 0
+            let isBotan = shellType == 1
+            let isKamuro = shellType == 2
+            let isSenrin = shellType == 3
+            let isMangekyo = shellType == 4
+            let isKatamono = shellType == 5
+            let isHachi = shellType == 6
+
+            for spark in 0..<sparkCount {
+                let sparkLayer = Float(spark) / Float(max(1, sparkCount - 1))
+                let id = shellSeed + Float(spark) * 19.193
+                let angleSeed = fract(sin(id * 0.71) * 43758.5453)
+                let radiusSeed = fract(cos(id * 0.53) * 18273.233)
+                let sizeSeed = fract(sin(id * 1.97 + shellSeed * 0.13) * 25137.931)
+                var theta = angleSeed * .pi * 2.0
+                var localCenter = burstCenter
+                var localAge = burstAge
+                var radiusFactor = sqrt(radiusSeed)
+                var fallStrength: Float = 0.20
+                var tailEvery = 4
+                var tailDelay: Float = 0.050
+                var sparkHue = fract(hueLayer + sparkLayer * 0.16)
+                var radialScale: Float = 0.72 + modulation * 0.30
+                var shapeScale = SIMD2<Float>(1.0, 0.84 + depth * 0.18)
+                var crackle: Float = 0.0
+                var sizeMultiplier = 0.58 + pow(sizeSeed, 1.75) * 1.32
+
+                if isKiku {
+                    let spokeCount = max(36, min(96, Int(harmonicB) * 6))
+                    let spoke = floor(angleSeed * Float(spokeCount))
+                    theta = (spoke + 0.5 + (radiusSeed - 0.5) * 0.10) / Float(spokeCount) * .pi * 2.0
+                    radiusFactor = 0.72 + radiusSeed * 0.30
+                    fallStrength = 0.18
+                    tailEvery = 2
+                    tailDelay = 0.064
+                    sizeMultiplier *= 0.88 + radiusSeed * 0.28
+                } else if isBotan {
+                    radiusFactor = 0.48 + sqrt(radiusSeed) * 0.52
+                    fallStrength = 0.12
+                    tailEvery = 12
+                    tailDelay = 0.032
+                    radialScale *= 0.92
+                    sparkHue = fract(hueLayer + floor(sparkLayer * 3.0) * 0.08)
+                    sizeMultiplier *= 1.12 + pow(sizeSeed, 2.0) * 0.38
+                } else if isKamuro {
+                    radiusFactor = 0.70 + radiusSeed * 0.34
+                    fallStrength = 0.58
+                    tailEvery = 1
+                    tailDelay = 0.105
+                    radialScale *= 0.96
+                    sparkHue = 0.09 + fract(hueLayer * 0.08)
+                    sizeMultiplier *= 0.66 + radiusSeed * 0.26
+                } else if isSenrin {
+                    let childCount = 7 + Int(abs(harmonicA).truncatingRemainder(dividingBy: 5))
+                    let child = spark % childCount
+                    let childTheta = (Float(child) / Float(childCount)) * .pi * 2.0 +
+                        fract(sin(shellSeed * 0.29) * 2.0) * .pi
+                    let childDistance = maxRadius * (0.18 + 0.14 * fract(cos(shellSeed + Float(child)) * 17.7))
+                    localCenter = burstCenter + SIMD2<Float>(
+                        cos(childTheta) * childDistance,
+                        sin(childTheta) * childDistance * 0.76
+                    )
+                    localAge = max(0.0, min(1.0, (burstAge - 0.14) / 0.86))
+                    guard burstAge > 0.10 else { continue }
+                    theta = fract(angleSeed + Float(child) * 0.137) * .pi * 2.0
+                    radiusFactor = 0.38 + radiusSeed * 0.58
+                    fallStrength = 0.16
+                    tailEvery = 5
+                    tailDelay = 0.040
+                    radialScale *= 0.56
+                    sparkHue = fract(Float(child) / Float(childCount) + hueLayer * 0.18)
+                    sizeMultiplier *= 0.54 + sizeSeed * 0.34
+                } else if isMangekyo {
+                    let petalCount = max(5, min(12, Int(harmonicA)))
+                    let petal = floor(angleSeed * Float(petalCount))
+                    theta = (petal + (radiusSeed - 0.5) * 0.26) / Float(petalCount) * .pi * 2.0
+                    radiusFactor = 0.38 + abs(sin(radiusSeed * .pi)) * 0.62
+                    fallStrength = 0.13
+                    tailEvery = 3
+                    radialScale *= 0.82
+                    sparkHue = fract(hueLayer + petal / Float(petalCount) * 0.42)
+                    sizeMultiplier *= 0.82 + abs(sin(petal)) * 0.24
+                } else if isKatamono {
+                    let ring = spark % 4
+                    if ring == 0 {
+                        theta = angleSeed * .pi * 2.0
+                        radiusFactor = 0.92 + radiusSeed * 0.05
+                        shapeScale = SIMD2<Float>(1.0, 0.54)
+                    } else if ring == 1 {
+                        theta = angleSeed * .pi * 2.0
+                        radiusFactor = 0.50 + radiusSeed * 0.04
+                    } else {
+                        theta = (angleSeed < 0.5 ? 0.0 : .pi) + (radiusSeed - 0.5) * 0.18
+                        radiusFactor = 0.28 + radiusSeed * 0.62
+                        shapeScale = SIMD2<Float>(1.22, 0.24)
+                    }
+                    fallStrength = 0.10
+                    tailEvery = 6
+                    radialScale *= 0.86
+                    sizeMultiplier *= ring == 0 ? 1.20 : 0.78 + radiusSeed * 0.30
+                } else if isHachi {
+                    let spin = localAge * .pi * (6.0 + Float(spark % 5))
+                    theta = angleSeed * .pi * 2.0 + sin(spin + id) * 0.90
+                    radiusFactor = 0.46 + radiusSeed * 0.48
+                    fallStrength = 0.26
+                    tailEvery = 3
+                    crackle = max(0.0, sin((localAge * 13.0 + sparkLayer * harmonicB) * .pi))
+                    radialScale *= 0.72
+                    sizeMultiplier *= 0.44 + pow(sizeSeed, 0.65) * 1.26
+                }
+
+                let asymmetry = 1.0 + modulation * 0.04 * sin(theta * harmonicA + shellSeed)
+                let initialSpeed = maxRadius * radialScale * radiusFactor * asymmetry
+                let direction = SIMD2<Float>(
+                    cos(theta) * shapeScale.x,
+                    sin(theta) * shapeScale.y
+                )
+                let dragScale = max(0.14, 1.0 - drag * localAge * 0.40)
+                let droop = gravity * localAge * localAge * fallStrength
+                let turbulence = SIMD2<Float>(
+                    sin(localAge * .pi * 2.0 + id) * maxRadius * modulation * (isHachi ? 0.024 : 0.006),
+                    cos(localAge * .pi * 2.0 + id * 0.7) * maxRadius * modulation * (isHachi ? 0.018 : 0.005)
+                )
+                let sparkPosition = localCenter +
+                    direction * initialSpeed * localAge * dragScale +
+                    SIMD2<Float>(0, droop) +
+                    turbulence
+                let mouth = pow(max(0.0, 1.0 - abs(localAge - 0.58) * 0.32), 1.2)
+                let twinkle = 0.78 + 0.22 * sin(localAge * .pi * 18.0 + id)
+                let sizeBrightness = 0.78 + min(1.65, sizeMultiplier) * 0.16
+                let pulse = burnEnvelope * mouth * (0.72 + 0.24 * twinkle + crackle * 0.28) * sizeBrightness
+                let lifeSize = 0.56 + pow(1.0 - localAge, 0.72) * 0.72 + crackle * 0.46
+                let size = max(0.30, lifeSize * sizeMultiplier)
+                emit(
+                    sparkPosition,
+                    hue: sparkHue,
+                    pulse: pulse,
+                    size: size
+                )
+
+                if spark % tailEvery == 0 {
+                    let trailSegments = isKamuro ? 6 : isKiku ? 5 : isBotan ? 2 : 4
+                    for trailIndex in 1...trailSegments {
+                        let trailFactor = Float(trailIndex) / Float(trailSegments)
+                        let trailT = max(0.0, localAge - tailDelay * Float(trailIndex))
+                        guard trailT < localAge else { continue }
+                        let trailDrag = max(0.14, 1.0 - drag * trailT * 0.40)
+                        let trailTurbulence = SIMD2<Float>(
+                            sin(trailT * .pi * 2.0 + id) * maxRadius * modulation * (isHachi ? 0.018 : 0.004),
+                            cos(trailT * .pi * 2.0 + id * 0.7) * maxRadius * modulation * (isHachi ? 0.014 : 0.003)
+                        )
+                        let trailPosition = localCenter +
+                            direction * initialSpeed * trailT * trailDrag +
+                            SIMD2<Float>(0, gravity * trailT * trailT * fallStrength) +
+                            trailTurbulence
+                        let trailPulseBase: Float = isKamuro ? 0.62 : isKiku ? 0.52 : isBotan ? 0.22 : 0.38
+                        let trailPulse = pulse * trailPulseBase * pow(1.0 - trailFactor, 0.72)
+                        emit(
+                            trailPosition,
+                            hue: sparkHue,
+                            pulse: trailPulse,
+                            size: size * (isKamuro ? 0.82 : 0.66) * (1.0 - trailFactor * 0.34)
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private func makeAuroraCurtainVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let curtains = max(12, min(72, elementCount))
+        let samples = max(48, min(520, samplesPerElement))
+        let width = maxRadius * 2.72
+        let height = maxRadius * 2.04
+        for curtain in 0..<curtains {
+            let layer = Float(curtain) / Float(max(1, curtains - 1))
+            let baseX = -width * 0.5 + width * layer
+            let seed = seedPhase + Float(curtain) * 3.719
+            let lanePhase = phase + seed
+            for sample in 0..<samples {
+                let t = Float(sample) / Float(max(1, samples - 1))
+                let y = -height * 0.56 + height * t
+                let waveA = sin(t * .pi * harmonicA + lanePhase)
+                let waveB = sin(t * .pi * harmonicB - phase * 0.73 + seed * 0.41)
+                let fold = sin((layer * 2.0 + t * 0.7) * .pi * 2.0 + phase)
+                let x = baseX + (waveA * 0.10 + waveB * 0.055 + fold * 0.035) * width * modulation
+                let verticalGlow = pow(max(0.0, sin(t * .pi)), 0.45)
+                let pulse = verticalGlow * (0.34 + depth * 0.34 + 0.16 * sin(lanePhase + t * .pi * 4.0))
+                append(rotate(SIMD2<Float>(x, y), by: rotation) + center, fract(layer * 0.45 + t * 0.16), pulse, 0.80 + verticalGlow * 0.74)
+            }
+        }
+    }
+
+    private func makeCityLightsBokehVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let lights = max(48, min(220, elementCount * 2))
+        let ringSamples = max(6, min(28, samplesPerElement))
+        let width = maxRadius * 2.82
+        let height = maxRadius * 2.08
+        for light in 0..<lights {
+            let layer = Float(light) / Float(max(1, lights - 1))
+            let seed = seedPhase + Float(light) * 8.193
+            let x = (fract(sin(seed) * 43758.5453) - 0.5) * width
+            let row = floor(fract(cos(seed * 0.77) * 193.4) * 14.0)
+            let columnGlow = fract(sin(floor(layer * 21.0) + seedPhase) * 31.7)
+            let yUnit = fract(row / 14.0 + columnGlow * 0.37 + fract(cos(seed * 1.41) * 11.7))
+            let y = (yUnit - 0.5) * height + sin(layer * .pi * 2.0 + phase) * height * 0.014 * modulation
+            let radius = maxRadius * (0.012 + depth * 0.034 + pow(fract(cos(seed * 1.31) * 719.2), 2.0) * 0.050)
+            let blink = 0.58 + 0.42 * sin(phase * (1.0 + floor(fract(seed) * 3.0)) + seed)
+            let pulse = 0.34 + max(0.0, blink) * (0.44 + modulation * 0.24)
+            for sample in 0..<ringSamples {
+                let t = Float(sample) / Float(ringSamples)
+                let theta = t * .pi * 2.0
+                let ring = sample == 0 ? 0.0 : radius * (0.38 + 0.62 * fract(sin(seed + Float(sample)) * 97.3))
+                let point = SIMD2<Float>(x + cos(theta) * ring, y + sin(theta) * ring)
+                append(rotate(point, by: rotation) + center, fract(layer * 0.12 + 0.08), pulse * (sample == 0 ? 1.0 : 0.38), sample == 0 ? 1.4 : 0.9)
+            }
+        }
+    }
+
+    private func makeDigitalSandVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let grains = max(400, min(3600, elementCount * max(4, samplesPerElement)))
+        let width = maxRadius * 2.72
+        let height = maxRadius * 2.02
+        for grain in 0..<grains {
+            let id = seedPhase + Float(grain) * 1.618
+            let baseX = fract(sin(id) * 43758.5453)
+            let baseY = fract(cos(id * 0.91) * 24634.6345)
+            let lane = sin((baseY * harmonicA + phase / (.pi * 2.0)) * .pi * 2.0)
+            let drift = sin(phase + baseX * .pi * 2.0 * harmonicB) * 0.055 * modulation
+            let xUnit = fract(baseX + lane * 0.075 * modulation + drift + 1.0)
+            let yUnit = fract(baseY + 0.045 * sin(phase + baseX * .pi * 6.0) * depth + 1.0)
+            let point = SIMD2<Float>((xUnit - 0.5) * width, (yUnit - 0.5) * height)
+            let pulse = 0.42 + 0.48 * pow(max(0.0, sin(baseY * .pi + phase + lane)), 2.0)
+            append(rotate(point, by: rotation) + center, fract(baseY * 0.20 + 0.10), pulse, 0.62 + depth * 0.82)
+        }
+    }
+
+    private func makeInkInWaterVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let blooms = max(12, min(72, elementCount))
+        let samples = max(72, min(520, samplesPerElement))
+        let width = maxRadius * 2.54
+        let height = maxRadius * 1.94
+        for bloom in 0..<blooms {
+            let layer = Float(bloom) / Float(max(1, blooms - 1))
+            let seed = seedPhase + Float(bloom) * 5.371
+            let centerPoint = SIMD2<Float>(
+                (fract(sin(seed) * 917.7) - 0.5) * width,
+                (fract(cos(seed * 0.83) * 719.2) - 0.5) * height
+            )
+            for sample in 0..<samples {
+                let t = Float(sample) / Float(max(1, samples - 1))
+                let theta = t * .pi * 2.0
+                let lobe = 0.58 + 0.42 * sin(theta * harmonicA + phase + seed)
+                let smoke = 0.62 + 0.38 * sin(theta * harmonicB - phase * 0.7 + seed * 0.3)
+                let radius = maxRadius * (0.08 + depth * 0.20) * lobe * smoke
+                let swirl = theta + modulation * 0.85 * sin(phase + t * .pi * 2.0)
+                let point = centerPoint + SIMD2<Float>(cos(swirl) * radius, sin(swirl) * radius * (0.72 + depth * 0.32))
+                let pulse = smoothEnvelope(fract(t + phase / (.pi * 2.0) + layer), attack: 0.22, release: 0.96)
+                append(rotate(point, by: rotation) + center, fract(layer * 0.36 + t * 0.08), 0.28 + pulse * 0.56, 0.90 + smoke * 0.74)
+            }
+        }
+    }
+
+    private func makeOrigamiTessellationVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let columns = max(8, min(28, Int(sqrt(Float(elementCount))) + 8))
+        let rows = max(6, min(22, columns * 3 / 4))
+        let edgeSamples = max(4, min(18, samplesPerElement))
+        let width = maxRadius * 2.60
+        let height = maxRadius * 1.96
+        for row in 0...rows {
+            for column in 0...columns {
+                let u = Float(column) / Float(max(1, columns))
+                let v = Float(row) / Float(max(1, rows))
+                let fold = sin((u * harmonicA + v * harmonicB) * .pi + phase + seedPhase)
+                let base = SIMD2<Float>((u - 0.5) * width, (v - 0.5) * height)
+                let offset = SIMD2<Float>(sin(phase + v * .pi * 2.0), cos(phase + u * .pi * 2.0)) * maxRadius * 0.020 * modulation * fold
+                let p0 = base + offset
+                let neighbors = [
+                    SIMD2<Float>(width / Float(columns), 0),
+                    SIMD2<Float>(0, height / Float(rows)),
+                    SIMD2<Float>(width / Float(columns), height / Float(rows))
+                ]
+                for edge in neighbors {
+                    guard column < columns || edge.x == 0 else { continue }
+                    guard row < rows || edge.y == 0 else { continue }
+                    for sample in 0..<edgeSamples {
+                        let t = Float(sample) / Float(max(1, edgeSamples - 1))
+                        let crease = sin((t + u + v) * .pi * 2.0 + phase)
+                        let point = p0 + edge * t + SIMD2<Float>(0, crease * maxRadius * 0.014 * depth)
+                        append(rotate(point, by: rotation) + center, fract((u + v) * 0.18 + edge.x * 0.001), 0.42 + abs(fold) * 0.46, 0.82 + abs(fold) * 0.58)
+                    }
+                }
+            }
+        }
+    }
+
+    private func makeSakuraDriftVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let petals = max(42, min(260, elementCount * 2))
+        let width = maxRadius * 2.70
+        let height = maxRadius * 2.06
+        let phaseUnit = phase / (.pi * 2.0)
+        for petal in 0..<petals {
+            let layer = Float(petal) / Float(max(1, petals - 1))
+            let seed = seedPhase + Float(petal) * 4.113
+            let depthLayer = 0.35 + 0.65 * fract(sin(seed * 0.27) * 217.9)
+            let fall = fract(fract(cos(seed * 0.71) * 193.4) + phaseUnit * (0.24 + depthLayer * 0.38))
+            let sway = sin(phase * (0.8 + depthLayer) + layer * .pi * 2.0 * harmonicA) * 0.08 * modulation
+            let x = (fract(fract(sin(seed) * 43758.5453) + sway + 1.0) - 0.5) * width
+            let y = (fall - 0.5) * height
+            let angle = phase * (0.7 + depthLayer) + seed
+            let petalSize = maxRadius * (0.012 + depthLayer * 0.020)
+            for sample in 0..<5 {
+                let theta = Float(sample) / 5.0 * .pi * 2.0 + angle
+                let r = petalSize * (sample == 0 ? 0.0 : 1.0)
+                let point = SIMD2<Float>(x + cos(theta) * r, y + sin(theta) * r * 0.54)
+                append(rotate(point, by: rotation) + center, fract(0.92 + layer * 0.05), 0.52 + depthLayer * 0.42, 0.72 + depthLayer * 0.78)
+            }
+        }
+    }
+
+    private func makeSnowfallDepthVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let flakes = max(80, min(420, elementCount * 3))
+        let width = maxRadius * 2.74
+        let height = maxRadius * 2.08
+        let phaseUnit = phase / (.pi * 2.0)
+        for flake in 0..<flakes {
+            let seed = seedPhase + Float(flake) * 6.171
+            let z = 0.28 + 0.72 * fract(sin(seed * 1.31) * 97.3)
+            let fall = fract(fract(cos(seed) * 811.3) + phaseUnit * (0.18 + z * 0.46))
+            let wind = sin(phase + fall * .pi * 2.0 * harmonicA + seed) * 0.055 * modulation
+            let x = (fract(fract(sin(seed * 0.83) * 43758.5453) + wind + 1.0) - 0.5) * width
+            let y = (fall - 0.5) * height
+            let size = 0.55 + z * 1.35
+            let pulse = 0.44 + z * 0.50
+            append(rotate(SIMD2<Float>(x, y), by: rotation) + center, fract(0.56 + z * 0.08), pulse, size)
+            if flake % 3 == 0 {
+                let delta = maxRadius * 0.010 * size
+                append(rotate(SIMD2<Float>(x - delta, y), by: rotation) + center, fract(0.56 + z * 0.08), pulse * 0.42, size * 0.72)
+                append(rotate(SIMD2<Float>(x + delta, y), by: rotation) + center, fract(0.56 + z * 0.08), pulse * 0.42, size * 0.72)
+            }
+        }
+    }
+
+    private func makeSolarCoronaVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let rays = max(48, min(180, elementCount * 2))
+        let samples = max(32, min(260, samplesPerElement))
+        for ray in 0..<rays {
+            let layer = Float(ray) / Float(max(1, rays - 1))
+            let seed = seedPhase + Float(ray) * 2.317
+            let theta = layer * .pi * 2.0
+            let flicker = 0.78 + 0.22 * sin(phase * 2.0 + seed)
+            for sample in 0..<samples {
+                let t = Float(sample) / Float(max(1, samples - 1))
+                let ripple = sin(t * .pi * harmonicA + phase + seed) * 0.08 * modulation
+                let flame = 1.0 + ripple + 0.08 * sin(theta * harmonicB - phase)
+                let r = maxRadius * (0.08 + t * (1.18 + depth * 0.30)) * flame
+                let bend = theta + sin(phase + t * .pi * 3.0 + seed) * 0.12 * modulation
+                let point = SIMD2<Float>(cos(bend) * r, sin(bend) * r)
+                let pulse = flicker * pow(max(0.0, 1.0 - t * 0.52), 0.85)
+                append(rotate(point, by: rotation) + center, fract(0.04 + t * 0.10), pulse, 0.78 + (1.0 - t) * 0.72)
+            }
+        }
+    }
+
+    private func makeUnderwaterCausticsVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let bands = max(18, min(96, elementCount))
+        let samples = max(96, min(620, samplesPerElement))
+        let width = maxRadius * 2.72
+        let height = maxRadius * 2.02
+        for band in 0..<bands {
+            let layer = Float(band) / Float(max(1, bands - 1))
+            let baseY = -height * 0.5 + height * layer
+            let seed = seedPhase + Float(band) * 1.733
+            for sample in 0..<samples {
+                let t = Float(sample) / Float(max(1, samples - 1))
+                let x = -width * 0.5 + width * t
+                let wave = sin(t * .pi * harmonicA + phase + seed) + 0.55 * sin(t * .pi * harmonicB - phase * 0.8 + seed)
+                let y = baseY + wave * maxRadius * (0.035 + modulation * 0.050)
+                let focus = pow(max(0.0, 0.5 + 0.5 * sin(wave * .pi + phase)), 2.0)
+                append(rotate(SIMD2<Float>(x, y), by: rotation) + center, fract(0.48 + layer * 0.12), 0.30 + focus * (0.54 + depth * 0.20), 0.68 + focus * 0.72)
+            }
+        }
+    }
+
+    private func makeVolumetricNebulaVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let clouds = max(12, min(90, elementCount))
+        let samples = max(50, min(260, samplesPerElement))
+        let width = maxRadius * 2.58
+        let height = maxRadius * 1.98
+        for cloud in 0..<clouds {
+            let layer = Float(cloud) / Float(max(1, clouds - 1))
+            let seed = seedPhase + Float(cloud) * 9.173
+            let orbit = phase * (0.18 + 0.08 * fract(seed)) + seed
+            let cloudCenter = SIMD2<Float>(
+                (fract(sin(seed) * 43758.5453) - 0.5) * width + cos(orbit) * maxRadius * 0.10 * modulation,
+                (fract(cos(seed * 0.61) * 24634.6345) - 0.5) * height + sin(orbit) * maxRadius * 0.08 * modulation
+            )
+            for sample in 0..<samples {
+                let t = Float(sample) / Float(max(1, samples - 1))
+                let theta = fract(sin(seed + Float(sample) * 1.37) * 719.2) * .pi * 2.0 + phase * 0.18
+                let radial = sqrt(fract(cos(seed * 0.73 + Float(sample)) * 431.8))
+                let lobe = 0.66 + 0.34 * sin(theta * harmonicA + phase + seed)
+                let r = maxRadius * (0.08 + depth * 0.18) * radial * lobe
+                let point = cloudCenter + SIMD2<Float>(cos(theta) * r, sin(theta) * r * (0.72 + depth * 0.34))
+                let glow = smoothEnvelope(fract(t + phase / (.pi * 2.0) * 0.18 + layer), attack: 0.18, release: 0.96)
+                append(rotate(point, by: rotation) + center, fract(layer * 0.50 + t * 0.18), 0.24 + glow * 0.62, 0.92 + radial * 1.10)
+            }
+        }
+    }
+
+    private func makeFluidNodesVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let nodeCount = max(18, min(110, elementCount))
+        let edgeSamples = max(4, min(24, samplesPerElement))
+        var nodes: [SIMD2<Float>] = []
+        nodes.reserveCapacity(nodeCount)
+
+        for node in 0..<nodeCount {
+            let layer = Float(node) / Float(max(1, nodeCount - 1))
+            let seed = seedPhase + Float(node) * 13.73
+            let angle = fract(sin(seed) * 173.3) * .pi * 2.0
+            let radius = sqrt(fract(cos(seed * 1.37) * 419.8)) * maxRadius * (0.88 + depth * 0.32)
+            let flow = SIMD2<Float>(
+                sin(phase + layer * harmonicA + seed) * maxRadius * modulation * 0.16,
+                cos(phase + layer * harmonicB - seed) * maxRadius * modulation * 0.16
+            )
+            nodes.append(SIMD2<Float>(cos(angle) * radius * 1.34, sin(angle) * radius * 0.96) + flow)
+        }
+
+        for node in 0..<nodeCount {
+            let layer = Float(node) / Float(max(1, nodeCount - 1))
+            let pulse = 0.60 + 0.40 * sin(phase + layer * .pi * 2.0)
+            append(rotate(nodes[node], by: rotation) + center, layer, pulse, 1.28 + depth * 0.72)
+            for offset in [1, Int(harmonicA)] {
+                let target = (node + offset) % nodeCount
+                let distance = simd_length(nodes[target] - nodes[node]) / max(1.0, maxRadius)
+                let edgePulse = max(0.0, 1.10 - distance) * (0.52 + 0.48 * pulse)
+                if edgePulse < 0.14 { continue }
+                for sample in 0..<edgeSamples {
+                    let t = Float(sample) / Float(max(1, edgeSamples - 1))
+                    let bend = sin(t * .pi) * maxRadius * modulation * 0.035
+                    let normal = normalizeOrZero(SIMD2<Float>(-(nodes[target] - nodes[node]).y, (nodes[target] - nodes[node]).x))
+                    let point = nodes[node] + (nodes[target] - nodes[node]) * t + normal * bend
+                    append(rotate(point, by: rotation) + center, layer, 0.32 + edgePulse * 0.66, 0.66 + edgePulse * 0.54)
+                }
+            }
+        }
+    }
+
+    private func makeLuminousBubblesVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let bubbleCount = max(18, min(72, elementCount))
+        let ringSamples = max(32, min(220, samplesPerElement))
+        let phaseUnit = phase / (.pi * 2.0)
+        let horizontalSpan = maxRadius * (2.36 + depth * 0.34)
+        let verticalSpan = maxRadius * (1.78 + depth * 0.28)
+
+        for bubble in 0..<bubbleCount {
+            let layer = Float(bubble) / Float(max(1, bubbleCount - 1))
+            let seed = seedPhase + Float(bubble) * 29.17
+            let birth = fract(sin(seed * 0.41) * 319.7)
+            let age = fract(phaseUnit - birth + 1.0)
+            let easedAge = age * age * (3.0 - 2.0 * age)
+            let life = smoothEnvelope(age, attack: 0.08, release: 0.90)
+            let xSeed = fract(cos(seed * 0.73) * 811.3)
+            let swaySeed = fract(sin(seed * 1.29) * 541.8)
+            let x = (xSeed - 0.5) * horizontalSpan +
+                sin(phase + seed + swaySeed * .pi * 2.0) * maxRadius * modulation * 0.14
+            let y = verticalSpan * (0.58 - easedAge * 1.16)
+            let bubbleCenter = SIMD2<Float>(x, y)
+            let baseRadius = maxRadius * (0.018 + 0.026 * fract(cos(seed * 0.71) * 57.2))
+            let radius = baseRadius * (0.62 + easedAge * (3.25 + depth * 1.10))
+
+            for sample in 0..<ringSamples {
+                let t = Float(sample) / Float(max(1, ringSamples - 1))
+                let theta = t * .pi * 2.0
+                let ripple = 1.0 + modulation * 0.08 * sin(theta * harmonicB + phase + seed)
+                let local = bubbleCenter + SIMD2<Float>(cos(theta) * radius * ripple, sin(theta) * radius * ripple)
+                let highlight = max(0.0, sin(theta + 0.65) * 0.5 + 0.5)
+                append(rotate(local, by: rotation) + center, layer, life * (0.56 + highlight * 0.40), 0.74 + depth * 0.54)
+            }
+
+            let shine = bubbleCenter + SIMD2<Float>(-radius * 0.28, -radius * 0.32)
+            append(rotate(shine, by: rotation) + center, layer, life * 0.86, 1.72 + depth * 0.92)
+            append(rotate(bubbleCenter, by: rotation) + center, layer, life * 0.34, 1.18 + depth * 0.68)
+        }
+    }
+
+    private func makeSchoolingSwarmVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let agentCount = max(72, min(120, elementCount))
+        let bodySamples = max(5, min(12, samplesPerElement))
+        let horizontalRadius = maxRadius * (1.02 + depth * 0.26)
+        let verticalRadius = maxRadius * (0.74 - depth * 0.48)
+        let phaseUnit = fract(phase / (.pi * 2.0))
+        let simulationResolution = 144
+        let simulationSteps = max(0, min(simulationResolution, Int(floor(phaseUnit * Float(simulationResolution)))))
+        let swimSpeed = maxRadius * (0.010 + modulation * 0.006)
+        let repulsionRadius = maxRadius * 0.105
+        let alignmentRadius = maxRadius * 0.235
+        let attractionRadius = maxRadius * 0.38
+        let repulsionRadiusSquared = repulsionRadius * repulsionRadius
+        let alignmentRadiusSquared = alignmentRadius * alignmentRadius
+        let attractionRadiusSquared = attractionRadius * attractionRadius
+        let attractionInnerRadiusSquared = alignmentRadius * 0.74 * alignmentRadius * 0.74
+        let waveCycleCount = 4.0
+
+        func shortestAngle(_ from: Float, _ to: Float) -> Float {
+            wrapCentered(to - from, span: .pi * 2.0)
+        }
+
+        func mixedHeading(_ current: Float, toward target: Float, amount: Float) -> Float {
+            current + shortestAngle(current, target) * max(0.0, min(1.0, amount))
+        }
+
+        func baseHeading(at unitTime: Float) -> Float {
+            let localPhase = unitTime * .pi * 2.0
+            return sin(localPhase + seedPhase) * 0.34 +
+                sin(localPhase * 2.0 - seedPhase * 0.61) * 0.18
+        }
+
+        func waveState(at unitTime: Float) -> (direction: SIMD2<Float>, progress: Float, envelope: Float) {
+            let wavePosition = unitTime * Float(waveCycleCount)
+            let waveIndex = floor(wavePosition)
+            let progress = fract(wavePosition)
+            let baseDirection = harmonicA
+            let offsetIndex = max(0, min(3, Int(waveIndex)))
+            let directionOffset: Float
+            switch offsetIndex {
+            case 0:
+                directionOffset = 0.0
+            case 1:
+                directionOffset = 4.0
+            case 2:
+                directionOffset = 1.0
+            default:
+                directionOffset = 5.0
+            }
+            let directionIndex = (baseDirection + directionOffset).truncatingRemainder(dividingBy: 8.0)
+            let angle = directionIndex * (.pi / 4.0)
+            let envelope = sin(progress * .pi)
+            return (SIMD2<Float>(cos(angle), sin(angle)), progress, max(0.0, envelope))
+        }
+
+        func smooth(_ edge0: Float, _ edge1: Float, _ value: Float) -> Float {
+            let t = min(max((value - edge0) / max(0.0001, edge1 - edge0), 0.0), 1.0)
+            return t * t * (3.0 - 2.0 * t)
+        }
+
+        let cacheKey = SchoolingSwarmSimulationCache.Key(
+            agentCount: agentCount,
+            simulationResolution: simulationResolution,
+            firstWaveDirection: harmonicA,
+            seedPhase: seedPhase,
+            horizontalRadius: horizontalRadius,
+            verticalRadius: verticalRadius,
+            modulation: modulation,
+            maxRadius: maxRadius
+        )
+        let cache: SchoolingSwarmSimulationCache
+        if let existingCache = schoolingSwarmSimulationCache, existingCache.key == cacheKey {
+            cache = existingCache
+        } else {
+            var simulatedPositions = Array(repeating: SIMD2<Float>.zero, count: agentCount)
+            var simulatedHeadings = Array(repeating: Float.zero, count: agentCount)
+            var positionsByStep: [[SIMD2<Float>]] = []
+            var headingsByStep: [[Float]] = []
+            positionsByStep.reserveCapacity(simulationResolution + 1)
+            headingsByStep.reserveCapacity(simulationResolution + 1)
+
+            for agent in 0..<agentCount {
+                let id = seedPhase + Float(agent) * 17.913
+                let radial = sqrt(fract(sin(id * 0.73) * 43758.5453))
+                let angle = fract(cos(id * 1.17) * 24634.6345) * .pi * 2.0
+                simulatedPositions[agent] = SIMD2<Float>(
+                    cos(angle) * radial * horizontalRadius * 0.86,
+                    sin(angle) * radial * verticalRadius * 0.86
+                )
+                simulatedHeadings[agent] = baseHeading(at: 0) +
+                    sin(id * 0.31) * 0.18 +
+                    cos(id * 0.47) * 0.12
+            }
+
+            positionsByStep.append(simulatedPositions)
+            headingsByStep.append(simulatedHeadings)
+
+            for step in 1...simulationResolution {
+                let unitTime = Float(step) / Float(simulationResolution)
+                let oldPositions = simulatedPositions
+                let oldHeadings = simulatedHeadings
+                let oldHeadingVectors = oldHeadings.map { SIMD2<Float>(cos($0), sin($0)) }
+                let wave = waveState(at: unitTime)
+                let waveExtent = max(1.0, horizontalRadius * 1.42)
+
+                for agent in 0..<agentCount {
+                    var repulsion = SIMD2<Float>.zero
+                    var attraction = SIMD2<Float>.zero
+                    var alignVector = SIMD2<Float>.zero
+                    var neighborCount: Float = 0
+                    var attractionCount: Float = 0
+
+                    for other in 0..<agentCount where other != agent {
+                        let delta = oldPositions[other] - oldPositions[agent]
+                        let distanceSquared = dot(delta, delta)
+                        guard distanceSquared > 0.000001, distanceSquared < attractionRadiusSquared else { continue }
+                        let distance = sqrt(distanceSquared)
+                        let direction = delta / distance
+
+                        if distanceSquared < repulsionRadiusSquared {
+                            repulsion -= direction * ((repulsionRadius - distance) / repulsionRadius)
+                        }
+                        if distanceSquared < alignmentRadiusSquared {
+                            alignVector += oldHeadingVectors[other]
+                            neighborCount += 1.0
+                        }
+                        if distanceSquared > attractionInnerRadiusSquared {
+                            attraction += direction
+                            attractionCount += 1.0
+                        }
+                    }
+
+                    let waveCoordinate = min(1.0, max(0.0, dot(oldPositions[agent], wave.direction) / waveExtent * 0.5 + 0.5))
+                    let waveDelta = waveCoordinate - wave.progress
+                    let escapeWave = exp(-waveDelta * waveDelta * (56.0 + modulation * 36.0)) * wave.envelope
+                    var desiredVector = oldHeadingVectors[agent]
+
+                    if neighborCount > 0 {
+                        desiredVector += normalizeOrZero(alignVector / neighborCount) * (0.74 + modulation * 0.42)
+                    }
+                    if attractionCount > 0 {
+                        desiredVector += normalizeOrZero(attraction / attractionCount) * 0.28
+                    }
+                    desiredVector += repulsion * 1.55
+                    desiredVector += normalizeOrZero(-oldPositions[agent]) * 0.18
+                    desiredVector += wave.direction * escapeWave * (1.55 + modulation * 0.92)
+
+                    let desiredHeading = atan2(desiredVector.y, desiredVector.x)
+                    let response = 0.075 + 0.38 * escapeWave
+                    let newHeading = mixedHeading(oldHeadings[agent], toward: desiredHeading, amount: response)
+                    let velocity = SIMD2<Float>(cos(newHeading), sin(newHeading)) * swimSpeed
+                    var newPosition = oldPositions[agent] + velocity
+
+                    let ellipseValue = (newPosition.x * newPosition.x) / max(1.0, horizontalRadius * horizontalRadius) +
+                        (newPosition.y * newPosition.y) / max(1.0, verticalRadius * verticalRadius)
+                    if ellipseValue > 1.0 {
+                        newPosition += normalizeOrZero(-newPosition) * swimSpeed * (0.6 + ellipseValue * 0.5)
+                    }
+
+                    simulatedPositions[agent] = newPosition
+                    simulatedHeadings[agent] = newHeading
+                }
+
+                positionsByStep.append(simulatedPositions)
+                headingsByStep.append(simulatedHeadings)
+            }
+
+            cache = SchoolingSwarmSimulationCache(
+                key: cacheKey,
+                positionsByStep: positionsByStep,
+                headingsByStep: headingsByStep
+            )
+            schoolingSwarmSimulationCache = cache
+        }
+
+        var positions = cache.positionsByStep[simulationSteps]
+        var headings = cache.headingsByStep[simulationSteps]
+        let initialPositions = cache.positionsByStep[0]
+        let initialHeadings = cache.headingsByStep[0]
+
+        let loopBlend = smooth(0.58, 1.0, phaseUnit)
+        if loopBlend > 0 {
+            for agent in 0..<agentCount {
+                positions[agent] = positions[agent] * (1.0 - loopBlend) + initialPositions[agent] * loopBlend
+                headings[agent] = mixedHeading(headings[agent], toward: initialHeadings[agent], amount: loopBlend)
+            }
+        }
+
+        for agent in 0..<agentCount {
+            let layer = Float(agent) / Float(max(1, agentCount - 1))
+            let id = seedPhase + Float(agent) * 17.913
+            let localHeading = headings[agent]
+            let localDirection = SIMD2<Float>(cos(localHeading), sin(localHeading))
+            let localNormal = SIMD2<Float>(-localDirection.y, localDirection.x)
+            let distanceFromCenter = min(1.0, simd_length(positions[agent]) / max(1.0, horizontalRadius))
+            let body = maxRadius * (0.020 + 0.010 * (1.0 - distanceFromCenter))
+            let base = positions[agent]
+            let tail = base - localDirection * body * 1.42
+            let nose = base + localDirection * body * 1.66
+
+            for sample in 0..<bodySamples {
+                let t = Float(sample) / Float(max(1, bodySamples - 1))
+                let width = sin(t * .pi) * body * 0.18
+                let point = tail + (nose - tail) * t + localNormal * width * sin(phase * 5.0 + id)
+                append(
+                    rotate(point, by: rotation) + center,
+                    layer,
+                    0.64 + 0.22 * (1.0 - distanceFromCenter),
+                    0.88 + (1.0 - distanceFromCenter) * 0.30
+                )
+            }
+
+            let tailBeat = sin(phase * 6.0 + id) * body * 0.44
+            let upperTail = tail + localNormal * (body * 0.72 + tailBeat)
+            let lowerTail = tail - localNormal * (body * 0.72 - tailBeat)
+            append(rotate(upperTail, by: rotation) + center, layer, 0.72, 0.82)
+            append(rotate(lowerTail, by: rotation) + center, layer, 0.72, 0.82)
+            let nosePoint = rotate(nose, by: rotation) + center
+            append(nosePoint, layer, 0.86, 1.02)
+        }
+    }
+
+    private func makeWireframeMorphVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let columns = max(6, min(36, elementCount))
+        let rows = max(6, min(36, samplesPerElement))
+        let width = maxRadius * (2.48 + depth * 0.34)
+        let height = maxRadius * (1.84 + depth * 0.28)
+        var nodes = Array(repeating: SIMD2<Float>.zero, count: columns * rows)
+
+        func index(_ column: Int, _ row: Int) -> Int { row * columns + column }
+
+        for row in 0..<rows {
+            let yLayer = Float(row) / Float(max(1, rows - 1))
+            for column in 0..<columns {
+                let xLayer = Float(column) / Float(max(1, columns - 1))
+                let x = (xLayer - 0.5) * width
+                let y = (yLayer - 0.5) * height
+                let z = sin(xLayer * harmonicA * .pi * 2.0 + phase) *
+                    cos(yLayer * harmonicB * .pi * 2.0 - phase)
+                let perspective = 1.0 + z * depth * 0.16
+                let twist = seedPhase * 0.04 +
+                    sin(phase) * (0.26 + modulation * 0.12) +
+                    z * modulation * 0.18
+                nodes[index(column, row)] = rotate(SIMD2<Float>(x * perspective, y * perspective), by: twist)
+            }
+        }
+
+        let edgeSamples = 6
+        for row in 0..<rows {
+            for column in 0..<columns {
+                let layer = Float(row * columns + column) / Float(max(1, rows * columns - 1))
+                let targets: [(Int, Int)] = [(column + 1, row), (column, row + 1), (column + 1, row + 1)]
+                for target in targets where target.0 < columns && target.1 < rows {
+                    let from = nodes[index(column, row)]
+                    let to = nodes[index(target.0, target.1)]
+                    let pulse = 0.58 + 0.42 * sin(phase + layer * .pi * 2.0)
+                    for sample in 0..<edgeSamples {
+                        let t = Float(sample) / Float(edgeSamples - 1)
+                        append(rotate(from + (to - from) * t, by: rotation) + center, layer, pulse, 0.78 + pulse * 0.46)
+                    }
+                }
+            }
+        }
     }
 
     private func makeClosedFlowVertices(
@@ -5350,6 +8064,209 @@ final class ProceduralPatternRenderer {
                 ) * maxRadius * modulation * 0.10
                 let screen = rotate(SIMD2<Float>(cos(angle) * radius, sin(angle) * radius) + drift, by: rotation) + center
                 append(screen, layer, 0.65 + 0.35 * sin(theta + phase + offset) * 0.5 + 0.35, 1.0)
+            }
+        }
+    }
+
+    private func makeChladniPlateVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let columns = max(24, min(150, elementCount))
+        let rows = max(24, min(150, samplesPerElement))
+        let xScale = maxRadius * 2.86
+        let yScale = maxRadius * (2.22 + depth * 0.34)
+        for column in 0..<columns {
+            let xLayer = Float(column) / Float(max(1, columns - 1))
+            let x = (xLayer - 0.5) * xScale
+            for row in 0..<rows {
+                let yLayer = Float(row) / Float(max(1, rows - 1))
+                let y = (yLayer - 0.5) * yScale
+                let nx = (xLayer - 0.5) * 2.0
+                let ny = (yLayer - 0.5) * 2.0
+                let modeA = sin(nx * harmonicA * .pi + phase)
+                let modeB = sin(ny * harmonicB * .pi - phase)
+                let diagonal = sin((nx + ny) * .pi * (harmonicA + harmonicB) * 0.5 + phase)
+                let field = abs(modeA * modeB + diagonal * modulation * 0.34)
+                let threshold = 0.20 + modulation * 0.16
+                if field < threshold {
+                    let pulse = 1.0 - min(1.0, field / threshold)
+                    let local = SIMD2<Float>(x, y)
+                    append(rotate(local, by: rotation) + center, (xLayer + yLayer) * 0.5, 0.70 + 0.30 * pulse, 1.00 + pulse * 0.62)
+                }
+            }
+        }
+    }
+
+    private func makeCircuitTracerVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let gridColumns = max(7, min(18, Int(harmonicA) + 8))
+        let gridRows = max(5, min(14, Int(harmonicB) + 4))
+        let routeCount = max(8, min(72, elementCount))
+        let samples = max(6, samplesPerElement)
+        let width = maxRadius * (2.46 + depth * 0.42)
+        let height = maxRadius * (1.62 + depth * 0.28)
+        let phaseUnit = phase / (.pi * 2.0)
+
+        for route in 0..<routeCount {
+            let layer = Float(route) / Float(max(1, routeCount - 1))
+            let routeSeed = seedPhase + Float(route) * 12.9898
+            let startColumn = Int(floor(fract(sin(routeSeed) * 43758.5453) * Float(gridColumns)))
+            let startRow = Int(floor(fract(cos(routeSeed * 1.37) * 24634.6345) * Float(gridRows)))
+            let segmentCount = max(3, min(9, 3 + Int(fract(sin(routeSeed * 0.41) * 531.7) * 6.0)))
+            var previous = SIMD2<Float>(
+                (Float(startColumn) / Float(max(1, gridColumns - 1)) - 0.5) * width,
+                (Float(startRow) / Float(max(1, gridRows - 1)) - 0.5) * height
+            )
+
+            for segment in 0..<segmentCount {
+                let turn = fract(sin(routeSeed + Float(segment) * 3.17) * 913.13)
+                let stepColumn = Int(floor(fract(turn + layer * 0.37) * Float(gridColumns)))
+                let stepRow = Int(floor(fract(turn * 1.91 + 0.23) * Float(gridRows)))
+                let next: SIMD2<Float>
+                if segment % 2 == 0 {
+                    next = SIMD2<Float>(
+                        (Float(stepColumn) / Float(max(1, gridColumns - 1)) - 0.5) * width,
+                        previous.y
+                    )
+                } else {
+                    next = SIMD2<Float>(
+                        previous.x,
+                        (Float(stepRow) / Float(max(1, gridRows - 1)) - 0.5) * height
+                    )
+                }
+
+                let routePhase = fract(phaseUnit + layer + Float(segment) / Float(max(1, segmentCount)))
+                for sample in 0..<samples {
+                    let t = Float(sample) / Float(max(1, samples - 1))
+                    let pulseDistance = min(abs(t - routePhase), 1.0 - abs(t - routePhase))
+                    let pulse = max(0.0, 1.0 - pulseDistance * (7.0 + modulation * 9.0))
+                    let baseGlow = 0.22 + pulse * 0.84
+                    let point = previous + (next - previous) * t
+                    let jitter = SIMD2<Float>(
+                        sin(routeSeed + t * .pi * 2.0) * maxRadius * modulation * 0.006,
+                        cos(routeSeed * 0.7 + t * .pi * 2.0) * maxRadius * modulation * 0.006
+                    )
+                    append(
+                        rotate(point + jitter, by: rotation) + center,
+                        layer,
+                        baseGlow,
+                        0.90 + pulse * 1.10
+                    )
+                }
+
+                if routePhase > 0.72 {
+                    append(rotate(next, by: rotation) + center, layer, 1.08, 1.65)
+                }
+
+                previous = next
+            }
+        }
+    }
+
+    private func makeCrystalLatticeVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let columns = max(6, min(96, elementCount))
+        let rows = max(6, min(96, samplesPerElement))
+        let xScale = maxRadius * (2.72 + depth * 0.36)
+        let yScale = maxRadius * (2.12 + depth * 0.34)
+        for column in 0..<columns {
+            let columnLayer = Float(column) / Float(max(1, columns - 1))
+            for row in 0..<rows {
+                let rowLayer = Float(row) / Float(max(1, rows - 1))
+                let x = (columnLayer - 0.5) * xScale
+                let y = (rowLayer - 0.5) * yScale
+                let stagger = (row % 2 == 0 ? -0.5 : 0.5) * xScale / Float(columns) * 0.42
+                let wave = sin((columnLayer * harmonicA + rowLayer * harmonicB) * .pi * 2.0 + phase + seedPhase)
+                let shimmer = cos((columnLayer - rowLayer) * .pi * 2.0 * harmonicB - phase)
+                let offset = SIMD2<Float>(
+                    shimmer * maxRadius * modulation * 0.028,
+                    wave * maxRadius * modulation * 0.036
+                )
+                let local = SIMD2<Float>(x + stagger, y) + offset
+                let layer = (columnLayer + rowLayer) * 0.5
+                append(
+                    rotate(local, by: rotation + sin(phase) * 0.05) + center,
+                    layer,
+                    0.76 + 0.34 * abs(wave),
+                    1.14 + depth * 0.72
+                )
+            }
+        }
+    }
+
+    private func makeElectricStormVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let boltCount = max(12, elementCount)
+        let samples = max(24, samplesPerElement)
+        for bolt in 0..<boltCount {
+            let layer = Float(bolt) / Float(max(1, boltCount - 1))
+            let baseAngle = layer * .pi * 2.0 + seedPhase + sin(phase + layer * harmonicB) * 0.22
+            let branchPhase = seedPhase * 0.31 + Float(bolt) * 1.713
+            let startRadius = maxRadius * (0.08 + 0.14 * sin(branchPhase))
+            let endRadius = maxRadius * (0.76 + depth * 0.58)
+            for sample in 0..<samples {
+                let t = Float(sample) / Float(max(1, samples - 1))
+                let fork = sin(t * .pi * harmonicA + phase + branchPhase)
+                let jitter = sin(t * .pi * harmonicB - phase * 2.0 + branchPhase) * modulation
+                let angle = baseAngle + fork * 0.18 + jitter * 0.22
+                let radius = startRadius + (endRadius - startRadius) * t
+                let sideFlash = SIMD2<Float>(
+                    cos(baseAngle + .pi * 0.5),
+                    sin(baseAngle + .pi * 0.5)
+                ) * maxRadius * jitter * 0.10
+                let local = SIMD2<Float>(cos(angle) * radius * 1.34, sin(angle) * radius) + sideFlash
+                append(
+                    rotate(local, by: rotation) + center,
+                    layer,
+                    0.72 + 0.28 * abs(fork),
+                    1.08 + (1.0 - t) * 0.42
+                )
             }
         }
     }
@@ -5416,6 +8333,42 @@ final class ProceduralPatternRenderer {
         }
     }
 
+    private func makeFourierKnotsVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        rotation: Float
+    ) {
+        for curve in 0..<elementCount {
+            let layer = Float(curve) / Float(max(1, elementCount - 1))
+            let curvePhase = seedPhase + layer * .pi * 2.0
+            let curveScale = maxRadius * (0.58 + 0.36 * sin(layer * .pi))
+            for sample in 0..<samplesPerElement {
+                let t = Float(sample) / Float(max(1, samplesPerElement - 1))
+                let theta = t * .pi * 2.0
+                let x = sin(theta * harmonicA + phase + curvePhase) +
+                    0.45 * sin(theta * (harmonicB + 1.0) - phase + curvePhase)
+                let y = cos(theta * harmonicB - phase + curvePhase) +
+                    0.45 * cos(theta * (harmonicA + 2.0) + phase * 2.0)
+                let breathing = 0.74 + modulation * 0.16 * sin(theta + phase + curvePhase)
+                let local = SIMD2<Float>(x, y) * curveScale * breathing * 0.54
+                append(
+                    rotate(local, by: rotation + layer * 0.38) + center,
+                    layer,
+                    0.68 + 0.32 * abs(sin(theta + phase + curvePhase)),
+                    0.78 + modulation * 0.38
+                )
+            }
+        }
+    }
+
     private func makeGuillocheVertices(
         append: (SIMD2<Float>, Float, Float, Float) -> Void,
         elementCount: Int,
@@ -5440,6 +8393,88 @@ final class ProceduralPatternRenderer {
                     sin(theta * (harmonicB - 1.0) + phase) * modulation * 0.32
                 let local = SIMD2<Float>(x, y) * maxRadius * (0.68 + layer * 0.50)
                 append(rotate(local, by: rotation + layer * 0.25) + center, layer, 0.78 + 0.22 * sin(theta + phase), 0.86)
+            }
+        }
+    }
+
+    private func makeGrowingNetworkVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let nodeCount = max(12, min(120, elementCount))
+        let edgeSamples = max(4, samplesPerElement)
+        let phaseUnit = phase / (.pi * 2.0)
+        let networkRadius = maxRadius * (1.02 + depth * 0.24)
+        var nodes: [SIMD2<Float>] = []
+        nodes.reserveCapacity(nodeCount)
+
+        for node in 0..<nodeCount {
+            let id = Float(node)
+            let radialSeed = fract(sin(seedPhase + id * 12.9898) * 43758.5453)
+            let angleSeed = fract(sin(seedPhase * 1.37 + id * 78.233) * 24634.6345)
+            let radius = sqrt(radialSeed) * networkRadius
+            let angle = angleSeed * .pi * 2.0
+            let drift = SIMD2<Float>(
+                sin(phase + id * 0.73) * maxRadius * modulation * 0.018,
+                cos(phase + id * 0.41) * maxRadius * modulation * 0.018
+            )
+            let local = SIMD2<Float>(
+                cos(angle) * radius * (1.34 + depth * 0.18),
+                sin(angle) * radius * (1.08 + depth * 0.12)
+            ) + drift
+            nodes.append(local)
+        }
+
+        for node in 0..<nodeCount {
+            let layer = Float(node) / Float(max(1, nodeCount - 1))
+            let birth = fract(layer * 0.77 + seedPhase * 0.017)
+            let age = fract(phaseUnit - birth + 1.0)
+            let nodePulse = smoothEnvelope(age, attack: 0.10, release: 0.88)
+            if nodePulse > 0.02 {
+                append(
+                    rotate(nodes[node], by: rotation) + center,
+                    layer,
+                    0.45 + nodePulse * 0.65,
+                    1.08 + nodePulse * 1.12
+                )
+            }
+
+            let nextA = (node + Int(harmonicA)) % nodeCount
+            let nextB = (node + Int(harmonicB)) % nodeCount
+            let targets = [nextA, nextB]
+            for (edgeIndex, target) in targets.enumerated() {
+                let edgeBirth = fract(birth + Float(edgeIndex) * 0.13 + 0.09)
+                let edgeAge = fract(phaseUnit - edgeBirth + 1.0)
+                let growth = min(1.0, max(0.0, edgeAge / (0.34 + modulation * 0.22)))
+                let edgeLife = smoothEnvelope(edgeAge, attack: 0.16, release: 0.94)
+                if edgeLife <= 0.02 { continue }
+
+                let from = nodes[node]
+                let to = nodes[target]
+                let samples = max(2, Int(Float(edgeSamples) * max(0.18, growth)))
+                for sample in 0..<samples {
+                    let t = Float(sample) / Float(max(1, edgeSamples - 1))
+                    if t > growth { break }
+                    let bend = sin(t * .pi) * maxRadius * modulation * 0.035
+                    let normal = normalizeOrZero(SIMD2<Float>(-(to - from).y, (to - from).x))
+                    let point = from + (to - from) * t + normal * bend
+                    append(
+                        rotate(point, by: rotation) + center,
+                        layer,
+                        0.35 + edgeLife * 0.66,
+                        0.74 + edgeLife * 0.58
+                    )
+                }
             }
         }
     }
@@ -5478,6 +8513,44 @@ final class ProceduralPatternRenderer {
         }
     }
 
+    private func makeLaserRibbonsVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        rotation: Float
+    ) {
+        for ribbon in 0..<elementCount {
+            let layer = Float(ribbon) / Float(max(1, elementCount - 1))
+            let lane = (layer - 0.5) * maxRadius * 1.72
+            let ribbonPhase = seedPhase + layer * .pi * 2.0
+            for sample in 0..<samplesPerElement {
+                let t = Float(sample) / Float(max(1, samplesPerElement - 1))
+                let x = (t - 0.5) * maxRadius * 3.34
+                let waveA = sin(t * .pi * 2.0 * harmonicA + phase + ribbonPhase)
+                let waveB = cos(t * .pi * 2.0 * harmonicB - phase + ribbonPhase)
+                let y = lane + (waveA * 0.65 + waveB * 0.35) * maxRadius * modulation * 0.30
+                let sweep = SIMD2<Float>(
+                    sin(phase + layer * .pi * 2.0) * maxRadius * modulation * 0.08,
+                    cos(phase + t * .pi * 2.0) * maxRadius * modulation * 0.05
+                )
+                let local = SIMD2<Float>(x, y) + sweep
+                append(
+                    rotate(local, by: rotation + sin(phase + layer) * 0.08) + center,
+                    layer,
+                    0.70 + 0.30 * abs(waveA),
+                    0.96 + modulation * 0.48
+                )
+            }
+        }
+    }
+
     private func makeMetaballVertices(
         append: (SIMD2<Float>, Float, Float, Float) -> Void,
         elementCount: Int,
@@ -5505,6 +8578,357 @@ final class ProceduralPatternRenderer {
                 let merge = 1.0 + modulation * 0.34 * sin(theta * harmonicB + phase + layer * .pi)
                 let local = SIMD2<Float>(cos(theta) * baseRadius * merge, sin(theta) * baseRadius * merge)
                 append(blobCenter + local, layer, 0.66 + 0.34 * merge, 1.15)
+            }
+        }
+    }
+
+    private func makeMoireRingsVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        rotation: Float
+    ) {
+        for ring in 0..<elementCount {
+            let layer = Float(ring) / Float(max(1, elementCount - 1))
+            let baseRadius = maxRadius * (0.08 + 1.24 * layer)
+            let ringPhase = layer * .pi * 2.0
+            for sample in 0..<samplesPerElement {
+                let t = Float(sample) / Float(max(1, samplesPerElement - 1))
+                let theta = t * .pi * 2.0
+                let beatA = sin(theta * harmonicA + phase + ringPhase)
+                let beatB = cos(theta * harmonicB - phase + ringPhase)
+                let ripple = (beatA * 0.55 + beatB * 0.45) * maxRadius * modulation * 0.046
+                let radius = baseRadius + ripple + sin(ringPhase + phase) * maxRadius * 0.014
+                let local = SIMD2<Float>(cos(theta) * radius, sin(theta) * radius)
+                append(
+                    rotate(local, by: rotation + sin(phase) * 0.04) + center,
+                    layer,
+                    0.62 + 0.38 * abs(beatA * beatB),
+                    0.78 + modulation * 0.30
+                )
+            }
+        }
+    }
+
+    private func makeNeonVortexVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        for arm in 0..<elementCount {
+            let layer = Float(arm) / Float(max(1, elementCount - 1))
+            let armPhase = seedPhase + layer * .pi * 2.0
+            for sample in 0..<samplesPerElement {
+                let t = Float(sample) / Float(max(1, samplesPerElement - 1))
+                let spiral = t * .pi * 2.0 * (1.2 + depth * 2.4) + armPhase + phase
+                let wobble = sin(t * .pi * 2.0 * harmonicB - phase + armPhase) * modulation
+                let radius = maxRadius * pow(t, 0.72) * (0.14 + 0.98 * (0.65 + 0.35 * sin(phase + armPhase)))
+                let angle = spiral + wobble * 0.36 + sin(t * .pi * harmonicA + phase) * 0.18
+                let local = SIMD2<Float>(cos(angle) * radius * 1.26, sin(angle) * radius)
+                append(
+                    rotate(local, by: rotation) + center,
+                    layer,
+                    0.66 + 0.34 * abs(wobble),
+                    0.88 + (1.0 - t) * 0.72
+                )
+            }
+        }
+    }
+
+    private func makeRadialOscilloscopeVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        rotation: Float
+    ) {
+        for trace in 0..<elementCount {
+            let layer = Float(trace) / Float(max(1, elementCount - 1))
+            let tracePhase = seedPhase + layer * .pi * 2.0
+            for sample in 0..<samplesPerElement {
+                let t = Float(sample) / Float(max(1, samplesPerElement - 1))
+                let theta = t * .pi * 2.0
+                let signalA = sin(theta * harmonicA + phase + tracePhase)
+                let signalB = cos(theta * harmonicB - phase + tracePhase)
+                let radius = maxRadius * (0.20 + 1.06 * layer) +
+                    maxRadius * modulation * 0.18 * (signalA * 0.65 + signalB * 0.35)
+                let local = SIMD2<Float>(cos(theta) * radius * 1.38, sin(theta) * radius)
+                append(
+                    rotate(local, by: rotation + layer * 0.10) + center,
+                    layer,
+                    0.64 + 0.36 * abs(signalA),
+                    0.86 + modulation * 0.34
+                )
+            }
+        }
+    }
+
+    private func makeRainCurtainVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let dropCount = max(32, min(160, elementCount))
+        let trailSamples = max(6, min(42, samplesPerElement))
+        let width = maxRadius * (2.72 + depth * 0.34)
+        let height = maxRadius * (1.88 + depth * 0.42)
+        let phaseUnit = phase / (.pi * 2.0)
+        let wind = maxRadius * modulation * 0.18
+
+        for drop in 0..<dropCount {
+            let layer = Float(drop) / Float(max(1, dropCount - 1))
+            let id = seedPhase + Float(drop) * 19.191
+            let xBase = (fract(sin(id) * 43758.5453) - 0.5) * width
+            let offset = fract(cos(id * 0.73) * 14375.337)
+            let laneSpeed = 1.0 + floor(fract(sin(id * 1.91) * 249.31) * 2.0)
+            let fall = fract(offset + phaseUnit * laneSpeed)
+            let yHead = (fall - 0.5) * height
+            let xHead = xBase + sin(phase + layer * harmonicA) * wind
+            let length = height * (0.055 + depth * 0.07 + fract(sin(id * 2.17) * 311.9) * 0.08)
+
+            for sample in 0..<trailSamples {
+                let t = Float(sample) / Float(max(1, trailSamples - 1))
+                let localPulse = pow(1.0 - t, 1.35)
+                let wrappedY = wrapCentered(yHead - length * t, span: height)
+                let shear = sin(t * .pi + layer * harmonicB) * wind * 0.12
+                let point = SIMD2<Float>(xHead + shear, wrappedY)
+                append(
+                    rotate(point, by: rotation) + center,
+                    layer,
+                    0.30 + localPulse * 0.82,
+                    0.62 + localPulse * 1.18
+                )
+            }
+
+            let splashPhase = max(0.0, 1.0 - abs(fall - 0.92) * 16.0)
+            if splashPhase > 0.0 {
+                let splashWidth = maxRadius * (0.018 + modulation * 0.035)
+                let y = height * 0.46
+                for spark in 0..<5 {
+                    let sparkT = Float(spark) / 4.0 - 0.5
+                    let point = SIMD2<Float>(xHead + sparkT * splashWidth, y + abs(sparkT) * splashWidth * 0.25)
+                    append(
+                        rotate(point, by: rotation) + center,
+                        layer,
+                        0.40 + splashPhase * 0.70,
+                        0.78 + splashPhase * 0.74
+                    )
+                }
+            }
+        }
+    }
+
+    private func makeTruchetFlowVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        rotation: Float
+    ) {
+        let columns = max(8, min(48, elementCount))
+        let rows = max(6, min(36, samplesPerElement))
+        let tileWidth = maxRadius * 3.02 / Float(columns)
+        let tileHeight = maxRadius * 2.20 / Float(rows)
+        let samplesPerArc = 16
+        for column in 0..<columns {
+            let xLayer = Float(column) / Float(max(1, columns - 1))
+            for row in 0..<rows {
+                let yLayer = Float(row) / Float(max(1, rows - 1))
+                    let selector = sin(Float(column) * harmonicA + Float(row) * harmonicB + seedPhase + phase)
+                    let baseCenter = SIMD2<Float>(
+                    (xLayer - 0.5) * maxRadius * 3.02,
+                    (yLayer - 0.5) * maxRadius * 2.20
+                )
+                for sample in 0..<samplesPerArc {
+                    let t = Float(sample) / Float(max(1, samplesPerArc - 1))
+                    let theta = t * .pi * 0.5
+                    let cornerOffset = selector >= 0
+                        ? SIMD2<Float>(-tileWidth * 0.5, -tileHeight * 0.5)
+                        : SIMD2<Float>(tileWidth * 0.5, -tileHeight * 0.5)
+                    let arc = selector >= 0
+                        ? SIMD2<Float>(cos(theta) * tileWidth * 0.5, sin(theta) * tileHeight * 0.5)
+                        : SIMD2<Float>(-cos(theta) * tileWidth * 0.5, sin(theta) * tileHeight * 0.5)
+                    let flow = SIMD2<Float>(
+                        sin(phase + xLayer * .pi * 2.0) * tileWidth * modulation * 0.18,
+                        cos(phase - yLayer * .pi * 2.0) * tileHeight * modulation * 0.18
+                    )
+                    let local = baseCenter + cornerOffset + arc + flow
+                    append(
+                        rotate(local, by: rotation) + center,
+                        (xLayer + yLayer) * 0.5,
+                        0.70 + 0.30 * abs(selector),
+                        0.92
+                    )
+                }
+            }
+        }
+    }
+
+    private func makeLabyrinthTraceVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let columns = max(12, min(44, elementCount))
+        let rows = max(8, min(32, Int(Float(elementCount) * 0.68)))
+        let width = maxRadius * 3.18
+        let height = maxRadius * 2.20
+        let cellWidth = width / Float(columns)
+        let cellHeight = height / Float(rows)
+        let pathCount = max(8, min(34, Int(Float(elementCount) * (0.58 + depth * 0.18))))
+        let stepCount = max(14, min(56, samplesPerElement))
+        let samplesPerStep = 5
+        let rotationPhase = rotation / (.pi * 2.0)
+
+        func mazeHash(_ x: Int, _ y: Int, _ step: Int, _ path: Int) -> Float {
+            fract(sin(Float(x * 37 + y * 67 + step * 97 + path * 131) + seedPhase) * 43758.5453)
+        }
+
+        func cellCenter(_ x: Int, _ y: Int) -> SIMD2<Float> {
+            SIMD2<Float>(
+                (Float(x) + 0.5) * cellWidth - width * 0.5,
+                (Float(y) + 0.5) * cellHeight - height * 0.5
+            )
+        }
+
+        for path in 0..<pathCount {
+            let layer = Float(path) / Float(max(1, pathCount - 1))
+            var x = Int(floor(mazeHash(path, 0, 0, path) * Float(columns)))
+            var y = Int(floor(mazeHash(0, path, 1, path) * Float(rows)))
+            let localPhase = fract(phase * 0.5 + layer * 0.37 + rotationPhase * 0.25)
+
+            for step in 0..<stepCount {
+                let directionSelector = mazeHash(x, y, step, path)
+                let turnBias = sin(phase + Float(step) * 0.37 + layer * harmonicB)
+                let direction = Int(floor(fract(directionSelector + turnBias * modulation * 0.18) * 4.0))
+                let nextX: Int
+                let nextY: Int
+                switch direction {
+                case 0:
+                    nextX = min(columns - 1, x + 1)
+                    nextY = y
+                case 1:
+                    nextX = x
+                    nextY = min(rows - 1, y + 1)
+                case 2:
+                    nextX = max(0, x - 1)
+                    nextY = y
+                default:
+                    nextX = x
+                    nextY = max(0, y - 1)
+                }
+
+                let stepLayer = Float(step) / Float(max(1, stepCount - 1))
+                let chase = max(0.0, 1.0 - abs(fract(localPhase - stepLayer + 1.0) - 0.5) * 2.8)
+                let basePulse = 0.38 + pow(chase, 1.8) * 0.82
+                let start = cellCenter(x, y)
+                let end = cellCenter(nextX, nextY)
+
+                for sample in 0..<samplesPerStep {
+                    let t = Float(sample) / Float(max(1, samplesPerStep - 1))
+                    let jitter = SIMD2<Float>(
+                        sin(phase + Float(step) * harmonicA * 0.11 + layer * 5.1) * cellWidth,
+                        cos(phase + Float(step) * harmonicB * 0.09 + layer * 4.7) * cellHeight
+                    ) * modulation * 0.10
+                    let point = start + (end - start) * t + jitter
+                    append(point + center, fract(layer + stepLayer * 0.25), basePulse, 0.88 + chase * 1.10)
+                }
+
+                x = nextX
+                y = nextY
+            }
+        }
+    }
+
+    private func makeLuminousStringsVertices(
+        append: (SIMD2<Float>, Float, Float, Float) -> Void,
+        elementCount: Int,
+        samplesPerElement: Int,
+        center: SIMD2<Float>,
+        maxRadius: Float,
+        phase: Float,
+        seedPhase: Float,
+        harmonicA: Float,
+        harmonicB: Float,
+        modulation: Float,
+        depth: Float,
+        rotation: Float
+    ) {
+        let stringCount = max(8, min(30, elementCount))
+        let sampleCount = max(140, min(900, samplesPerElement))
+        let xSpan = maxRadius * 1.62
+        let ySpan = maxRadius * 1.12
+        let rotationPhase = rotation / (.pi * 2.0)
+
+        for string in 0..<stringCount {
+            let layer = Float(string) / Float(max(1, stringCount - 1))
+            let offset = seedPhase + layer * .pi * 2.0
+            let swimPhase = phase * (0.72 + 0.28 * fract(layer * 9.73)) + rotationPhase
+            let bodyScale = 0.68 + depth * 0.42 + fract(sin(layer * 41.3 + seedPhase) * 91.7) * 0.20
+
+            for sample in 0..<sampleCount {
+                let t = Float(sample) / Float(max(1, sampleCount - 1))
+                let along = (t - 0.5) * 2.0
+                let envelope = pow(max(0.0, 1.0 - abs(along)), 0.38)
+                let waveA = sin(along * .pi * harmonicA + swimPhase + offset)
+                let waveB = sin(along * .pi * harmonicB - swimPhase * 1.23 + offset * 0.7)
+                let driftX = sin(swimPhase + offset * 0.51) * xSpan * 0.24
+                let driftY = cos(swimPhase * 0.87 + offset * 0.43) * ySpan * 0.22
+                let x = along * xSpan * bodyScale * (0.44 + modulation * 0.20) +
+                    waveB * xSpan * modulation * 0.12 +
+                    driftX
+                let y = waveA * ySpan * (0.20 + modulation * 0.22) +
+                    sin(along * .pi * 2.0 + swimPhase * 1.8 + offset) * ySpan * 0.12 +
+                    driftY
+                let braid = sin(t * .pi * 2.0 * 7.0 + phase * 2.0 + layer * .pi)
+                let point = SIMD2<Float>(x, y + braid * ySpan * 0.018 * modulation)
+                let pulse = 0.54 + envelope * 0.46 + abs(braid) * 0.16
+                append(point + center, fract(layer + t * 0.18), pulse, 0.74 + envelope * 0.92)
             }
         }
     }
@@ -5552,10 +8976,10 @@ final class ProceduralPatternRenderer {
     ) {
         for row in 0..<elementCount {
             let layer = Float(row) / Float(max(1, elementCount - 1))
-            let yBase = (layer - 0.5) * maxRadius * 2.08
+            let yBase = (layer - 0.5) * maxRadius * 2.64
             for sample in 0..<samplesPerElement {
                 let t = Float(sample) / Float(max(1, samplesPerElement - 1))
-                let x = (t - 0.5) * maxRadius * 3.10
+                let x = (t - 0.5) * maxRadius * 3.82
                 let waveA = sin(t * .pi * 2.0 * harmonicA + phase + layer * .pi)
                 let waveB = sin(t * .pi * 2.0 * harmonicB - phase + layer * .pi * 2.0)
                 let y = yBase + (waveA * 0.55 + waveB * 0.45) * maxRadius * modulation * 0.16
@@ -5564,6 +8988,27 @@ final class ProceduralPatternRenderer {
                 append(rotate(local, by: rotation) + center, layer, 0.66 + 0.34 * abs(waveA), 0.9 + depth * 0.5)
             }
         }
+    }
+
+    private func smoothEnvelope(_ age: Float, attack: Float, release: Float) -> Float {
+        if age < attack {
+            return max(0.0, min(1.0, age / max(0.001, attack)))
+        }
+        if age > release {
+            return max(0.0, min(1.0, (1.0 - age) / max(0.001, 1.0 - release)))
+        }
+        return 1.0
+    }
+
+    private func normalizeOrZero(_ vector: SIMD2<Float>) -> SIMD2<Float> {
+        let length = simd_length(vector)
+        guard length > 0.0001 else { return .zero }
+        return vector / length
+    }
+
+    private func wrapCentered(_ value: Float, span: Float) -> Float {
+        let normalized = fract((value / max(0.001, span)) + 0.5)
+        return (normalized - 0.5) * span
     }
 
     private func rotate(_ point: SIMD2<Float>, by angle: Float) -> SIMD2<Float> {

@@ -17,6 +17,8 @@ struct VideoWallpaperSettingsView: View {
     @State private var selectedDisplayID: String?
     @State private var startsAtLogin = false
     @State private var loginItemStatusMessage: String?
+    @State private var generatedAssetsPath = GeneratedAssetLibrary.currentRootURL.path
+    @State private var generatedAssetsStatusMessage: String?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -30,6 +32,7 @@ struct VideoWallpaperSettingsView: View {
         .onAppear {
             refreshDisplayAssignments()
             startsAtLogin = appDelegate.isLoginItemEnabled()
+            refreshGeneratedAssetsPath()
         }
     }
 
@@ -79,10 +82,13 @@ struct VideoWallpaperSettingsView: View {
                         setStartsAtLogin(newValue)
                     }
                 ),
-                statusMessage: loginItemStatusMessage
-            )
-        case .displayVideos:
-            DisplayVideoSettingsPane(
+                statusMessage: loginItemStatusMessage,
+                generatedAssetsPath: generatedAssetsPath,
+                generatedAssetsStatusMessage: generatedAssetsStatusMessage,
+                usesCustomGeneratedAssetsPath: GeneratedAssetLibrary.usesCustomRootURL,
+                chooseGeneratedAssetsFolder: chooseGeneratedAssetsFolder,
+                resetGeneratedAssetsFolder: resetGeneratedAssetsFolder,
+                revealGeneratedAssetsFolder: revealGeneratedAssetsFolder,
                 assignments: assignments,
                 selectedDisplayID: $selectedDisplayID,
                 useSameVideo: Binding(
@@ -138,11 +144,49 @@ struct VideoWallpaperSettingsView: View {
             loginItemStatusMessage = error.localizedDescription
         }
     }
+
+    private func chooseGeneratedAssetsFolder() {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.canCreateDirectories = true
+        panel.directoryURL = GeneratedAssetLibrary.currentRootURL
+
+        guard panel.runModal() == .OK, let selectedURL = panel.url else {
+            return
+        }
+
+        do {
+            try GeneratedAssetLibrary.setCustomRootURL(selectedURL)
+            generatedAssetsStatusMessage = nil
+            refreshGeneratedAssetsPath()
+        } catch {
+            generatedAssetsStatusMessage = error.localizedDescription
+        }
+    }
+
+    private func resetGeneratedAssetsFolder() {
+        GeneratedAssetLibrary.resetRootURL()
+        generatedAssetsStatusMessage = nil
+        refreshGeneratedAssetsPath()
+    }
+
+    private func revealGeneratedAssetsFolder() {
+        let url = GeneratedAssetLibrary.currentRootURL
+        generatedAssetLibrary.withRootAccess {
+            try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+            NSWorkspace.shared.activateFileViewerSelecting([url])
+        }
+    }
+
+    private func refreshGeneratedAssetsPath() {
+        generatedAssetsPath = GeneratedAssetLibrary.currentRootURL.path
+    }
 }
 
 private enum SettingsPane: String, CaseIterable, Identifiable {
     case general
-    case displayVideos
     case generation
 
     var id: String { rawValue }
@@ -150,11 +194,9 @@ private enum SettingsPane: String, CaseIterable, Identifiable {
     var title: String {
         switch self {
         case .general:
-            return "General"
-        case .displayVideos:
-            return "Displays"
+            return AppLocalization.string("General")
         case .generation:
-            return "Video Generation"
+            return AppLocalization.string("Video Generation")
         }
     }
 
@@ -162,8 +204,6 @@ private enum SettingsPane: String, CaseIterable, Identifiable {
         switch self {
         case .general:
             return "gearshape"
-        case .displayVideos:
-            return "display"
         case .generation:
             return "film.stack"
         }
@@ -173,26 +213,12 @@ private enum SettingsPane: String, CaseIterable, Identifiable {
 private struct GeneralSettingsPane: View {
     @Binding var startsAtLogin: Bool
     var statusMessage: String?
-
-    var body: some View {
-        Form {
-            Toggle("ログインで起動", isOn: $startsAtLogin)
-                .toggleStyle(.checkbox)
-
-            if let statusMessage {
-                Text(statusMessage)
-                    .font(.caption)
-                    .foregroundStyle(.red)
-                    .textSelection(.enabled)
-            }
-        }
-        .formStyle(.grouped)
-        .padding(28)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-    }
-}
-
-private struct DisplayVideoSettingsPane: View {
+    var generatedAssetsPath: String
+    var generatedAssetsStatusMessage: String?
+    var usesCustomGeneratedAssetsPath: Bool
+    var chooseGeneratedAssetsFolder: () -> Void
+    var resetGeneratedAssetsFolder: () -> Void
+    var revealGeneratedAssetsFolder: () -> Void
     var assignments: StoredDisplayWallpaperAssignments?
     @Binding var selectedDisplayID: String?
     @Binding var useSameVideo: Bool
@@ -206,7 +232,23 @@ private struct DisplayVideoSettingsPane: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
-                Toggle("全てのモニタで同じ動画を再生", isOn: $useSameVideo)
+                Toggle(AppLocalization.string("Launch at Login"), isOn: $startsAtLogin)
+                    .toggleStyle(.checkbox)
+
+                if let statusMessage {
+                    Text(statusMessage)
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                        .textSelection(.enabled)
+                }
+
+                Divider()
+
+                generatedAssetsLocationPanel
+
+                Divider()
+
+                Toggle(AppLocalization.string("Play the same video on all displays"), isOn: $useSameVideo)
                     .toggleStyle(.checkbox)
 
                 monitorPicker
@@ -218,13 +260,54 @@ private struct DisplayVideoSettingsPane: View {
         }
     }
 
+    private var generatedAssetsLocationPanel: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .firstTextBaseline, spacing: 12) {
+            Text(AppLocalization.string("History Location:"))
+                .font(.headline)
+
+                Text(generatedAssetsPath)
+                    .font(.body.monospaced())
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+                    .textSelection(.enabled)
+
+                Spacer()
+
+            Button(AppLocalization.string("Choose...")) {
+                chooseGeneratedAssetsFolder()
+            }
+            Button(AppLocalization.string("Reveal")) {
+                revealGeneratedAssetsFolder()
+            }
+            Button(AppLocalization.string("Reset")) {
+                resetGeneratedAssetsFolder()
+            }
+                .disabled(!usesCustomGeneratedAssetsPath)
+            }
+
+            if let generatedAssetsStatusMessage {
+                Text(generatedAssetsStatusMessage)
+                    .font(.caption)
+                    .foregroundStyle(.red)
+                    .textSelection(.enabled)
+            }
+        }
+        .padding(18)
+        .background {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color(nsColor: .controlBackgroundColor))
+        }
+    }
+
     @ViewBuilder
     private var monitorPicker: some View {
         if useSameVideo {
             HStack(alignment: .top, spacing: 16) {
                 DisplayTile(
-                    title: "All Displays",
-                    subtitle: assignments?.defaultSelection.url.lastPathComponent ?? "No video selected",
+                    title: AppLocalization.string("All Displays"),
+                    subtitle: assignments?.defaultSelection.url.lastPathComponent ?? AppLocalization.string("No video selected"),
                     isSelected: true,
                     aspectRatio: representativeAspectRatio
                 )
@@ -254,14 +337,14 @@ private struct DisplayVideoSettingsPane: View {
 
     private var selectedVideoPanel: some View {
         HStack(spacing: 12) {
-            Text("\(useSameVideo ? "Video for All Displays" : "Video for Selected Display"): \(currentVideoURL?.lastPathComponent ?? "No video selected")")
+            Text(selectedVideoText)
                 .font(.headline)
                 .lineLimit(2)
                 .truncationMode(.middle)
 
             Spacer()
 
-            Button("Choose Video...") {
+            Button(AppLocalization.string("Choose Video...")) {
                 if useSameVideo {
                     chooseDefaultVideo()
                 } else if let selectedDisplayID {
@@ -283,6 +366,12 @@ private struct DisplayVideoSettingsPane: View {
             return assignments.defaultSelection.url
         }
         return assignments.perDisplaySelections[selectedDisplayID]?.url ?? assignments.defaultSelection.url
+    }
+
+    private var selectedVideoText: String {
+        let label = AppLocalization.string(useSameVideo ? "Video for All Displays" : "Video for Selected Display")
+        let fileName = currentVideoURL?.lastPathComponent ?? AppLocalization.string("No video selected")
+        return "\(label): \(fileName)"
     }
 
     private var representativeAspectRatio: Double {

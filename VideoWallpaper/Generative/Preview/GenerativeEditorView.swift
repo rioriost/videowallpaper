@@ -14,11 +14,7 @@ struct GenerativeEditorView: View {
     var setWallpaperForDisplay: (URL) -> Void
 
     @Environment(\.accessibilityReduceMotion) private var accessibilityReduceMotion
-    @State private var project = WallpaperProject.newFieldLinesProject()
-    @State private var prompt = ""
-    @State private var promptResolutionMessage: String?
-    @State private var isResolvingPrompt = false
-    @State private var promptResolutionTask: Task<Void, Never>?
+    @State private var project: WallpaperProject
     @State private var isExporting = false
     @State private var exportProgress = 0.0
     @State private var exportErrorMessage: String?
@@ -29,7 +25,6 @@ struct GenerativeEditorView: View {
     @State private var lastExportURL: URL?
     @State private var libraryEntries: [ProjectLibraryEntry] = []
     @State private var entryPendingDeletion: ProjectLibraryEntry?
-    @State private var selectedStylePreset: StylePreset?
     @State private var isPreviewPlaying = true
     @State private var requestedPreviewFrameIndex: Int?
     @State private var isSeamPreviewing = false
@@ -48,6 +43,26 @@ struct GenerativeEditorView: View {
         self.assetLibrary = assetLibrary
         self.setWallpaper = setWallpaper
         self.setWallpaperForDisplay = setWallpaperForDisplay
+        _project = State(initialValue: Self.initialProjectForCurrentDisplays())
+    }
+
+    private static func initialProjectForCurrentDisplays() -> WallpaperProject {
+        var project = WallpaperProject.newProject(rendererFamily: .electricStorm)
+        project.exportSettings = ExportPreset.settingsForDisplayPixelSize(largestDisplayPixelSize())
+        return project
+    }
+
+    private static func largestDisplayPixelSize() -> CGSize {
+        NSScreen.screens.reduce(.zero) { largestSize, screen in
+            let scale = screen.backingScaleFactor
+            let pixelSize = CGSize(
+                width: screen.frame.width * scale,
+                height: screen.frame.height * scale
+            )
+            let largestArea = largestSize.width * largestSize.height
+            let pixelArea = pixelSize.width * pixelSize.height
+            return pixelArea > largestArea ? pixelSize : largestSize
+        }
     }
 
     private var fieldLinesBinding: Binding<FieldLinesParameters> {
@@ -309,14 +324,50 @@ struct GenerativeEditorView: View {
         Binding(
             get: {
                 switch project.renderParameters {
-                case .closedFlowParticles(let parameters),
+                case .auroraCurtain(let parameters),
+                     .cityLightsBokeh(let parameters),
+                     .digitalSand(let parameters),
+                     .inkInWater(let parameters),
+                     .origamiTessellation(let parameters),
+                     .sakuraDrift(let parameters),
+                     .snowfallDepth(let parameters),
+                     .solarCorona(let parameters),
+                     .underwaterCaustics(let parameters),
+                     .volumetricNebula(let parameters),
+                     .bloomingCircuits(let parameters),
+                     .cellularBloom(let parameters),
+                     .chladniPlate(let parameters),
+                     .circuitTracer(let parameters),
+                     .closedFlowParticles(let parameters),
+                     .constellationDrift(let parameters),
+                     .crystalLattice(let parameters),
+                     .dataMesh(let parameters),
+                     .electricStorm(let parameters),
                      .sdfTunnel(let parameters),
                      .feedbackSynth(let parameters),
+                     .fireworksShow(let parameters),
+                     .fluidNodes(let parameters),
+                     .fourierKnots(let parameters),
                      .guillocheRose(let parameters),
+                     .growingNetwork(let parameters),
                      .instancedGeometry(let parameters),
+                     .laserRibbons(let parameters),
+                     .luminousBubbles(let parameters),
                      .metaballField(let parameters),
+                     .moireRings(let parameters),
+                     .neonVortex(let parameters),
+                     .particleFountain(let parameters),
                      .penroseTiling(let parameters),
-                     .waveTerrain(let parameters):
+                     .pulseNetwork(let parameters),
+                     .radialOscilloscope(let parameters),
+                     .rainCurtain(let parameters),
+                     .ribbonCascade(let parameters),
+                     .scanlineTopography(let parameters),
+                     .schoolingSwarm(let parameters),
+                     .truchetFlow(let parameters),
+                     .waveTerrain(let parameters),
+                     .wireframeMorph(let parameters),
+                     .proceduralPattern(_, let parameters):
                     return parameters
                 default:
                     return .defaultParameters(for: project.rendererFamily)
@@ -324,22 +375,100 @@ struct GenerativeEditorView: View {
             },
             set: { newValue in
                 switch project.rendererFamily {
+                case .auroraCurtain:
+                    project.renderParameters = .auroraCurtain(newValue)
+                case .cityLightsBokeh:
+                    project.renderParameters = .cityLightsBokeh(newValue)
+                case .digitalSand:
+                    project.renderParameters = .digitalSand(newValue)
+                case .inkInWater:
+                    project.renderParameters = .inkInWater(newValue)
+                case .origamiTessellation:
+                    project.renderParameters = .origamiTessellation(newValue)
+                case .sakuraDrift:
+                    project.renderParameters = .sakuraDrift(newValue)
+                case .snowfallDepth:
+                    project.renderParameters = .snowfallDepth(newValue)
+                case .solarCorona:
+                    project.renderParameters = .solarCorona(newValue)
+                case .underwaterCaustics:
+                    project.renderParameters = .underwaterCaustics(newValue)
+                case .volumetricNebula:
+                    project.renderParameters = .volumetricNebula(newValue)
+                case .bloomingCircuits:
+                    project.renderParameters = .bloomingCircuits(newValue)
+                case .cellularBloom:
+                    project.renderParameters = .cellularBloom(newValue)
+                case .chladniPlate:
+                    project.renderParameters = .chladniPlate(newValue)
+                case .circuitTracer:
+                    project.renderParameters = .circuitTracer(newValue)
                 case .closedFlowParticles:
                     project.renderParameters = .closedFlowParticles(newValue)
+                case .constellationDrift:
+                    project.renderParameters = .constellationDrift(newValue)
+                case .crystalLattice:
+                    project.renderParameters = .crystalLattice(newValue)
+                case .dataMesh:
+                    project.renderParameters = .dataMesh(newValue)
+                case .electricStorm:
+                    project.renderParameters = .electricStorm(newValue)
                 case .sdfTunnel:
                     project.renderParameters = .sdfTunnel(newValue)
                 case .feedbackSynth:
                     project.renderParameters = .feedbackSynth(newValue)
+                case .fireworksShow:
+                    project.renderParameters = .fireworksShow(newValue)
+                case .fluidNodes:
+                    project.renderParameters = .fluidNodes(newValue)
+                case .fourierKnots:
+                    project.renderParameters = .fourierKnots(newValue)
                 case .guillocheRose:
                     project.renderParameters = .guillocheRose(newValue)
+                case .growingNetwork:
+                    project.renderParameters = .growingNetwork(newValue)
                 case .instancedGeometry:
                     project.renderParameters = .instancedGeometry(newValue)
+                case .laserRibbons:
+                    project.renderParameters = .laserRibbons(newValue)
+                case .luminousBubbles:
+                    project.renderParameters = .luminousBubbles(newValue)
                 case .metaballField:
                     project.renderParameters = .metaballField(newValue)
+                case .moireRings:
+                    project.renderParameters = .moireRings(newValue)
+                case .neonVortex:
+                    project.renderParameters = .neonVortex(newValue)
+                case .particleFountain:
+                    project.renderParameters = .particleFountain(newValue)
                 case .penroseTiling:
                     project.renderParameters = .penroseTiling(newValue)
+                case .pulseNetwork:
+                    project.renderParameters = .pulseNetwork(newValue)
+                case .radialOscilloscope:
+                    project.renderParameters = .radialOscilloscope(newValue)
+                case .rainCurtain:
+                    project.renderParameters = .rainCurtain(newValue)
+                case .ribbonCascade:
+                    project.renderParameters = .ribbonCascade(newValue)
+                case .scanlineTopography:
+                    project.renderParameters = .scanlineTopography(newValue)
+                case .schoolingSwarm:
+                    project.renderParameters = .schoolingSwarm(newValue)
+                case .truchetFlow:
+                    project.renderParameters = .truchetFlow(newValue)
                 case .waveTerrain:
                     project.renderParameters = .waveTerrain(newValue)
+                case .wireframeMorph:
+                    project.renderParameters = .wireframeMorph(newValue)
+                case .chromaticBloom,
+                     .labyrinthTrace,
+                     .photonStreams,
+                     .luminousStrings,
+                     .quantumFoam,
+                     .stardustVortex,
+                     .vortexLattice:
+                    project.renderParameters = .proceduralPattern(project.rendererFamily, newValue)
                 default:
                     break
                 }
@@ -392,15 +521,11 @@ struct GenerativeEditorView: View {
     }
 
     private var exportFPSBinding: Binding<Int> {
-        exportSettingsBinding(\.fps) { max(ExportSettings.minimumFPS, $0) }
+        exportSettingsBinding(\.fps) { LoopDurationPolicy.nearestSupportedFPS(to: $0) }
     }
 
     private var exportWarmupLoopsBinding: Binding<Int> {
         exportSettingsBinding(\.warmupLoops) { max(ExportSettings.minimumWarmupLoops, $0) }
-    }
-
-    private var exportLoopSecondsBinding: Binding<Double> {
-        exportSettingsBinding(\.loopSeconds) { max(ExportSettings.minimumLoopSeconds, $0) }
     }
 
     private var exportCodecBinding: Binding<VideoCodec> {
@@ -411,9 +536,100 @@ struct GenerativeEditorView: View {
         exportSettingsBinding(\.quality) { $0 }
     }
 
-    private var effectivePrompt: String {
-        let trimmedPrompt = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
-        return selectedStylePreset?.combinedPrompt(with: trimmedPrompt) ?? trimmedPrompt
+    private var speedBinding: Binding<Double> {
+        Binding(
+            get: { LoopDurationPolicy.clampedSpeed(project.renderParameters.speed) },
+            set: { newValue in
+                project.renderParameters = project.renderParameters.settingSpeed(
+                    LoopDurationPolicy.clampedSpeed(newValue)
+                )
+                markProjectEdited(regenerateThumbnail: true)
+            }
+        )
+    }
+
+    private var proceduralPatternUsesHarmonicB: Bool {
+        switch project.rendererFamily {
+        case .cityLightsBokeh,
+             .fireworksShow,
+             .particleFountain,
+             .penroseTiling,
+             .sakuraDrift,
+             .snowfallDepth,
+             .volumetricNebula:
+            return false
+        case .auroraCurtain,
+             .bloomingCircuits,
+             .cellularBloom,
+             .chladniPlate,
+             .circuitTracer,
+             .closedFlowParticles,
+             .constellationDrift,
+             .crystalLattice,
+             .dataMesh,
+             .digitalSand,
+             .electricStorm,
+             .sdfTunnel,
+             .feedbackSynth,
+             .fluidNodes,
+             .fourierKnots,
+             .growingNetwork,
+             .guillocheRose,
+             .inkInWater,
+             .instancedGeometry,
+             .laserRibbons,
+             .luminousBubbles,
+             .metaballField,
+             .moireRings,
+             .neonVortex,
+             .origamiTessellation,
+             .pulseNetwork,
+             .radialOscilloscope,
+             .rainCurtain,
+             .ribbonCascade,
+             .scanlineTopography,
+             .solarCorona,
+             .truchetFlow,
+             .underwaterCaustics,
+             .waveTerrain,
+             .wireframeMorph,
+             .chromaticBloom,
+             .labyrinthTrace,
+             .photonStreams,
+             .luminousStrings,
+             .quantumFoam,
+             .stardustVortex,
+             .vortexLattice:
+            return true
+        default:
+            return false
+        }
+    }
+
+    private var proceduralPatternUsesHarmonicA: Bool {
+        switch project.rendererFamily {
+        case .cityLightsBokeh,
+             .fireworksShow,
+             .luminousBubbles:
+            return false
+        default:
+            return true
+        }
+    }
+
+    private var proceduralPatternUsesDepth: Bool {
+        switch project.rendererFamily {
+        case .auroraCurtain, .bloomingCircuits, .cellularBloom, .chladniPlate, .circuitTracer, .cityLightsBokeh, .constellationDrift, .crystalLattice, .dataMesh, .digitalSand, .electricStorm, .fireworksShow, .fluidNodes, .growingNetwork, .inkInWater, .luminousBubbles, .neonVortex, .origamiTessellation, .particleFountain, .pulseNetwork, .rainCurtain, .ribbonCascade, .sakuraDrift, .scanlineTopography, .schoolingSwarm, .sdfTunnel, .snowfallDepth, .solarCorona, .instancedGeometry, .underwaterCaustics, .volumetricNebula, .waveTerrain, .wireframeMorph:
+            return true
+        case .chromaticBloom, .labyrinthTrace, .photonStreams, .luminousStrings, .quantumFoam, .stardustVortex, .vortexLattice:
+            return true
+        default:
+            return false
+        }
+    }
+
+    private var proceduralPatternUsesFeedback: Bool {
+        project.rendererFamily == .feedbackSynth
     }
 
     var body: some View {
@@ -431,8 +647,12 @@ struct GenerativeEditorView: View {
         .frame(minWidth: 1080, minHeight: 700)
         .navigationTitle("RioVideoWallpaper")
         .onAppear(perform: handleAppear)
+        .onReceive(NotificationCenter.default.publisher(for: GeneratedAssetLibrary.rootDidChangeNotification)) { _ in
+            currentProjectURL = nil
+            lastExportURL = nil
+            refreshLibraryEntries()
+        }
         .onDisappear {
-            promptResolutionTask?.cancel()
             editAutosaveTask?.cancel()
             stopSeamPreview()
         }
@@ -448,37 +668,22 @@ struct GenerativeEditorView: View {
             ),
             titleVisibility: .visible
         ) {
-            Button("Delete", role: .destructive) {
+            Button(AppLocalization.string("Delete"), role: .destructive) {
                 guard let entry = entryPendingDeletion else { return }
                 deleteLibraryEntry(entry)
             }
-            Button("Cancel", role: .cancel) {
+            .keyboardShortcut(.defaultAction)
+            Button(AppLocalization.string("Cancel"), role: .cancel) {
                 entryPendingDeletion = nil
             }
+            .keyboardShortcut(.cancelAction)
         } message: {
-            Text("The project file and generated library assets will be removed.")
+            Text(AppLocalization.string("The project file and generated library assets will be removed."))
         }
     }
 
     private var sidebar: some View {
         VStack(alignment: .leading, spacing: 14) {
-            HStack(spacing: 8) {
-                Button("Open Project") {
-                    openProject()
-                }
-                Button("Save Project") {
-                    saveProject()
-                }
-            }
-
-            if let currentProjectURL {
-                Text(currentProjectURL.lastPathComponent)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-            }
-
             if let projectFileErrorMessage {
                 Text(projectFileErrorMessage)
                     .font(.caption)
@@ -486,54 +691,75 @@ struct GenerativeEditorView: View {
                     .textSelection(.enabled)
             }
 
-            Divider()
+            VStack(alignment: .leading, spacing: 10) {
+                Text(AppLocalization.string("Export Options"))
+                    .font(.headline)
 
-            TextEditor(text: $prompt)
-                .font(.body)
-                .frame(minHeight: 120)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 6)
-                        .stroke(.separator, lineWidth: 1)
+                Picker(AppLocalization.string("Preset"), selection: exportPresetBinding) {
+                    ForEach(ExportPreset.allCases) { preset in
+                        Text(preset.displayName).tag(preset)
+                    }
+                }
+                IntSliderRow(title: "Width", value: exportWidthBinding, range: 640...7680, step: 16)
+                IntSliderRow(title: "Height", value: exportHeightBinding, range: 400...4320, step: 16)
+                IntSliderRow(title: "Warmup", value: exportWarmupLoopsBinding, range: 0...4)
+                Picker(AppLocalization.string("Codec"), selection: exportCodecBinding) {
+                    ForEach(VideoCodec.allCases) { codec in
+                        Text(codec.rawValue.uppercased()).tag(codec)
+                    }
+                }
+                Picker(AppLocalization.string("Quality"), selection: exportQualityBinding) {
+                    ForEach(ExportQuality.allCases) { quality in
+                        Text(quality.rawValue.capitalized).tag(quality)
+                    }
                 }
 
-            stylePresetPicker
+                if isExporting {
+                    ProgressView(value: exportProgress)
+                }
+
+                if let exportErrorMessage {
+                    Text(exportErrorMessage)
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                        .textSelection(.enabled)
+                }
+
+                HStack {
+                    Spacer()
+                    if isExporting {
+                        Button(AppLocalization.string("Cancel")) {
+                            cancelExport()
+                        }
+                    }
+                }
+            }
 
             Divider()
 
             HStack(spacing: 8) {
-                Button("Randomize Seed") {
-                    project.seed = UInt64.random(in: UInt64.min...UInt64.max)
-                    if prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, selectedStylePreset == nil {
-                        markProjectEdited(regenerateThumbnail: true)
-                    } else {
-                        applyPromptIfPresent()
-                    }
+                Button(isExporting ? AppLocalization.string("Exporting...") : AppLocalization.string("Export")) {
+                    startLibraryExport()
                 }
+                .disabled(isExporting)
 
-                Button("Generate") {
-                    generateFromPrompt()
+                Button(AppLocalization.string("Set on Display...")) {
+                    guard let url = exportedWallpaperURL else { return }
+                    setWallpaperForDisplay(url)
                 }
-                .disabled(effectivePrompt.isEmpty || isResolvingPrompt)
-                .keyboardShortcut(.return, modifiers: [.command])
+                .disabled(exportedWallpaperURL == nil || isExporting)
+
+                Button(AppLocalization.string("Set to All Displays")) {
+                    guard let url = exportedWallpaperURL else { return }
+                    setWallpaper(url)
+                }
+                .disabled(exportedWallpaperURL == nil || isExporting)
             }
-
-            if let promptResolutionMessage {
-                Text(promptResolutionMessage)
-                    .font(.caption)
-                    .foregroundStyle(promptResolutionMessage.contains("failed") || promptResolutionMessage.contains("fallback") ? .orange : .secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .textSelection(.enabled)
-            }
-
-            Divider()
-
-            LabeledContent("Renderer", value: project.rendererFamily.displayName)
-            LabeledContent("Seed", value: String(project.seed))
 
             Divider()
 
             HStack {
-                Text("History")
+                Text(AppLocalization.string("History"))
                     .font(.headline)
                 Spacer()
                 Button {
@@ -541,15 +767,15 @@ struct GenerativeEditorView: View {
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
-                .help("Refresh history")
+                .help(AppLocalization.string("Refresh history"))
 
                 Button {
                     cleanupLibraryAssets()
                 } label: {
                     Image(systemName: "trash.slash")
                 }
-                .accessibilityLabel("Remove orphaned generated assets")
-                .help("Remove orphaned generated assets")
+                .accessibilityLabel(AppLocalization.string("Remove orphaned generated assets"))
+                .help(AppLocalization.string("Remove orphaned generated assets"))
             }
 
             historyList
@@ -563,7 +789,7 @@ struct GenerativeEditorView: View {
     private var historyList: some View {
         Group {
             if libraryEntries.isEmpty {
-                Text("No saved projects")
+                Text(AppLocalization.string("No saved projects"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             } else {
@@ -582,19 +808,19 @@ struct GenerativeEditorView: View {
                                     Button {
                                         setWallpaper(outputURL)
                                     } label: {
-                                        Image(systemName: "display")
-                                    }
-                                    .buttonStyle(.borderless)
-                                    .help("Set as wallpaper")
+                                    Image(systemName: "display")
+                                }
+                                .buttonStyle(.borderless)
+                                .help(AppLocalization.string("Set as wallpaper"))
 
-                                    Button {
-                                        setWallpaperForDisplay(outputURL)
+                                Button {
+                                    setWallpaperForDisplay(outputURL)
                                     } label: {
-                                        Image(systemName: "rectangle.on.rectangle")
-                                    }
-                                    .buttonStyle(.borderless)
-                                    .accessibilityLabel("Set on Display")
-                                    .help("Set on display")
+                                    Image(systemName: "rectangle.on.rectangle")
+                                }
+                                .buttonStyle(.borderless)
+                                .accessibilityLabel(AppLocalization.string("Set on Display"))
+                                .help(AppLocalization.string("Set on display"))
                                 }
 
                                 Button {
@@ -603,12 +829,12 @@ struct GenerativeEditorView: View {
                                     Image(systemName: "trash")
                                 }
                                 .buttonStyle(.borderless)
-                                .help("Delete from history")
+                                .help(AppLocalization.string("Delete from history"))
                             }
                         }
                     }
                 }
-                .frame(minHeight: 96, maxHeight: 220)
+                .frame(minHeight: 140, maxHeight: 320)
             }
         }
     }
@@ -647,26 +873,6 @@ struct GenerativeEditorView: View {
         .padding(.vertical, 4)
     }
 
-    private var stylePresetPicker: some View {
-        HStack(spacing: 8) {
-            Text("Style:")
-            Menu(selectedStylePreset?.displayName ?? "Select") {
-                Button("None") {
-                    selectedStylePreset = nil
-                }
-                Divider()
-                ForEach(StylePreset.allCases) { preset in
-                    Button {
-                        selectedStylePreset = preset
-                    } label: {
-                        Label(preset.displayName, systemImage: preset.systemImageName)
-                    }
-                }
-            }
-            .frame(width: 180, alignment: .leading)
-        }
-    }
-
     private var previewPane: some View {
         VStack(spacing: 0) {
             ZStack {
@@ -699,7 +905,7 @@ struct GenerativeEditorView: View {
                 } label: {
                     Image(systemName: "backward.end.fill")
                 }
-                .help("First frame")
+                .help(AppLocalization.string("First frame"))
 
                 Button {
                     stopSeamPreview()
@@ -711,15 +917,15 @@ struct GenerativeEditorView: View {
                 } label: {
                     Image(systemName: "forward.end.fill")
                 }
-                .help("Last frame")
+                .help(AppLocalization.string("Last frame"))
 
                 Button {
                     toggleSeamPreview()
                 } label: {
                     Image(systemName: "arrow.triangle.2.circlepath")
                 }
-                .accessibilityLabel("Preview Loop Seam")
-                .help("Preview loop seam")
+                .accessibilityLabel(AppLocalization.string("Preview Loop Seam"))
+                .help(AppLocalization.string("Preview loop seam"))
                 .tint(isSeamPreviewing ? .accentColor : nil)
 
                 Spacer()
@@ -730,19 +936,8 @@ struct GenerativeEditorView: View {
                     } label: {
                         Image(systemName: "folder")
                     }
-                    .help("Show exported video")
+                    .help(AppLocalization.string("Show exported video"))
                 }
-
-                Button("Set on Display...") {
-                    guard let url = exportedWallpaperURL else { return }
-                    setWallpaperForDisplay(url)
-                }
-                .disabled(exportedWallpaperURL == nil || isExporting)
-                Button("Set as Wallpaper") {
-                    guard let url = exportedWallpaperURL else { return }
-                    setWallpaper(url)
-                }
-                .disabled(exportedWallpaperURL == nil || isExporting)
             }
             .padding(12)
             .frame(height: 54)
@@ -752,37 +947,55 @@ struct GenerativeEditorView: View {
     private var inspector: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                Text("Loop")
-                    .font(.headline)
-                Stepper(
-                    "Seconds: \(project.exportSettings.loopSeconds, specifier: "%.0f")",
-                    value: exportLoopSecondsBinding,
-                    in: 4...30,
-                    step: 1
-                )
-                Stepper("FPS: \(project.exportSettings.fps)", value: exportFPSBinding, in: 24...60, step: 6)
+                HStack(spacing: 8) {
+                    Text(AppLocalization.string("FPS"))
+                        .frame(width: 78, alignment: .leading)
+                    Picker(AppLocalization.string("FPS"), selection: exportFPSBinding) {
+                        ForEach(LoopDurationPolicy.supportedFPSValues, id: \.self) { fps in
+                            Text("\(fps)").tag(fps)
+                        }
+                    }
+                    .labelsHidden()
+                    .pickerStyle(.segmented)
+                }
+                SliderRow(title: "Speed", value: speedBinding, range: LoopDurationPolicy.speedRange)
+                HStack(spacing: 8) {
+                    Text(AppLocalization.string("Seconds"))
+                        .frame(width: 78, alignment: .leading)
+                    Text(project.exportSettings.loopSeconds, format: .number.precision(.fractionLength(1)))
+                        .monospacedDigit()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
 
                 Divider()
 
-                Text("Intent")
-                    .font(.headline)
-                intentSummary
-
-                Divider()
-
-                Text("Renderer")
-                    .font(.headline)
-                Picker("Family", selection: rendererFamilyBinding) {
+                Picker(AppLocalization.string("Renderer"), selection: rendererFamilyBinding) {
                     ForEach(RendererFamily.allCases) { rendererFamily in
                         Text(rendererFamily.displayName).tag(rendererFamily)
                     }
                 }
                 .pickerStyle(.menu)
 
+                HStack(spacing: 8) {
+                    Text(AppLocalization.string("Seed"))
+                        .frame(width: 70, alignment: .leading)
+                    Text(String(project.seed))
+                        .font(.caption.monospacedDigit())
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Button(AppLocalization.string("Randomize Seed")) {
+                        project.seed = UInt64.random(in: UInt64.min...UInt64.max)
+                        markProjectEdited(regenerateThumbnail: true)
+                    }
+                }
+
                 Divider()
 
-                DisclosureGroup(project.rendererFamily.displayName, isExpanded: $showsRendererDetails) {
-                    VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(AppLocalization.string("Renderer Options"))
+                        .font(.headline)
+
             switch project.renderParameters {
             case .fieldLines:
                             fieldLinesControls
@@ -818,98 +1031,56 @@ struct GenerativeEditorView: View {
                             hexPulseLatticeControls
             case .superformulaMorph:
                             superformulaMorphControls
-            case .closedFlowParticles,
+            case .auroraCurtain,
+                 .cityLightsBokeh,
+                 .digitalSand,
+                 .inkInWater,
+                 .origamiTessellation,
+                 .sakuraDrift,
+                 .snowfallDepth,
+                 .solarCorona,
+                 .underwaterCaustics,
+                 .volumetricNebula,
+                 .bloomingCircuits,
+                 .cellularBloom,
+                 .chladniPlate,
+                 .circuitTracer,
+                 .closedFlowParticles,
+                 .constellationDrift,
+                 .crystalLattice,
+                 .dataMesh,
+                 .electricStorm,
                  .sdfTunnel,
                  .feedbackSynth,
+                 .fireworksShow,
+                 .fluidNodes,
+                 .fourierKnots,
+                 .growingNetwork,
                  .guillocheRose,
                  .instancedGeometry,
+                 .laserRibbons,
+                 .luminousBubbles,
                  .metaballField,
+                 .moireRings,
+                 .neonVortex,
+                 .particleFountain,
                  .penroseTiling,
-                 .waveTerrain:
+                 .pulseNetwork,
+                 .radialOscilloscope,
+                 .rainCurtain,
+                 .ribbonCascade,
+                 .scanlineTopography,
+                 .schoolingSwarm,
+                 .truchetFlow,
+                 .waveTerrain,
+                 .wireframeMorph,
+                 .proceduralPattern:
                             proceduralPatternControls
             }
-                    }
-                    .padding(.top, 8)
                 }
-
-                Divider()
-
-                DisclosureGroup("Export", isExpanded: $showsExportDetails) {
-                    VStack(alignment: .leading, spacing: 12) {
-                Picker("Preset", selection: exportPresetBinding) {
-                    ForEach(ExportPreset.allCases) { preset in
-                        Text(preset.displayName).tag(preset)
-                    }
-                }
-                Stepper("Width: \(project.exportSettings.width)", value: exportWidthBinding, in: 640...7680, step: 16)
-                Stepper("Height: \(project.exportSettings.height)", value: exportHeightBinding, in: 400...4320, step: 16)
-                Stepper("Warmup Loops: \(project.exportSettings.warmupLoops)", value: exportWarmupLoopsBinding, in: 0...4)
-                Picker("Codec", selection: exportCodecBinding) {
-                    ForEach(VideoCodec.allCases) { codec in
-                        Text(codec.rawValue.uppercased()).tag(codec)
-                    }
-                }
-                Picker("Quality", selection: exportQualityBinding) {
-                    ForEach(ExportQuality.allCases) { quality in
-                        Text(quality.rawValue.capitalized).tag(quality)
-                    }
-                }
-
-                        if isExporting {
-                            ProgressView(value: exportProgress)
-                        }
-
-                if let exportErrorMessage {
-                    Text(exportErrorMessage)
-                        .foregroundStyle(.red)
-                        .textSelection(.enabled)
-                }
-
-                        HStack {
-                            Spacer()
-
-                            if isExporting {
-                                Button("Cancel") {
-                                    cancelExport()
-                                }
-                            }
-
-                            Button(isExporting ? "Exporting..." : "Export...") {
-                                startManualExport()
-                            }
-                            .disabled(isExporting)
-                        }
-                    }
-                    .padding(.top, 8)
-            }
         }
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-        }
-    }
-
-    @ViewBuilder
-    private var intentSummary: some View {
-        if let intent = project.visualIntent {
-            LabeledContent("Title", value: intent.title)
-            LabeledContent("Mood", value: intent.moodTags.joined(separator: ", "))
-            LabeledContent("Palette", value: "\(Int(intent.palette.hueBaseDegrees.rounded())) deg")
-            LabeledContent("Loop", value: "\(Int(intent.motion.loopSeconds.rounded()))s")
-            Text(intent.summary)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .textSelection(.enabled)
-            ProgressView(value: intent.composition.density, total: 1.0) {
-                Text("Density")
-            }
-            ProgressView(value: intent.elements.particleAmount, total: 1.0) {
-                Text("Particles")
-            }
-            ProgressView(value: intent.elements.glowAmount, total: 1.0) {
-                Text("Glow")
-            }
-        } else {
-            LabeledContent("Status", value: "Not generated")
         }
     }
 
@@ -917,14 +1088,13 @@ struct GenerativeEditorView: View {
         let parameters = fieldLinesBinding
 
         return Group {
-            Stepper("Bands: \(parameters.wrappedValue.bandCount)", value: parameters.bandCount, in: 1...24)
-            Stepper("Particles: \(parameters.wrappedValue.particleCount)", value: parameters.particleCount, in: 0...10000, step: 100)
+            IntSliderRow(title: "Bands", value: parameters.bandCount, range: 1...24)
+            IntSliderRow(title: "Particles", value: parameters.particleCount, range: 0...10000, step: 100)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.02...0.50)
             SliderRow(title: "Structure", value: parameters.lineStep, range: 0.6...3.0)
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...2)
             SliderRow(title: "Turbulence", value: parameters.turbulence, range: 0...2)
         }
     }
@@ -933,14 +1103,13 @@ struct GenerativeEditorView: View {
         let parameters = orbitalBinding
 
         return Group {
-            Stepper("Orbits: \(parameters.wrappedValue.orbitCount)", value: parameters.orbitCount, in: 2...18)
-            Stepper("Satellites: \(parameters.wrappedValue.satelliteCount)", value: parameters.satelliteCount, in: 0...240, step: 8)
+            IntSliderRow(title: "Orbits", value: parameters.orbitCount, range: 2...18)
+            IntSliderRow(title: "Satellites", value: parameters.satelliteCount, range: 0...240, step: 8)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.42)
             SliderRow(title: "Radius", value: parameters.radiusScale, range: 0.45...1.55)
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...2)
             SliderRow(title: "Eccentricity", value: parameters.eccentricity, range: 0...0.82)
         }
     }
@@ -949,15 +1118,14 @@ struct GenerativeEditorView: View {
         let parameters = softVolumetricBinding
 
         return Group {
-            Stepper("Clouds: \(parameters.wrappedValue.cloudCount)", value: parameters.cloudCount, in: 2...18)
-            Stepper("Layers: \(parameters.wrappedValue.layerCount)", value: parameters.layerCount, in: 1...8)
+            IntSliderRow(title: "Clouds", value: parameters.cloudCount, range: 2...18)
+            IntSliderRow(title: "Layers", value: parameters.layerCount, range: 1...8)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.36)
             SliderRow(title: "Spread", value: parameters.spread, range: 0.45...1.65)
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Glow", value: parameters.glowSize, range: 1.4...8.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Turbulence", value: parameters.turbulence, range: 0...1.55)
         }
     }
@@ -966,15 +1134,14 @@ struct GenerativeEditorView: View {
         let parameters = gridCityBinding
 
         return Group {
-            Stepper("Lanes: \(parameters.wrappedValue.laneCount)", value: parameters.laneCount, in: 4...28)
-            Stepper("Towers: \(parameters.wrappedValue.towerCount)", value: parameters.towerCount, in: 0...180, step: 6)
+            IntSliderRow(title: "Lanes", value: parameters.laneCount, range: 4...28)
+            IntSliderRow(title: "Towers", value: parameters.towerCount, range: 0...180, step: 6)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.36)
             SliderRow(title: "Perspective", value: parameters.perspective, range: 0.25...1.0)
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Glow", value: parameters.glowSize, range: 1.0...8.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.8)
             SliderRow(title: "Depth", value: parameters.depth, range: 0.25...1.0)
         }
     }
@@ -983,15 +1150,14 @@ struct GenerativeEditorView: View {
         let parameters = interferenceFieldBinding
 
         return Group {
-            Stepper("Waves: \(parameters.wrappedValue.waveCount)", value: parameters.waveCount, in: 3...14)
-            Stepper("Samples: \(parameters.wrappedValue.samplesPerAxis)", value: parameters.samplesPerAxis, in: 56...150, step: 4)
+            IntSliderRow(title: "Waves", value: parameters.waveCount, range: 3...14)
+            IntSliderRow(title: "Samples", value: parameters.samplesPerAxis, range: 56...150, step: 4)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Frequency", value: parameters.spatialFrequency, range: 0.45...2.8)
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 0.8...4.6)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.6)
             SliderRow(title: "Symmetry", value: parameters.symmetry, range: 0...1)
             SliderRow(title: "Contrast", value: parameters.contrast, range: 0.15...0.85)
         }
@@ -1001,8 +1167,8 @@ struct GenerativeEditorView: View {
         let parameters = periodicNoiseBinding
 
         return Group {
-            Stepper("Samples: \(parameters.wrappedValue.samplesPerAxis)", value: parameters.samplesPerAxis, in: 56...160, step: 4)
-            Stepper("Octaves: \(parameters.wrappedValue.octaveCount)", value: parameters.octaveCount, in: 1...7)
+            IntSliderRow(title: "Samples", value: parameters.samplesPerAxis, range: 56...160, step: 4)
+            IntSliderRow(title: "Octaves", value: parameters.octaveCount, range: 1...7)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Scale", value: parameters.noiseScale, range: 0.35...3.2)
             SliderRow(title: "Warp", value: parameters.warpAmount, range: 0...1.2)
@@ -1010,7 +1176,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 0.8...4.8)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.55)
             SliderRow(title: "Turbulence", value: parameters.turbulence, range: 0...1.65)
             SliderRow(title: "Contour", value: parameters.contourSharpness, range: 0...1)
         }
@@ -1020,15 +1185,14 @@ struct GenerativeEditorView: View {
         let parameters = cyclicAutomataBinding
 
         return Group {
-            Stepper("Cells: \(parameters.wrappedValue.cellsPerAxis)", value: parameters.cellsPerAxis, in: 36...150, step: 4)
-            Stepper("States: \(parameters.wrappedValue.stateCount)", value: parameters.stateCount, in: 3...12)
+            IntSliderRow(title: "Cells", value: parameters.cellsPerAxis, range: 36...150, step: 4)
+            IntSliderRow(title: "States", value: parameters.stateCount, range: 3...12)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Scale", value: parameters.cellScale, range: 0.5...2.8)
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Cell Size", value: parameters.cellSize, range: 1...10)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.8)
             SliderRow(title: "Neighborhood", value: parameters.neighborhood, range: 0...1)
             SliderRow(title: "Mutation", value: parameters.mutation, range: 0...1)
             SliderRow(title: "Edges", value: parameters.edgeSharpness, range: 0...1)
@@ -1039,8 +1203,8 @@ struct GenerativeEditorView: View {
         let parameters = agentSwarmBinding
 
         return Group {
-            Stepper("Agents: \(parameters.wrappedValue.agentCount)", value: parameters.agentCount, in: 32...900, step: 16)
-            Stepper("Trails: \(parameters.wrappedValue.trailCount)", value: parameters.trailCount, in: 0...12)
+            IntSliderRow(title: "Agents", value: parameters.agentCount, range: 32...900, step: 16)
+            IntSliderRow(title: "Trails", value: parameters.trailCount, range: 0...12)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Radius", value: parameters.orbitRadius, range: 0.15...1.25)
             SliderRow(title: "Cohesion", value: parameters.cohesion, range: 0...1)
@@ -1048,8 +1212,7 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
-            SliderRow(title: "Agent Size", value: parameters.agentSize, range: 1.2...10)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.9)
+            SliderRow(title: "Point Size", value: parameters.agentSize, range: 1.2...10)
             SliderRow(title: "Separation", value: parameters.separation, range: 0...1)
         }
     }
@@ -1058,18 +1221,17 @@ struct GenerativeEditorView: View {
         let parameters = kaleidoscopeBinding
 
         return Group {
-            Stepper("Rings: \(parameters.wrappedValue.ringCount)", value: parameters.ringCount, in: 3...18)
-            Stepper("Segments: \(parameters.wrappedValue.segments)", value: parameters.segments, in: 4...24)
-            Stepper("Points: \(parameters.wrappedValue.pointsPerRing)", value: parameters.pointsPerRing, in: 120...960, step: 40)
+            IntSliderRow(title: "Rings", value: parameters.ringCount, range: 3...18)
+            IntSliderRow(title: "Segments", value: parameters.segments, range: 4...24)
+            IntSliderRow(title: "Points", value: parameters.pointsPerRing, range: 120...960, step: 40)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Radius", value: parameters.radiusScale, range: 0.35...1.22)
             SliderRow(title: "Twist", value: parameters.twist, range: 0...1)
             SliderRow(title: "Petals", value: parameters.petalAmount, range: 0...1)
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
-            SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
-            SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...8.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
+            SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1.4)
+            SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...10.0)
             SliderRow(title: "Complexity", value: parameters.complexity, range: 0...1)
         }
     }
@@ -1078,8 +1240,8 @@ struct GenerativeEditorView: View {
         let parameters = voronoiFlowBinding
 
         return Group {
-            Stepper("Sites: \(parameters.wrappedValue.siteCount)", value: parameters.siteCount, in: 8...80, step: 2)
-            Stepper("Samples: \(parameters.wrappedValue.samplesPerAxis)", value: parameters.samplesPerAxis, in: 48...150, step: 4)
+            IntSliderRow(title: "Sites", value: parameters.siteCount, range: 8...80, step: 2)
+            IntSliderRow(title: "Samples", value: parameters.samplesPerAxis, range: 48...150, step: 4)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Scale", value: parameters.cellScale, range: 0.45...2.2)
             SliderRow(title: "Edge", value: parameters.edgeWidth, range: 0.08...0.80)
@@ -1088,7 +1250,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...8.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Drift", value: parameters.drift, range: 0...1)
         }
     }
@@ -1097,8 +1258,8 @@ struct GenerativeEditorView: View {
         let parameters = reactionDiffusionBinding
 
         return Group {
-            Stepper("Samples: \(parameters.wrappedValue.samplesPerAxis)", value: parameters.samplesPerAxis, in: 48...160, step: 4)
-            Stepper("Layers: \(parameters.wrappedValue.layerCount)", value: parameters.layerCount, in: 2...8)
+            IntSliderRow(title: "Samples", value: parameters.samplesPerAxis, range: 48...160, step: 4)
+            IntSliderRow(title: "Layers", value: parameters.layerCount, range: 2...8)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Scale", value: parameters.patternScale, range: 0.35...3.0)
             SliderRow(title: "Sharpness", value: parameters.stripeSharpness, range: 0...1)
@@ -1107,7 +1268,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...8.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Turbulence", value: parameters.turbulence, range: 0...1.8)
             SliderRow(title: "Symmetry", value: parameters.symmetry, range: 0...1)
         }
@@ -1117,8 +1277,8 @@ struct GenerativeEditorView: View {
         let parameters = plasmaFieldBinding
 
         return Group {
-            Stepper("Samples: \(parameters.wrappedValue.samplesPerAxis)", value: parameters.samplesPerAxis, in: 56...170, step: 4)
-            Stepper("Octaves: \(parameters.wrappedValue.octaveCount)", value: parameters.octaveCount, in: 1...8)
+            IntSliderRow(title: "Samples", value: parameters.samplesPerAxis, range: 56...170, step: 4)
+            IntSliderRow(title: "Octaves", value: parameters.octaveCount, range: 1...8)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Scale", value: parameters.waveScale, range: 0.35...3.0)
             SliderRow(title: "Warp", value: parameters.warpAmount, range: 0...1.3)
@@ -1126,7 +1286,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...8.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Contrast", value: parameters.contrast, range: 0...1)
             SliderRow(title: "Flow", value: parameters.flowAngle, range: 0...360)
         }
@@ -1136,8 +1295,8 @@ struct GenerativeEditorView: View {
         let parameters = harmonicTunnelBinding
 
         return Group {
-            Stepper("Rings: \(parameters.wrappedValue.ringCount)", value: parameters.ringCount, in: 10...72)
-            Stepper("Points: \(parameters.wrappedValue.pointsPerRing)", value: parameters.pointsPerRing, in: 48...420, step: 12)
+            IntSliderRow(title: "Rings", value: parameters.ringCount, range: 10...72)
+            IntSliderRow(title: "Points", value: parameters.pointsPerRing, range: 48...420, step: 12)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Depth", value: parameters.tunnelDepth, range: 0...1)
             SliderRow(title: "Wave", value: parameters.waveAmplitude, range: 0...0.75)
@@ -1147,7 +1306,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...10.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Perspective", value: parameters.perspective, range: 0...1)
             SliderRow(title: "Center Drift", value: parameters.centerDrift, range: 0...0.6)
         }
@@ -1157,11 +1315,11 @@ struct GenerativeEditorView: View {
         let parameters = lissajousWeaveBinding
 
         return Group {
-            Stepper("Curves: \(parameters.wrappedValue.curveCount)", value: parameters.curveCount, in: 1...22)
-            Stepper("Points: \(parameters.wrappedValue.pointsPerCurve)", value: parameters.pointsPerCurve, in: 160...1200, step: 40)
+            IntSliderRow(title: "Curves", value: parameters.curveCount, range: 1...22)
+            IntSliderRow(title: "Points", value: parameters.pointsPerCurve, range: 160...1200, step: 40)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
-            Stepper("Frequency X: \(parameters.wrappedValue.frequencyX)", value: parameters.frequencyX, in: 1...12)
-            Stepper("Frequency Y: \(parameters.wrappedValue.frequencyY)", value: parameters.frequencyY, in: 1...12)
+            IntSliderRow(title: "Frequency X", value: parameters.frequencyX, range: 1...12)
+            IntSliderRow(title: "Frequency Y", value: parameters.frequencyY, range: 1...12)
             SliderRow(title: "Phase", value: parameters.phaseSpread, range: 0...1)
             SliderRow(title: "Weave", value: parameters.weaveAmount, range: 0...1)
             SliderRow(title: "Modulation", value: parameters.modulation, range: 0...1)
@@ -1169,7 +1327,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...8.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Rotation", value: parameters.rotation, range: 0...360)
         }
     }
@@ -1178,8 +1335,8 @@ struct GenerativeEditorView: View {
         let parameters = phyllotaxisBloomBinding
 
         return Group {
-            Stepper("Points: \(parameters.wrappedValue.pointCount)", value: parameters.pointCount, in: 600...12000, step: 200)
-            Stepper("Arms: \(parameters.wrappedValue.armCount)", value: parameters.armCount, in: 1...12)
+            IntSliderRow(title: "Points", value: parameters.pointCount, range: 600...12000, step: 200)
+            IntSliderRow(title: "Arms", value: parameters.armCount, range: 1...12)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Tightness", value: parameters.spiralTightness, range: 0...1)
             SliderRow(title: "Bloom", value: parameters.bloomAmount, range: 0...1)
@@ -1188,7 +1345,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 0.8...5.8)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Rotation", value: parameters.rotation, range: 0...360)
             SliderRow(title: "Center Drift", value: parameters.centerDrift, range: 0...0.6)
         }
@@ -1198,9 +1354,9 @@ struct GenerativeEditorView: View {
         let parameters = hexPulseLatticeBinding
 
         return Group {
-            Stepper("Columns: \(parameters.wrappedValue.columnCount)", value: parameters.columnCount, in: 8...48)
-            Stepper("Rows: \(parameters.wrappedValue.rowCount)", value: parameters.rowCount, in: 6...36)
-            Stepper("Edge Points: \(parameters.wrappedValue.pointsPerEdge)", value: parameters.pointsPerEdge, in: 2...14)
+            IntSliderRow(title: "Columns", value: parameters.columnCount, range: 8...48)
+            IntSliderRow(title: "Rows", value: parameters.rowCount, range: 6...36)
+            IntSliderRow(title: "Edge Points", value: parameters.pointsPerEdge, range: 2...14)
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Pulse", value: parameters.pulseAmount, range: 0...1)
             SliderRow(title: "Wave", value: parameters.waveScale, range: 0...1)
@@ -1209,7 +1365,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...8.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Rotation", value: parameters.rotation, range: 0...360)
         }
     }
@@ -1218,10 +1373,10 @@ struct GenerativeEditorView: View {
         let parameters = superformulaMorphBinding
 
         return Group {
-            Stepper("Contours: \(parameters.wrappedValue.contourCount)", value: parameters.contourCount, in: 2...24)
-            Stepper("Points: \(parameters.wrappedValue.pointsPerContour)", value: parameters.pointsPerContour, in: 160...1400, step: 40)
-            Stepper("Harmonic A: \(parameters.wrappedValue.harmonicA)", value: parameters.harmonicA, in: 2...18)
-            Stepper("Harmonic B: \(parameters.wrappedValue.harmonicB)", value: parameters.harmonicB, in: 2...18)
+            IntSliderRow(title: "Contours", value: parameters.contourCount, range: 2...24)
+            IntSliderRow(title: "Points", value: parameters.pointsPerContour, range: 160...1400, step: 40)
+            IntSliderRow(title: "Harmonic A", value: parameters.harmonicA, range: 2...18)
+            IntSliderRow(title: "Harmonic B", value: parameters.harmonicB, range: 2...18)
             SliderRow(title: "Morph", value: parameters.morphAmount, range: 0...1)
             SliderRow(title: "Scale", value: parameters.radialScale, range: 0.3...1.25)
             SliderRow(title: "Spread", value: parameters.contourSpread, range: 0...1)
@@ -1230,7 +1385,6 @@ struct GenerativeEditorView: View {
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 0.8...5.8)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
             SliderRow(title: "Rotation", value: parameters.rotation, range: 0...360)
             SliderRow(title: "Center Drift", value: parameters.centerDrift, range: 0...0.6)
         }
@@ -1240,21 +1394,38 @@ struct GenerativeEditorView: View {
         let parameters = proceduralPatternBinding
 
         return Group {
-            Stepper("Elements: \(parameters.wrappedValue.elementCount)", value: parameters.elementCount, in: 4...128)
-            Stepper("Samples: \(parameters.wrappedValue.samplesPerElement)", value: parameters.samplesPerElement, in: 4...1400, step: 8)
-            Stepper("Harmonic A: \(parameters.wrappedValue.harmonicA)", value: parameters.harmonicA, in: 1...24)
-            Stepper("Harmonic B: \(parameters.wrappedValue.harmonicB)", value: parameters.harmonicB, in: 1...32)
+            IntSliderRow(title: "Elements", value: parameters.elementCount, range: 4...128)
+            IntSliderRow(title: "Samples", value: parameters.samplesPerElement, range: 4...1400, step: 8)
+            if proceduralPatternUsesHarmonicA {
+                if project.rendererFamily == .schoolingSwarm {
+                    IntSliderRow(title: "Wave Direction", value: parameters.harmonicA, range: 0...15)
+                } else {
+                    IntSliderRow(title: "Harmonic A", value: parameters.harmonicA, range: 1...24)
+                }
+            }
+            if proceduralPatternUsesHarmonicB {
+                IntSliderRow(title: "Harmonic B", value: parameters.harmonicB, range: 1...32)
+            }
             SliderRow(title: "Trail", value: parameters.fadeAlpha, range: 0.04...0.34)
             SliderRow(title: "Scale", value: parameters.scale, range: 0.18...1.35)
             SliderRow(title: "Modulation", value: parameters.modulation, range: 0...1)
-            SliderRow(title: "Depth", value: parameters.depth, range: 0...1)
-            SliderRow(title: "Feedback", value: parameters.feedback, range: 0...1)
+            if proceduralPatternUsesDepth {
+                SliderRow(
+                    title: project.rendererFamily == .schoolingSwarm ? "Flattening" : "Depth",
+                    value: parameters.depth,
+                    range: 0...1
+                )
+            }
+            if proceduralPatternUsesFeedback {
+                SliderRow(title: "Feedback", value: parameters.feedback, range: 0...1)
+            }
             SliderRow(title: "Hue", value: parameters.hueBaseDegrees, range: 0...360)
             SliderRow(title: "Saturation", value: parameters.saturation, range: 0...1)
             SliderRow(title: "Brightness", value: parameters.brightness, range: 0...1)
             SliderRow(title: "Point Size", value: parameters.pointSize, range: 1.2...10.0)
-            SliderRow(title: "Speed", value: parameters.speed, range: 0...1.65)
-            SliderRow(title: "Rotation", value: parameters.rotation, range: 0...360)
+            if project.rendererFamily != .fireworksShow {
+                SliderRow(title: "Rotation", value: parameters.rotation, range: 0...360)
+            }
         }
     }
 
@@ -1277,110 +1448,8 @@ struct GenerativeEditorView: View {
         } else {
             project.renderParameters = .defaultParameters(for: rendererFamily)
         }
+        enforceLoopSafeDurationForCurrentRenderer()
         markProjectEdited(regenerateThumbnail: true)
-    }
-
-    private func generateFromPrompt() {
-        let trimmedPrompt = effectivePrompt
-        guard !trimmedPrompt.isEmpty else { return }
-
-        project.seed = seed(for: trimmedPrompt, previousSeed: project.seed)
-        resolvePrompt(trimmedPrompt, appendPromptHistory: true)
-    }
-
-    private func applyPromptIfPresent() {
-        let trimmedPrompt = effectivePrompt
-        guard !trimmedPrompt.isEmpty else { return }
-        resolvePrompt(trimmedPrompt, appendPromptHistory: false)
-    }
-
-    private func resolvePrompt(_ prompt: String, appendPromptHistory: Bool) {
-        guard !isResolvingPrompt else { return }
-
-        let capabilities = RendererCapabilities.catalog(preferred: project.rendererFamily)
-        let request = VisualIntentRequest(
-            prompt: prompt,
-            seed: project.seed,
-            currentIntent: project.visualIntent,
-            capabilities: capabilities
-        )
-        let currentExportSettings = project.exportSettings
-        let reducedMotion = accessibilityReduceMotion
-
-        isResolvingPrompt = true
-        projectFileErrorMessage = nil
-        promptResolutionMessage = "Generating..."
-        promptResolutionTask?.cancel()
-        promptResolutionTask = Task {
-            let result = await Task.detached {
-                do {
-                    let intent = try VisualIntentValidator.normalized(
-                        LocalVisualIntentProvider().intent(for: request),
-                        capabilities: capabilities,
-                        reducedMotion: reducedMotion
-                    )
-                    let resolvedCapabilities = RendererCapabilities.capabilities(for: intent.rendererFamily)
-                    let renderParameters = IntentToRenderParametersMapper.renderParameters(
-                        from: intent,
-                        capabilities: resolvedCapabilities,
-                        reducedMotion: reducedMotion
-                    )
-                    let exportSettings = IntentToRenderParametersMapper.exportSettings(
-                        currentExportSettings,
-                        applying: intent
-                    )
-                    return PromptResolutionResult.success(
-                        intent: intent,
-                        renderParameters: renderParameters,
-                        exportSettings: exportSettings
-                    )
-                } catch {
-                    return PromptResolutionResult.failure(error)
-                }
-            }.value
-
-            guard !Task.isCancelled else { return }
-            applyPromptResolutionResult(result, prompt: prompt, appendPromptHistory: appendPromptHistory)
-        }
-    }
-
-    private func applyPromptResolutionResult(
-        _ result: PromptResolutionResult,
-        prompt: String,
-        appendPromptHistory: Bool
-    ) {
-        isResolvingPrompt = false
-        promptResolutionTask = nil
-
-        switch result {
-        case .success(let intent, let renderParameters, let exportSettings):
-            project.visualIntent = intent
-            project.rendererFamily = intent.rendererFamily
-            project.rendererVersion = 1
-            project.renderParameters = renderParameters
-            project.exportSettings = exportSettings
-            if appendPromptHistory {
-                project.promptHistory.append(
-                    PromptEntry(
-                        id: UUID(),
-                        createdAt: Date(),
-                        prompt: prompt,
-                        responseSummary: intent.summary
-                    )
-                )
-            }
-            project.updatedAt = Date()
-            lastExportURL = nil
-            project.assets.outputVideoPath = nil
-            projectFileErrorMessage = nil
-            promptResolutionMessage = "Generated locally."
-            updateThumbnailForCurrentProject()
-            autosaveCurrentProject()
-            resetPreviewTransport()
-        case .failure(let error):
-            projectFileErrorMessage = error.localizedDescription
-            promptResolutionMessage = nil
-        }
     }
 
     private func resetPreviewTransport() {
@@ -1436,10 +1505,30 @@ struct GenerativeEditorView: View {
 
     private func updateExportSettings(_ update: (inout ExportSettings) -> Void) {
         update(&project.exportSettings)
+        enforceLoopSafeDurationForCurrentRenderer()
         markProjectEdited(regenerateThumbnail: false)
     }
 
+    @discardableResult
+    private func enforceLoopSafeDurationForCurrentRenderer() -> Bool {
+        let requiredSeconds = LoopDurationPolicy.requiredSeconds(
+            for: project.rendererFamily,
+            speed: project.renderParameters.speed
+        )
+        guard requiredSeconds < LoopDurationPolicy.maximumExportSeconds else {
+            exportErrorMessage = "\(project.rendererFamily.displayName) requires a \(Int(requiredSeconds.rounded())) second loop, which is too long to export."
+            return false
+        }
+
+        if abs(project.exportSettings.loopSeconds - requiredSeconds) > 0.001 {
+            project.exportSettings.loopSeconds = requiredSeconds
+        }
+        project.exportSettings.fps = LoopDurationPolicy.nearestSupportedFPS(to: project.exportSettings.fps)
+        return true
+    }
+
     private func markProjectEdited(regenerateThumbnail: Bool) {
+        enforceLoopSafeDurationForCurrentRenderer()
         project.assets.outputVideoPath = nil
         project.updatedAt = Date()
         lastExportURL = nil
@@ -1455,22 +1544,9 @@ struct GenerativeEditorView: View {
                 return
             }
 
-            if regenerateThumbnail {
-                updateThumbnailForCurrentProject()
-            }
-            autosaveCurrentProject()
+            autosaveCurrentProject(regenerateThumbnail: regenerateThumbnail)
             editAutosaveTask = nil
         }
-    }
-
-    private func seed(for prompt: String, previousSeed: UInt64) -> UInt64 {
-        var hash: UInt64 = 0xcbf29ce484222325
-        for byte in prompt.utf8 {
-            hash ^= UInt64(byte)
-            hash &*= 0x100000001b3
-        }
-        hash ^= previousSeed
-        return hash == 0 ? 0x9E3779B97F4A7C15 : hash
     }
 
     private func saveProject() {
@@ -1486,6 +1562,11 @@ struct GenerativeEditorView: View {
 
         do {
             var projectToSave = project
+            projectToSave.rendererFamily = projectToSave.renderParameters.rendererFamily
+            if var intent = projectToSave.visualIntent {
+                intent.rendererFamily = projectToSave.rendererFamily
+                projectToSave.visualIntent = intent
+            }
             projectToSave.updatedAt = Date()
             try WallpaperProjectFileStore.save(projectToSave, to: outputURL)
             project = projectToSave
@@ -1520,6 +1601,7 @@ struct GenerativeEditorView: View {
 
     private func handleAppear() {
         loadInitialProjectIfNeeded()
+        enforceLoopSafeDurationForCurrentRenderer()
         refreshLibraryEntries()
     }
 
@@ -1544,26 +1626,12 @@ struct GenerativeEditorView: View {
         )
         let sanitizedProject = sanitizationResult.project
         project = sanitizedProject
-        prompt = sanitizedProject.promptHistory.last?.prompt ?? ""
-        selectedStylePreset = nil
         currentProjectURL = url
         lastExportURL = existingOutputVideoURL(for: sanitizedProject)
         exportErrorMessage = nil
         projectFileErrorMessage = nil
-        promptResolutionMessage = projectSanitizationMessage(for: sanitizationResult)
+        enforceLoopSafeDurationForCurrentRenderer()
         resetPreviewTransport()
-    }
-
-    private func projectSanitizationMessage(for result: WallpaperProjectSanitizationResult) -> String? {
-        guard result.madeChanges else {
-            return nil
-        }
-
-        if result.invalidatedOutputVideo {
-            return "Project settings were adjusted for current safety and export limits. Export again before setting as wallpaper."
-        }
-
-        return "Project settings were adjusted for current safety and export limits."
     }
 
     private func openLibraryEntry(_ entry: ProjectLibraryEntry) {
@@ -1575,10 +1643,27 @@ struct GenerativeEditorView: View {
         }
     }
 
-    private func autosaveCurrentProject() {
+    private func autosaveCurrentProject(regenerateThumbnail: Bool = false) {
         do {
-            let savedURL = try assetLibrary.save(project)
-            currentProjectURL = savedURL
+            let savedProject = try assetLibrary.withRootAccess {
+                var projectToSave = project
+                projectToSave.rendererFamily = projectToSave.renderParameters.rendererFamily
+                if var intent = projectToSave.visualIntent {
+                    intent.rendererFamily = projectToSave.rendererFamily
+                    projectToSave.visualIntent = intent
+                }
+                let saveDate = Date()
+                let savedURL = try assetLibrary.projectURL(for: projectToSave, date: saveDate)
+                if regenerateThumbnail {
+                    let thumbnailURL = try assetLibrary.thumbnailURL(forProjectURL: savedURL)
+                    try GenerativeThumbnailRenderer.renderPNG(project: projectToSave, to: thumbnailURL)
+                    projectToSave.assets.thumbnailPath = thumbnailURL.path
+                }
+                try WallpaperProjectFileStore.save(projectToSave, to: savedURL)
+                return (projectToSave, savedURL)
+            }
+            project = savedProject.0
+            currentProjectURL = savedProject.1
             projectFileErrorMessage = nil
             refreshLibraryEntries()
         } catch {
@@ -1613,22 +1698,10 @@ struct GenerativeEditorView: View {
 
     private func cleanupLibraryAssets() {
         do {
-            let report = try assetLibrary.cleanupOrphanedAssets()
-            promptResolutionMessage = "Removed \(report.removedAssetCount) orphaned generated asset(s)."
+            _ = try assetLibrary.cleanupOrphanedAssets()
             projectFileErrorMessage = nil
             refreshLibraryEntries()
         } catch {
-            projectFileErrorMessage = error.localizedDescription
-        }
-    }
-
-    private func updateThumbnailForCurrentProject() {
-        do {
-            let thumbnailURL = try assetLibrary.thumbnailURL(for: project)
-            try GenerativeThumbnailRenderer.renderPNG(project: project, to: thumbnailURL)
-            project.assets.thumbnailPath = thumbnailURL.path
-        } catch {
-            project.assets.thumbnailPath = nil
             projectFileErrorMessage = error.localizedDescription
         }
     }
@@ -1637,7 +1710,9 @@ struct GenerativeEditorView: View {
         guard let thumbnailPath = entry.thumbnailPath else {
             return nil
         }
-        return NSImage(contentsOfFile: thumbnailPath)
+        return assetLibrary.withRootAccess {
+            NSImage(contentsOfFile: thumbnailPath)
+        }
     }
 
     private func existingOutputVideoURL(for entry: ProjectLibraryEntry) -> URL? {
@@ -1650,13 +1725,7 @@ struct GenerativeEditorView: View {
     }
 
     private var defaultProjectFilename: String {
-        let title = project.visualIntent?.title
-            .replacingOccurrences(of: "/", with: "-")
-            .replacingOccurrences(of: ":", with: "-")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-
-        let baseName = (title?.isEmpty == false ? title : nil) ?? "VideoWallpaper-\(project.seed)"
-        return "\(baseName).\(WallpaperProjectFileStore.fileExtension)"
+        GeneratedAssetLibrary.projectFileName(for: project)
     }
 
     private func existingOutputVideoURL(for project: WallpaperProject) -> URL? {
@@ -1673,7 +1742,7 @@ struct GenerativeEditorView: View {
         panel.allowedContentTypes = [.mpeg4Movie]
         panel.canCreateDirectories = true
         panel.isExtensionHidden = false
-        panel.nameFieldStringValue = "VideoWallpaper-\(project.seed).mp4"
+        panel.nameFieldStringValue = GeneratedAssetLibrary.exportFileName(for: project, fileExtension: "mp4")
 
         guard panel.runModal() == .OK, let outputURL = panel.url else {
             return
@@ -1684,14 +1753,17 @@ struct GenerativeEditorView: View {
 
     private func startLibraryExport() {
         do {
-            startExport(to: try assetLibrary.videoURL(for: project))
+            startExport(to: try assetLibrary.videoURL(for: project), usesLibraryAccess: true)
         } catch {
             exportErrorMessage = error.localizedDescription
         }
     }
 
-    private func startExport(to outputURL: URL) {
+    private func startExport(to outputURL: URL, usesLibraryAccess: Bool = false) {
         stopSeamPreview()
+        guard enforceLoopSafeDurationForCurrentRenderer() else {
+            return
+        }
         isExporting = true
         exportProgress = 0
         exportErrorMessage = nil
@@ -1699,6 +1771,10 @@ struct GenerativeEditorView: View {
 
         let exportProject = project
         exportTask = Task {
+            let stopAccessing = usesLibraryAccess ? assetLibrary.startAccessingRootIfNeeded() : nil
+            defer {
+                stopAccessing?()
+            }
             do {
                 let exportedURL = try await GenerativeVideoExporter.export(project: exportProject, to: outputURL) { progress in
                     Task { @MainActor in
@@ -1728,18 +1804,169 @@ struct GenerativeEditorView: View {
     }
 }
 
-private enum PromptResolutionResult {
-    case success(
-        intent: VisualIntent,
-        renderParameters: RenderParameters,
-        exportSettings: ExportSettings
-    )
-    case failure(Error)
-}
-
 private extension UTType {
     static var videoWallpaperProject: UTType {
         UTType(exportedAs: WallpaperProjectFileStore.contentTypeIdentifier)
+    }
+}
+
+private enum LoopDurationPolicy {
+    static let supportedFPSValues = [24, 30, 60]
+    static let maximumExportSeconds = 600.0
+    static let speedRange = 0.1...2.0
+
+    static func nearestSupportedFPS(to fps: Int) -> Int {
+        supportedFPSValues.min { lhs, rhs in
+            abs(lhs - fps) < abs(rhs - fps)
+        } ?? 30
+    }
+
+    static func requiredSeconds(for family: RendererFamily, speed: Double) -> Double {
+        let speed = clampedSpeed(speed)
+        return baseSeconds(for: family) / speed
+    }
+
+    static func clampedSpeed(_ speed: Double) -> Double {
+        min(max(speed, speedRange.lowerBound), speedRange.upperBound)
+    }
+
+    private static func baseSeconds(for family: RendererFamily) -> Double {
+        switch family {
+        case .auroraCurtain:
+            return 20
+        case .cityLightsBokeh:
+            return 14
+        case .digitalSand:
+            return 16
+        case .inkInWater:
+            return 22
+        case .origamiTessellation:
+            return 16
+        case .sakuraDrift:
+            return 20
+        case .snowfallDepth:
+            return 18
+        case .solarCorona:
+            return 14
+        case .underwaterCaustics:
+            return 16
+        case .volumetricNebula:
+            return 24
+        case .fieldLines:
+            return 12
+        case .orbital:
+            return 16
+        case .softVolumetric:
+            return 20
+        case .gridCity:
+            return 10
+        case .interferenceField:
+            return 12
+        case .periodicNoise:
+            return 18
+        case .cyclicAutomata:
+            return 12
+        case .agentSwarm:
+            return 20
+        case .kaleidoscope:
+            return 16
+        case .voronoiFlow:
+            return 18
+        case .reactionDiffusion:
+            return 20
+        case .plasmaField:
+            return 12
+        case .harmonicTunnel:
+            return 10
+        case .lissajousWeave:
+            return 16
+        case .phyllotaxisBloom:
+            return 18
+        case .hexPulseLattice:
+            return 12
+        case .superformulaMorph:
+            return 16
+        case .bloomingCircuits:
+            return 12
+        case .cellularBloom:
+            return 16
+        case .chladniPlate:
+            return 12
+        case .circuitTracer:
+            return 12
+        case .closedFlowParticles:
+            return 16
+        case .constellationDrift:
+            return 18
+        case .dataMesh:
+            return 14
+        case .crystalLattice:
+            return 16
+        case .electricStorm:
+            return 10
+        case .sdfTunnel:
+            return 10
+        case .feedbackSynth:
+            return 12
+        case .fireworksShow:
+            return 56
+        case .fluidNodes:
+            return 16
+        case .fourierKnots:
+            return 18
+        case .guillocheRose:
+            return 16
+        case .growingNetwork:
+            return 14
+        case .instancedGeometry:
+            return 12
+        case .laserRibbons:
+            return 12
+        case .luminousBubbles:
+            return 18
+        case .metaballField:
+            return 18
+        case .moireRings:
+            return 14
+        case .neonVortex:
+            return 10
+        case .particleFountain:
+            return 10
+        case .penroseTiling:
+            return 20
+        case .pulseNetwork:
+            return 12
+        case .radialOscilloscope:
+            return 12
+        case .rainCurtain:
+            return 8
+        case .ribbonCascade:
+            return 12
+        case .scanlineTopography:
+            return 14
+        case .schoolingSwarm:
+            return 56
+        case .truchetFlow:
+            return 16
+        case .waveTerrain:
+            return 20
+        case .wireframeMorph:
+            return 16
+        case .chromaticBloom:
+            return 14
+        case .labyrinthTrace:
+            return 18
+        case .photonStreams:
+            return 10
+        case .luminousStrings:
+            return 16
+        case .quantumFoam:
+            return 18
+        case .stardustVortex:
+            return 12
+        case .vortexLattice:
+            return 16
+        }
     }
 }
 
@@ -1747,17 +1974,48 @@ private struct SliderRow: View {
     let title: String
     @Binding var value: Double
     let range: ClosedRange<Double>
+    var fractionLength = 2
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Text(title)
-                Spacer()
-                Text(value, format: .number.precision(.fractionLength(2)))
-                    .monospacedDigit()
-                    .foregroundStyle(.secondary)
-            }
+        HStack(spacing: 8) {
+            Text(AppLocalization.string(title))
+                .lineLimit(1)
+                .frame(width: 90, alignment: .leading)
             Slider(value: $value, in: range)
+            Text(value, format: .number.precision(.fractionLength(fractionLength)))
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+                .frame(width: 52, alignment: .trailing)
+        }
+    }
+}
+
+private struct IntSliderRow: View {
+    let title: String
+    @Binding var value: Int
+    let range: ClosedRange<Int>
+    var step = 1
+
+    private var doubleValue: Binding<Double> {
+        Binding(
+            get: { Double(value) },
+            set: { newValue in
+                let stepped = (newValue / Double(step)).rounded() * Double(step)
+                value = min(max(Int(stepped), range.lowerBound), range.upperBound)
+            }
+        )
+    }
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Text(AppLocalization.string(title))
+                .lineLimit(1)
+                .frame(width: 90, alignment: .leading)
+            Slider(value: doubleValue, in: Double(range.lowerBound)...Double(range.upperBound))
+            Text(value, format: .number)
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+                .frame(width: 52, alignment: .trailing)
         }
     }
 }

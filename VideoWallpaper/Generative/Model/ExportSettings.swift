@@ -176,11 +176,28 @@ enum ExportPreset: String, CaseIterable, Identifiable {
         allCases.first { preset in
             guard let baseSettings = preset.baseSettings else { return false }
             return baseSettings.width == settings.width &&
-                baseSettings.height == settings.height &&
-                baseSettings.fps == settings.fps &&
-                baseSettings.loopSeconds == settings.loopSeconds &&
-                baseSettings.quality == settings.quality &&
-                baseSettings.warmupLoops == settings.warmupLoops
+                baseSettings.height == settings.height
         } ?? .custom
+    }
+
+    static func matching(width: Int, height: Int) -> ExportPreset {
+        allCases.first { preset in
+            guard let baseSettings = preset.baseSettings else { return false }
+            return baseSettings.width == width && baseSettings.height == height
+        } ?? .custom
+    }
+
+    static func settingsForDisplayPixelSize(_ size: CGSize) -> ExportSettings {
+        let width = max(ExportSettings.minimumWidth, Int(size.width.rounded()))
+        let height = max(ExportSettings.minimumHeight, Int(size.height.rounded()))
+
+        if let presetSettings = matching(width: width, height: height).baseSettings {
+            return presetSettings
+        }
+
+        var settings = ExportSettings.standard
+        settings.width = width
+        settings.height = height
+        return settings
     }
 }

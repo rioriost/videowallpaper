@@ -527,20 +527,73 @@ final class RendererCapabilities: Equatable {
         proceduralPatternLimits: .appStoreSafe
     )
 
+    static let auroraCurtain = proceduralCapabilities(rendererFamily: .auroraCurtain, version: "aurora-curtain-v1")
+    static let cityLightsBokeh = proceduralCapabilities(rendererFamily: .cityLightsBokeh, version: "city-lights-bokeh-v1")
+    static let digitalSand = proceduralCapabilities(rendererFamily: .digitalSand, version: "digital-sand-v1")
+    static let inkInWater = proceduralCapabilities(rendererFamily: .inkInWater, version: "ink-in-water-v1")
+    static let origamiTessellation = proceduralCapabilities(rendererFamily: .origamiTessellation, version: "origami-tessellation-v1")
+    static let sakuraDrift = proceduralCapabilities(rendererFamily: .sakuraDrift, version: "sakura-drift-v1")
+    static let snowfallDepth = proceduralCapabilities(rendererFamily: .snowfallDepth, version: "snowfall-depth-v1")
+    static let solarCorona = proceduralCapabilities(rendererFamily: .solarCorona, version: "solar-corona-v1")
+    static let underwaterCaustics = proceduralCapabilities(rendererFamily: .underwaterCaustics, version: "underwater-caustics-v1")
+    static let volumetricNebula = proceduralCapabilities(rendererFamily: .volumetricNebula, version: "volumetric-nebula-v1")
+    static let bloomingCircuits = proceduralCapabilities(
+        rendererFamily: .bloomingCircuits,
+        version: "blooming-circuits-v1"
+    )
+    static let cellularBloom = proceduralCapabilities(rendererFamily: .cellularBloom, version: "cellular-bloom-v1")
+    static let chladniPlate = proceduralCapabilities(rendererFamily: .chladniPlate, version: "chladni-plate-v1")
+    static let circuitTracer = proceduralCapabilities(rendererFamily: .circuitTracer, version: "circuit-tracer-v1")
     static let closedFlowParticles = proceduralCapabilities(
         rendererFamily: .closedFlowParticles,
         version: "closed-flow-particles-v1"
     )
+    static let constellationDrift = proceduralCapabilities(
+        rendererFamily: .constellationDrift,
+        version: "constellation-drift-v1"
+    )
+    static let crystalLattice = proceduralCapabilities(rendererFamily: .crystalLattice, version: "crystal-lattice-v1")
+    static let dataMesh = proceduralCapabilities(rendererFamily: .dataMesh, version: "data-mesh-v1")
+    static let electricStorm = proceduralCapabilities(rendererFamily: .electricStorm, version: "electric-storm-v1")
     static let sdfTunnel = proceduralCapabilities(rendererFamily: .sdfTunnel, version: "sdf-tunnel-v1")
     static let feedbackSynth = proceduralCapabilities(rendererFamily: .feedbackSynth, version: "feedback-synth-v1")
+    static let fireworksShow = proceduralCapabilities(rendererFamily: .fireworksShow, version: "fireworks-show-v1")
+    static let fluidNodes = proceduralCapabilities(rendererFamily: .fluidNodes, version: "fluid-nodes-v1")
+    static let fourierKnots = proceduralCapabilities(rendererFamily: .fourierKnots, version: "fourier-knots-v1")
+    static let growingNetwork = proceduralCapabilities(rendererFamily: .growingNetwork, version: "growing-network-v1")
     static let guillocheRose = proceduralCapabilities(rendererFamily: .guillocheRose, version: "guilloche-rose-v1")
     static let instancedGeometry = proceduralCapabilities(
         rendererFamily: .instancedGeometry,
         version: "instanced-geometry-v1"
     )
+    static let laserRibbons = proceduralCapabilities(rendererFamily: .laserRibbons, version: "laser-ribbons-v1")
+    static let luminousBubbles = proceduralCapabilities(
+        rendererFamily: .luminousBubbles,
+        version: "luminous-bubbles-v1"
+    )
     static let metaballField = proceduralCapabilities(rendererFamily: .metaballField, version: "metaball-field-v1")
+    static let moireRings = proceduralCapabilities(rendererFamily: .moireRings, version: "moire-rings-v1")
+    static let neonVortex = proceduralCapabilities(rendererFamily: .neonVortex, version: "neon-vortex-v1")
+    static let particleFountain = proceduralCapabilities(
+        rendererFamily: .particleFountain,
+        version: "particle-fountain-v1"
+    )
     static let penroseTiling = proceduralCapabilities(rendererFamily: .penroseTiling, version: "penrose-tiling-v1")
+    static let pulseNetwork = proceduralCapabilities(rendererFamily: .pulseNetwork, version: "pulse-network-v1")
+    static let radialOscilloscope = proceduralCapabilities(
+        rendererFamily: .radialOscilloscope,
+        version: "radial-oscilloscope-v1"
+    )
+    static let rainCurtain = proceduralCapabilities(rendererFamily: .rainCurtain, version: "rain-curtain-v1")
+    static let ribbonCascade = proceduralCapabilities(rendererFamily: .ribbonCascade, version: "ribbon-cascade-v1")
+    static let scanlineTopography = proceduralCapabilities(
+        rendererFamily: .scanlineTopography,
+        version: "scanline-topography-v1"
+    )
+    static let schoolingSwarm = proceduralCapabilities(rendererFamily: .schoolingSwarm, version: "schooling-swarm-v1")
+    static let truchetFlow = proceduralCapabilities(rendererFamily: .truchetFlow, version: "truchet-flow-v1")
     static let waveTerrain = proceduralCapabilities(rendererFamily: .waveTerrain, version: "wave-terrain-v1")
+    static let wireframeMorph = proceduralCapabilities(rendererFamily: .wireframeMorph, version: "wireframe-morph-v1")
 
     private static func proceduralCapabilities(rendererFamily: RendererFamily, version: String) -> RendererCapabilities {
         RendererCapabilities(
@@ -632,22 +685,103 @@ final class RendererCapabilities: Equatable {
             return .hexPulseLattice
         case .superformulaMorph:
             return .superformulaMorph
+        case .auroraCurtain:
+            return .auroraCurtain
+        case .cityLightsBokeh:
+            return .cityLightsBokeh
+        case .digitalSand:
+            return .digitalSand
+        case .inkInWater:
+            return .inkInWater
+        case .origamiTessellation:
+            return .origamiTessellation
+        case .sakuraDrift:
+            return .sakuraDrift
+        case .snowfallDepth:
+            return .snowfallDepth
+        case .solarCorona:
+            return .solarCorona
+        case .underwaterCaustics:
+            return .underwaterCaustics
+        case .volumetricNebula:
+            return .volumetricNebula
+        case .bloomingCircuits:
+            return .bloomingCircuits
+        case .cellularBloom:
+            return .cellularBloom
+        case .chladniPlate:
+            return .chladniPlate
+        case .circuitTracer:
+            return .circuitTracer
         case .closedFlowParticles:
             return .closedFlowParticles
+        case .constellationDrift:
+            return .constellationDrift
+        case .crystalLattice:
+            return .crystalLattice
+        case .dataMesh:
+            return .dataMesh
+        case .electricStorm:
+            return .electricStorm
         case .sdfTunnel:
             return .sdfTunnel
         case .feedbackSynth:
             return .feedbackSynth
+        case .fireworksShow:
+            return .fireworksShow
+        case .fluidNodes:
+            return .fluidNodes
+        case .fourierKnots:
+            return .fourierKnots
+        case .growingNetwork:
+            return .growingNetwork
         case .guillocheRose:
             return .guillocheRose
         case .instancedGeometry:
             return .instancedGeometry
+        case .laserRibbons:
+            return .laserRibbons
+        case .luminousBubbles:
+            return .luminousBubbles
         case .metaballField:
             return .metaballField
+        case .moireRings:
+            return .moireRings
+        case .neonVortex:
+            return .neonVortex
+        case .particleFountain:
+            return .particleFountain
         case .penroseTiling:
             return .penroseTiling
+        case .pulseNetwork:
+            return .pulseNetwork
+        case .radialOscilloscope:
+            return .radialOscilloscope
+        case .rainCurtain:
+            return .rainCurtain
+        case .ribbonCascade:
+            return .ribbonCascade
+        case .scanlineTopography:
+            return .scanlineTopography
+        case .schoolingSwarm:
+            return .schoolingSwarm
+        case .truchetFlow:
+            return .truchetFlow
         case .waveTerrain:
             return .waveTerrain
+        case .wireframeMorph:
+            return .wireframeMorph
+        case .chromaticBloom,
+             .labyrinthTrace,
+             .photonStreams,
+             .luminousStrings,
+             .quantumFoam,
+             .stardustVortex,
+             .vortexLattice:
+            return proceduralCapabilities(
+                rendererFamily: rendererFamily,
+                version: "\(rendererFamily.rawValue)-v1"
+            )
         }
     }
 
@@ -683,6 +817,86 @@ struct LoopContract: Codable, Equatable {
 enum RendererRegistry {
     static func descriptor(for rendererFamily: RendererFamily) -> RendererDescriptor {
         switch rendererFamily {
+        case .auroraCurtain:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Layered aurora bands, vertical luminous curtains, slow sky waves, and broad periodic color shimmer.",
+                bestFor: ["aurora", "polar lights", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .cityLightsBokeh:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Night-city bokeh lights, skyline glow, soft lens circles, and periodic window twinkle.",
+                bestFor: ["city lights", "night bokeh", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .digitalSand:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Dense luminous grains flow like sand over periodic waves, dunes, and granular currents.",
+                bestFor: ["sand", "granular flow", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .inkInWater:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Soft ink blooms, smoky underwater plumes, swirling lobes, and slow fluid-like diffusion loops.",
+                bestFor: ["ink in water", "smoke bloom", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .origamiTessellation:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Folded paper tessellations, triangular creases, faceted tiling, and periodic fold shimmer.",
+                bestFor: ["origami", "folded facets", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .sakuraDrift:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Sakura petals drifting through wind with periodic wraparound, depth, and gentle rotation.",
+                bestFor: ["sakura", "petals", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .snowfallDepth:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Layered snowfall with parallax depth, wind sway, bright flakes, and seamless vertical wrap.",
+                bestFor: ["snowfall", "winter", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .solarCorona:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Radiating solar corona rays, magnetic flame arcs, hot plasma filaments, and closed starburst motion.",
+                bestFor: ["solar corona", "sun plasma", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .underwaterCaustics:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Bright underwater caustic lines, refracted wave grids, pool-light shimmer, and looping wave interference.",
+                bestFor: ["caustics", "underwater light", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
+        case .volumetricNebula:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Layered nebula clouds, glowing dust, slow orbital smoke motion, and periodic cosmic gas blooms.",
+                bestFor: ["nebula", "cosmic cloud", "ambient loop", "full-screen wallpaper"],
+                avoidFor: ["literal UI diagrams", "single object scenes"],
+                vocabulary: ["closed phase loop", "full-frame coverage", "periodic seeded particles", "high-visibility motion"]
+            )
         case .fieldLines:
             return RendererDescriptor(
                 family: .fieldLines,
@@ -1440,6 +1654,46 @@ enum RendererRegistry {
                     RendererParameterDescriptor(name: "morphAmount", meaning: "Amount of breathing and lobe interpolation.", range: "0.0...1.0")
                 ]
             )
+        case .bloomingCircuits:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Circuit-like traces bloom outward, branch, glow, fade, and rebuild as a closed luminous routing cycle.",
+                bestFor: ["blooming circuits", "PCB bloom", "electronic growth", "branching light", "signal tree"],
+                avoidFor: ["falling rain", "soft fog", "radial ornament"],
+                vocabulary: ["periodic trace bloom", "branching circuit envelope", "closed routing growth", "node pulse decay"]
+            )
+        case .cellularBloom:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Cellular activation blooms, propagating grid sparks, organic tile growth, and repeating neighborhood wave fronts.",
+                bestFor: ["cellular bloom", "grid activation", "spreading cells", "organic pixels", "propagation"],
+                avoidFor: ["smooth ribbons", "literal scenery", "single curve"],
+                vocabulary: ["periodic cell activation", "neighborhood wave", "closed bloom phase", "seeded cell lattice"]
+            )
+        case .chladniPlate:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Chladni nodal plate patterns, cymatic vibration fields, standing-wave dust figures, and resonant mathematical surfaces.",
+                bestFor: ["Chladni plate", "cymatics", "standing wave", "resonance", "nodal field"],
+                avoidFor: ["literal landscape", "single object", "soft volumetric fog"],
+                vocabulary: ["integer standing wave", "closed nodal phase", "resonant plate mode", "periodic cymatic grid"]
+            )
+        case .chromaticBloom:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Saturated bloom cells, bright color bursts, expanding glow clusters, and high-energy closed chromatic pulses.",
+                bestFor: ["chromatic bloom", "color burst", "glow cells", "vivid wallpaper", "energetic loop"],
+                avoidFor: ["quiet minimal patterns", "literal scenery", "hard wireframe"],
+                vocabulary: ["closed bloom phase", "periodic color burst", "seeded glow lattice", "high-saturation pulse"]
+            )
+        case .circuitTracer:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Circuit-board paths, branching signal traces, luminous route pulses, and grid-based pathfinding loops.",
+                bestFor: ["circuit traces", "signal routing", "PCB paths", "data flow", "branching pulses"],
+                avoidFor: ["soft organic fog", "radial symmetry", "literal scenery"],
+                vocabulary: ["periodic path phase", "orthogonal trace graph", "closed signal pulse", "branching circuit route"]
+            )
         case .closedFlowParticles:
             return proceduralDescriptor(
                 for: rendererFamily,
@@ -1447,6 +1701,38 @@ enum RendererRegistry {
                 bestFor: ["flow field", "curl noise", "magnetic stream", "aurora currents", "liquid particles"],
                 avoidFor: ["hard geometry", "static tiling", "literal city"],
                 vocabulary: ["closed vector field", "periodic curl phase", "streamline bundle", "toroidal particle path"]
+            )
+        case .constellationDrift:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Star-like points drift on closed paths while proximity edges appear, brighten, and dissolve into a looping constellation.",
+                bestFor: ["constellation", "drifting stars", "proximity graph", "space network", "quiet nodes"],
+                avoidFor: ["dense terrain", "hard tiling", "rain curtain"],
+                vocabulary: ["closed star orbit", "periodic proximity edge", "seeded node drift", "constellation pulse"]
+            )
+        case .crystalLattice:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Crystalline lattice meshes, faceted light grids, refractive geometry panels, and periodic mineral-like structure.",
+                bestFor: ["crystal lattice", "faceted grid", "refractive geometry", "mineral structure", "light mesh"],
+                avoidFor: ["soft fog", "organic swarm", "literal landscape"],
+                vocabulary: ["periodic lattice phase", "hexagonal crystal cell", "faceted node mesh", "closed shimmer cycle"]
+            )
+        case .dataMesh:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Dense triangulated data meshes, shifting wire networks, signal surfaces, and layered technical graph structures.",
+                bestFor: ["data mesh", "triangulated network", "technical graph", "wire surface", "signal mesh"],
+                avoidFor: ["soft bubbles", "rain motion", "single radial ornament"],
+                vocabulary: ["periodic mesh warp", "triangulated node field", "closed data surface", "signal edge pulse"]
+            )
+        case .electricStorm:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Branching electric arcs, lightning filaments, charged plasma veins, and high-energy strobe-free storm loops.",
+                bestFor: ["electric storm", "lightning", "plasma arcs", "charged filaments", "energy burst"],
+                avoidFor: ["quiet minimal patterns", "soft fog", "literal scenery"],
+                vocabulary: ["periodic lightning filament", "closed charge phase", "branching arc lattice", "oscillating electric field"]
             )
         case .sdfTunnel:
             return proceduralDescriptor(
@@ -1464,6 +1750,38 @@ enum RendererRegistry {
                 avoidFor: ["precise diagrams", "single object", "literal landscape"],
                 vocabulary: ["closed feedback phase", "recursive scale echo", "rotating chroma trail", "oscillator modulation"]
             )
+        case .fireworksShow:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Layered launch trails, aerial bursts, spark decay, willow shells, rings, and crackle-like particles with black boundary frames.",
+                bestFor: ["fireworks", "hanabi", "sparks", "festival night", "aerial bursts"],
+                avoidFor: ["quiet minimal grids", "literal daytime landscape", "single object"],
+                vocabulary: ["black boundary frame", "periodic shell launch", "spark decay envelope", "closed fireworks loop"]
+            )
+        case .fluidNodes:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Soft nodes drift through fluid-like currents, merge visually through glowing edges, and reform in a closed loop.",
+                bestFor: ["fluid nodes", "soft network", "liquid graph", "glowing nodes", "organic data"],
+                avoidFor: ["hard grids", "falling rain", "sharp wireframe"],
+                vocabulary: ["closed fluid orbit", "soft node merge", "periodic liquid edge", "flowing proximity graph"]
+            )
+        case .fourierKnots:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Fourier knot curves, harmonic ribbon loops, orbital lace paths, and closed mathematical line choreography.",
+                bestFor: ["Fourier knot", "harmonic ribbon", "orbital lace", "closed curve", "mathematical loop"],
+                avoidFor: ["grid city", "terrain", "cellular noise"],
+                vocabulary: ["integer harmonic knot", "closed Lissajous orbit", "phase-locked ribbon", "periodic Fourier curve"]
+            )
+        case .growingNetwork:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Emerging nodes, growing edges, signal-chasing graph structures, and periodically rebuilding network constellations.",
+                bestFor: ["growing network", "node graph", "edge growth", "data graph", "constellation network"],
+                avoidFor: ["rain motion", "solid tiling", "soft volumetric mist"],
+                vocabulary: ["periodic birth phase", "edge growth envelope", "fixed seeded node graph", "closed graph rebuild cycle"]
+            )
         case .guillocheRose:
             return proceduralDescriptor(
                 for: rendererFamily,
@@ -1480,6 +1798,38 @@ enum RendererRegistry {
                 avoidFor: ["fluid mist", "photographic scenery", "single smooth contour"],
                 vocabulary: ["periodic instance transform", "modular shape lattice", "closed object orbit", "phase-synchronized glyphs"]
             )
+        case .labyrinthTrace:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Maze-like routes appear, chase through corridors, branch, and rebuild as a full-frame closed luminous path loop.",
+                bestFor: ["maze", "labyrinth", "route tracing", "glowing corridors", "pathfinding"],
+                avoidFor: ["radial ornaments", "soft fog", "single centered object"],
+                vocabulary: ["seeded maze lattice", "periodic path reveal", "closed corridor trace", "branching route pulse"]
+            )
+        case .laserRibbons:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Sweeping laser ribbons, nightclub light trails, bright spline curtains, and synchronized beam choreography.",
+                bestFor: ["laser ribbons", "light trails", "nightclub beams", "spline curtain", "VJ ribbons"],
+                avoidFor: ["static tiling", "terrain", "literal object"],
+                vocabulary: ["closed ribbon phase", "harmonic beam spline", "periodic sweep path", "layered laser trail"]
+            )
+        case .luminousBubbles:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Floating luminous bubbles, translucent ring glows, soft overlaps, and buoyant closed drift motion.",
+                bestFor: ["light bubbles", "glowing orbs", "soft circles", "floating bubbles", "ambient glow"],
+                avoidFor: ["wireframe mesh", "sharp circuits", "hard geometric tiling"],
+                vocabulary: ["closed bubble drift", "periodic ring pulse", "soft overlap glow", "buoyant orbit"]
+            )
+        case .luminousStrings:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Fluorescent string-like splines wander freely across the frame, bend, overlap, and return through closed harmonic paths.",
+                bestFor: ["luminous strings", "neon cords", "free-moving splines", "glowing threads", "organic light trails"],
+                avoidFor: ["rigid grids", "radial tunnels", "literal scenery"],
+                vocabulary: ["closed spline drift", "periodic string body", "harmonic control points", "free neon thread motion"]
+            )
         case .metaballField:
             return proceduralDescriptor(
                 for: rendererFamily,
@@ -1487,6 +1837,38 @@ enum RendererRegistry {
                 bestFor: ["metaballs", "liquid blobs", "organic cells", "soft bubbles", "merging forms"],
                 avoidFor: ["hard grids", "sharp typography", "city perspective"],
                 vocabulary: ["implicit scalar field", "closed blob orbit", "iso-contour samples", "periodic liquid merge"]
+            )
+        case .moireRings:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Moire ring interference, concentric beat patterns, diffraction rosettes, and periodic optical wave overlays.",
+                bestFor: ["moire rings", "interference rings", "diffraction rosette", "optical beats", "concentric waves"],
+                avoidFor: ["literal objects", "forest", "city perspective"],
+                vocabulary: ["integer beat frequency", "closed radial phase", "concentric wave overlay", "periodic interference ring"]
+            )
+        case .neonVortex:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Neon vortex spirals, hypersaturated whirlpools, rotating energy funnels, and dense radial club visuals.",
+                bestFor: ["neon vortex", "energy funnel", "club visuals", "spiral whirlpool", "psychedelic rotation"],
+                avoidFor: ["subtle backgrounds", "straight grids", "literal landscape"],
+                vocabulary: ["closed vortex phase", "radial spiral harmonic", "periodic energy funnel", "rotating chroma bands"]
+            )
+        case .particleFountain:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Particles rise and fall in fountain arcs with gravity-like motion, sparkling crowns, and wrapped closed lifetimes.",
+                bestFor: ["particle fountain", "sparks", "rising particles", "fireworks fountain", "gravity arc"],
+                avoidFor: ["static grids", "smooth fog", "single line drawing"],
+                vocabulary: ["periodic particle lifetime", "closed parabolic arc", "wrapped fountain emitter", "spark decay envelope"]
+            )
+        case .photonStreams:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Fast photon-like streams, layered beam curtains, luminous flow lanes, and bright closed sweep choreography.",
+                bestFor: ["photon streams", "light beams", "fast ribbons", "laser flow", "VJ sweep"],
+                avoidFor: ["quiet static grid", "literal scenery", "single centered shape"],
+                vocabulary: ["closed stream phase", "harmonic beam spline", "periodic photon lane", "layered light trail"]
             )
         case .penroseTiling:
             return proceduralDescriptor(
@@ -1496,6 +1878,86 @@ enum RendererRegistry {
                 avoidFor: ["soft fog", "swarm motion", "literal terrain"],
                 vocabulary: ["golden-angle tiling", "quasi-periodic spatial lattice", "closed palette phase", "star-rhombus geometry"]
             )
+        case .pulseNetwork:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "A fixed graph of nodes and edges carries visible pulses that chase, split, and recombine across a closed signal cycle.",
+                bestFor: ["pulse network", "signal graph", "data flow", "node pulse", "edge signal"],
+                avoidFor: ["rain", "solid tiling", "terrain"],
+                vocabulary: ["closed edge pulse", "seeded graph topology", "periodic signal transit", "node flare decay"]
+            )
+        case .quantumFoam:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Bubbling luminous foam, soft metaball cells, energetic particle blobs, and dense closed liquid-light motion.",
+                bestFor: ["quantum foam", "metaballs", "glowing bubbles", "liquid cells", "energetic blobs"],
+                avoidFor: ["hard wireframe", "straight grid", "literal outdoor scene"],
+                vocabulary: ["implicit scalar field", "closed blob orbit", "periodic foam merge", "seeded liquid cell pulse"]
+            )
+        case .radialOscilloscope:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Radial oscilloscope traces, circular waveforms, laser-spirograph scopes, and synchronized audio-reactive-style rings.",
+                bestFor: ["oscilloscope", "radial waveform", "laser scope", "circular signal", "audio visualizer"],
+                avoidFor: ["hard tiling", "terrain", "photographic scenery"],
+                vocabulary: ["closed waveform phase", "integer radial harmonic", "periodic trace bundle", "phase-locked signal ring"]
+            )
+        case .rainCurtain:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Vertical rain streaks, falling light droplets, wind-sheared precipitation curtains, and perfectly wrapping downward motion.",
+                bestFor: ["rain", "falling droplets", "vertical streaks", "digital rain", "light shower"],
+                avoidFor: ["radial rotations", "solid grids", "literal landscapes"],
+                vocabulary: ["wrapped falling phase", "periodic drop lifetime", "streak trail envelope", "vertical event loop"]
+            )
+        case .ribbonCascade:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Layered neon ribbons cascade across the screen with phase-locked waves, color shifts, and looping sweep motion.",
+                bestFor: ["ribbon cascade", "flowing ribbons", "light curtain", "spline waves", "VJ bands"],
+                avoidFor: ["node graphs", "cellular grid", "literal rain"],
+                vocabulary: ["closed ribbon sweep", "phase-locked spline", "periodic cascade lane", "layered wave band"]
+            )
+        case .scanlineTopography:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Horizontal scanlines become topographic waves, spectral ridges, and terrain-like contour motion in a closed loop.",
+                bestFor: ["scanline topography", "contour waves", "spectrum terrain", "topographic lines", "wave scan"],
+                avoidFor: ["radial vortex", "node graph", "falling particles"],
+                vocabulary: ["periodic scanline phase", "closed height field", "contour ridge sweep", "harmonic line terrain"]
+            )
+        case .schoolingSwarm:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "A fish-school-like swarm changes heading together, flows as coherent groups, splits into lanes, and reforms periodically.",
+                bestFor: ["schooling swarm", "fish school", "flocking", "coordinated agents", "shoal motion"],
+                avoidFor: ["static mesh", "single curve", "literal rain"],
+                vocabulary: ["periodic group heading", "coherent flock lane", "closed schooling path", "synchronized agent turn"]
+            )
+        case .stardustVortex:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Dense stardust spirals, neon vortex motion, orbiting particle galaxies, and bright closed cosmic whirlpools.",
+                bestFor: ["stardust vortex", "spiral galaxy", "particle whirlpool", "cosmic neon", "energy funnel"],
+                avoidFor: ["flat rectangular grid", "quiet monochrome", "literal landscape"],
+                vocabulary: ["closed vortex phase", "radial spiral harmonic", "periodic stardust orbit", "rotating chroma particles"]
+            )
+        case .truchetFlow:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Truchet tile flow fields, modular arc mazes, interlocking curved paths, and looping geometric route patterns.",
+                bestFor: ["Truchet tiles", "arc maze", "modular flow", "curved tile grid", "geometric path"],
+                avoidFor: ["soft mist", "single curve", "organic blobs"],
+                vocabulary: ["periodic tile orientation", "closed arc path", "modular curve lattice", "phase-shifted tile flow"]
+            )
+        case .vortexLattice:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Rotating lattice cells, crystalline vortex meshes, faceted full-frame geometry, and periodic shimmer pulses.",
+                bestFor: ["vortex lattice", "crystal mesh", "rotating lattice", "faceted geometry", "bright structure"],
+                avoidFor: ["soft fog", "falling rain", "single smooth curve"],
+                vocabulary: ["periodic lattice phase", "closed vortex cell", "faceted node mesh", "rotating shimmer cycle"]
+            )
         case .waveTerrain:
             return proceduralDescriptor(
                 for: rendererFamily,
@@ -1503,6 +1965,14 @@ enum RendererRegistry {
                 bestFor: ["wave terrain", "topographic lines", "ocean surface", "height field", "contour map"],
                 avoidFor: ["radial ornament", "metaballs", "city towers"],
                 vocabulary: ["periodic height field", "closed wave phase", "contour ridge samples", "oscillating terrain lattice"]
+            )
+        case .wireframeMorph:
+            return proceduralDescriptor(
+                for: rendererFamily,
+                summary: "Morphing wireframe polyhedra, triangulated grids, rotating technical cages, and closed geometric surface loops.",
+                bestFor: ["wireframe", "mesh morph", "polyhedron", "technical cage", "triangulated surface"],
+                avoidFor: ["soft bubbles", "rain", "organic fog"],
+                vocabulary: ["closed wireframe morph", "periodic vertex projection", "triangulated cage", "phase-locked mesh rotation"]
             )
         }
     }
@@ -1981,9 +2451,9 @@ struct KaleidoscopeParameterLimits: Equatable {
         petalAmount: 0.0...1.0,
         hueSpreadDegrees: 8...150,
         saturation: 0.15...1.0,
-        brightness: 0.20...1.08,
-        pointAlpha: 0.04...0.34,
-        pointSize: 1.2...8.0,
+        brightness: 0.20...1.14,
+        pointAlpha: 0.04...0.38,
+        pointSize: 1.2...10.0,
         speed: 0.08...1.65,
         complexity: 0.0...1.0
     )
@@ -2474,14 +2944,14 @@ struct ProceduralPatternParameterLimits: Equatable {
         harmonicA: 1...24,
         harmonicB: 1...32,
         fadeAlpha: 0.04...0.34,
-        scale: 0.18...1.35,
+        scale: 0.18...1.55,
         modulation: 0.0...1.0,
         depth: 0.0...1.0,
         feedback: 0.0...1.0,
         hueSpreadDegrees: 8...150,
         saturation: 0.15...1.0,
-        brightness: 0.20...1.08,
-        pointAlpha: 0.04...0.34,
+        brightness: 0.20...1.14,
+        pointAlpha: 0.04...0.38,
         pointSize: 1.2...10.0,
         speed: 0.08...1.65,
         rotation: 0.0...360.0

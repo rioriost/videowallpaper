@@ -70,11 +70,53 @@ enum PromptInterpreter {
             return .feedbackSynth
         }
         if prompt.matches(any: [
+            "chladni", "chladni plate", "cymatics", "standing wave", "nodal field",
+            "resonance pattern",
+            "クラドニ", "サイマティクス", "定在波", "節線", "共鳴模様"
+        ]) {
+            return .chladniPlate
+        }
+        if prompt.matches(any: [
+            "circuit tracer", "circuit trace", "pcb trace", "signal route", "signal routing",
+            "data pulse", "branching circuit", "route pulse",
+            "回路トレース", "基板", "信号経路", "配線", "データパルス"
+        ]) {
+            return .circuitTracer
+        }
+        if prompt.matches(any: [
+            "crystal lattice", "crystalline lattice", "faceted grid", "mineral grid",
+            "refractive geometry", "light mesh",
+            "結晶格子", "結晶", "鉱物格子", "ファセット", "屈折ジオメトリ"
+        ]) {
+            return .crystalLattice
+        }
+        if prompt.matches(any: [
+            "electric storm", "lightning", "thunderbolt", "plasma arc", "electric arc",
+            "charged filament", "energy burst", "tesla coil",
+            "電気嵐", "稲妻", "雷", "電弧", "プラズマアーク", "放電", "電撃"
+        ]) {
+            return .electricStorm
+        }
+        if prompt.matches(any: [
+            "fourier knot", "fourier knots", "harmonic knot", "harmonic ribbon",
+            "orbital lace", "closed curve choreography",
+            "フーリエノット", "調和曲線", "結び目曲線", "軌道レース"
+        ]) {
+            return .fourierKnots
+        }
+        if prompt.matches(any: [
             "guilloche", "rose engine", "banknote", "security print", "ornamental line",
             "spirograph rosette", "harmonic pen",
             "ギロシェ", "紙幣模様", "装飾線", "ローズエンジン", "精密な線"
         ]) {
             return .guillocheRose
+        }
+        if prompt.matches(any: [
+            "growing network", "node graph", "network graph", "edge growth", "growing edges",
+            "constellation network", "graph signal",
+            "成長するネットワーク", "ノード", "エッジ", "グラフ", "ネットワーク生成"
+        ]) {
+            return .growingNetwork
         }
         if prompt.matches(any: [
             "instanced geometry", "geometry array", "triangle field", "glyph field",
@@ -84,6 +126,13 @@ enum PromptInterpreter {
             return .instancedGeometry
         }
         if prompt.matches(any: [
+            "laser ribbon", "laser ribbons", "laser beams", "light ribbons",
+            "nightclub beams", "spline curtain", "vj ribbons",
+            "レーザーリボン", "光のリボン", "光線", "ビーム", "クラブ照明"
+        ]) {
+            return .laserRibbons
+        }
+        if prompt.matches(any: [
             "metaball", "metaballs", "liquid blobs", "soft blobs", "implicit field",
             "merging bubbles", "organic bubbles",
             "メタボール", "液体の塊", "柔らかい泡", "融合する泡", "暗黙曲面"
@@ -91,11 +140,45 @@ enum PromptInterpreter {
             return .metaballField
         }
         if prompt.matches(any: [
+            "moire rings", "moiré rings", "interference rings", "diffraction rosette",
+            "concentric beats", "optical beats",
+            "モアレリング", "干渉リング", "回折ロゼット", "同心波", "光学ビート"
+        ]) {
+            return .moireRings
+        }
+        if prompt.matches(any: [
+            "neon vortex", "energy vortex", "energy funnel", "spiral whirlpool",
+            "psychedelic vortex", "club vortex", "glowing spiral",
+            "ネオン渦", "エネルギー渦", "発光する渦", "螺旋の渦", "サイケな渦"
+        ]) {
+            return .neonVortex
+        }
+        if prompt.matches(any: [
             "penrose", "aperiodic tiling", "aperiodic", "golden ratio tiling",
             "rhombus tiling", "star tiling",
             "ペンローズ", "非周期タイル", "黄金比タイル", "菱形タイル", "星形タイル"
         ]) {
             return .penroseTiling
+        }
+        if prompt.matches(any: [
+            "radial oscilloscope", "oscilloscope", "radial waveform", "laser scope",
+            "circular signal", "audio visualizer",
+            "オシロスコープ", "波形", "円形波形", "レーザースコープ", "音声ビジュアライザ"
+        ]) {
+            return .radialOscilloscope
+        }
+        if prompt.matches(any: [
+            "rain curtain", "falling rain", "rain streak", "rain streaks", "digital rain",
+            "falling droplets", "light shower",
+            "雨", "降る雨", "雨粒", "光の雨", "縦に落ちる", "デジタル雨"
+        ]) {
+            return .rainCurtain
+        }
+        if prompt.matches(any: [
+            "truchet", "truchet tiles", "arc maze", "curved tile grid", "modular flow",
+            "トルシェ", "タイル曲線", "円弧迷路", "曲線タイル", "モジュラー流路"
+        ]) {
+            return .truchetFlow
         }
         if prompt.matches(any: [
             "wave terrain", "height field", "heightfield", "topographic lines",
@@ -356,20 +439,75 @@ enum PromptInterpreter {
             return "Generated hex-pulse-lattice wallpaper from prompt keywords."
         case .superformulaMorph:
             return "Generated superformula-morph wallpaper from prompt keywords."
+        case .auroraCurtain,
+             .bloomingCircuits,
+             .cellularBloom,
+             .chromaticBloom,
+             .constellationDrift,
+             .dataMesh,
+             .digitalSand,
+             .fireworksShow,
+             .fluidNodes,
+             .inkInWater,
+             .labyrinthTrace,
+             .luminousBubbles,
+             .luminousStrings,
+             .cityLightsBokeh,
+             .origamiTessellation,
+             .particleFountain,
+             .photonStreams,
+             .pulseNetwork,
+             .quantumFoam,
+             .ribbonCascade,
+             .sakuraDrift,
+             .scanlineTopography,
+             .schoolingSwarm,
+             .snowfallDepth,
+             .solarCorona,
+             .stardustVortex,
+             .underwaterCaustics,
+             .volumetricNebula,
+             .vortexLattice,
+             .wireframeMorph:
+            return "Generated \(rendererFamily.displayName.lowercased()) wallpaper from prompt keywords."
+        case .chladniPlate:
+            return "Generated chladni-plate wallpaper from prompt keywords."
+        case .circuitTracer:
+            return "Generated circuit-tracer wallpaper from prompt keywords."
         case .closedFlowParticles:
             return "Generated closed-flow-particles wallpaper from prompt keywords."
+        case .crystalLattice:
+            return "Generated crystal-lattice wallpaper from prompt keywords."
+        case .electricStorm:
+            return "Generated electric-storm wallpaper from prompt keywords."
         case .sdfTunnel:
             return "Generated sdf-tunnel wallpaper from prompt keywords."
         case .feedbackSynth:
             return "Generated feedback-synth wallpaper from prompt keywords."
+        case .fourierKnots:
+            return "Generated fourier-knots wallpaper from prompt keywords."
         case .guillocheRose:
             return "Generated guilloche-rose wallpaper from prompt keywords."
+        case .growingNetwork:
+            return "Generated growing-network wallpaper from prompt keywords."
         case .instancedGeometry:
             return "Generated instanced-geometry wallpaper from prompt keywords."
+        case .laserRibbons:
+            return "Generated laser-ribbons wallpaper from prompt keywords."
         case .metaballField:
             return "Generated metaball-field wallpaper from prompt keywords."
+        case .moireRings:
+            return "Generated moire-rings wallpaper from prompt keywords."
+        case .neonVortex:
+            return "Generated neon-vortex wallpaper from prompt keywords."
         case .penroseTiling:
             return "Generated penrose-tiling wallpaper from prompt keywords."
+        case .radialOscilloscope:
+            return "Generated radial-oscilloscope wallpaper from prompt keywords."
+        case .rainCurtain:
+            return "Generated rain-curtain wallpaper from prompt keywords."
+        case .truchetFlow:
+            return "Generated truchet-flow wallpaper from prompt keywords."
         case .waveTerrain:
             return "Generated wave-terrain wallpaper from prompt keywords."
         }

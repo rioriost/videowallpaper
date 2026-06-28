@@ -114,11 +114,75 @@ enum IntentToRenderParametersMapper {
                 capabilities: capabilities ?? .superformulaMorph,
                 reducedMotion: reducedMotion
             ))
+        case .auroraCurtain,
+             .bloomingCircuits,
+             .cellularBloom,
+             .chromaticBloom,
+             .cityLightsBokeh,
+             .constellationDrift,
+             .dataMesh,
+             .digitalSand,
+             .fireworksShow,
+             .fluidNodes,
+             .inkInWater,
+             .labyrinthTrace,
+             .luminousBubbles,
+             .luminousStrings,
+             .origamiTessellation,
+             .particleFountain,
+             .photonStreams,
+             .pulseNetwork,
+             .quantumFoam,
+             .ribbonCascade,
+             .sakuraDrift,
+             .scanlineTopography,
+             .schoolingSwarm,
+             .snowfallDepth,
+             .solarCorona,
+             .stardustVortex,
+             .underwaterCaustics,
+             .volumetricNebula,
+             .vortexLattice,
+             .wireframeMorph:
+            return proceduralRenderParameters(
+                family: intent.rendererFamily,
+                from: intent,
+                capabilities: capabilities ?? .capabilities(for: intent.rendererFamily),
+                reducedMotion: reducedMotion
+            )
+        case .chladniPlate:
+            return proceduralRenderParameters(
+                family: .chladniPlate,
+                from: intent,
+                capabilities: capabilities ?? .chladniPlate,
+                reducedMotion: reducedMotion
+            )
+        case .circuitTracer:
+            return proceduralRenderParameters(
+                family: .circuitTracer,
+                from: intent,
+                capabilities: capabilities ?? .circuitTracer,
+                reducedMotion: reducedMotion
+            )
         case .closedFlowParticles:
             return proceduralRenderParameters(
                 family: .closedFlowParticles,
                 from: intent,
                 capabilities: capabilities ?? .closedFlowParticles,
+                reducedMotion: reducedMotion
+            )
+        case .crystalLattice:
+            return proceduralRenderParameters(
+                family: .crystalLattice,
+                from: intent,
+                capabilities: capabilities ?? .crystalLattice,
+                reducedMotion: reducedMotion
+            )
+        case .electricStorm:
+            return proceduralRenderParameters(
+                family: .electricStorm,
+                from: intent,
+                capabilities: capabilities ?? .electricStorm,
                 reducedMotion: reducedMotion
             )
         case .sdfTunnel:
@@ -135,11 +199,25 @@ enum IntentToRenderParametersMapper {
                 capabilities: capabilities ?? .feedbackSynth,
                 reducedMotion: reducedMotion
             )
+        case .fourierKnots:
+            return proceduralRenderParameters(
+                family: .fourierKnots,
+                from: intent,
+                capabilities: capabilities ?? .fourierKnots,
+                reducedMotion: reducedMotion
+            )
         case .guillocheRose:
             return proceduralRenderParameters(
                 family: .guillocheRose,
                 from: intent,
                 capabilities: capabilities ?? .guillocheRose,
+                reducedMotion: reducedMotion
+            )
+        case .growingNetwork:
+            return proceduralRenderParameters(
+                family: .growingNetwork,
+                from: intent,
+                capabilities: capabilities ?? .growingNetwork,
                 reducedMotion: reducedMotion
             )
         case .instancedGeometry:
@@ -149,6 +227,13 @@ enum IntentToRenderParametersMapper {
                 capabilities: capabilities ?? .instancedGeometry,
                 reducedMotion: reducedMotion
             )
+        case .laserRibbons:
+            return proceduralRenderParameters(
+                family: .laserRibbons,
+                from: intent,
+                capabilities: capabilities ?? .laserRibbons,
+                reducedMotion: reducedMotion
+            )
         case .metaballField:
             return proceduralRenderParameters(
                 family: .metaballField,
@@ -156,11 +241,46 @@ enum IntentToRenderParametersMapper {
                 capabilities: capabilities ?? .metaballField,
                 reducedMotion: reducedMotion
             )
+        case .moireRings:
+            return proceduralRenderParameters(
+                family: .moireRings,
+                from: intent,
+                capabilities: capabilities ?? .moireRings,
+                reducedMotion: reducedMotion
+            )
+        case .neonVortex:
+            return proceduralRenderParameters(
+                family: .neonVortex,
+                from: intent,
+                capabilities: capabilities ?? .neonVortex,
+                reducedMotion: reducedMotion
+            )
         case .penroseTiling:
             return proceduralRenderParameters(
                 family: .penroseTiling,
                 from: intent,
                 capabilities: capabilities ?? .penroseTiling,
+                reducedMotion: reducedMotion
+            )
+        case .radialOscilloscope:
+            return proceduralRenderParameters(
+                family: .radialOscilloscope,
+                from: intent,
+                capabilities: capabilities ?? .radialOscilloscope,
+                reducedMotion: reducedMotion
+            )
+        case .rainCurtain:
+            return proceduralRenderParameters(
+                family: .rainCurtain,
+                from: intent,
+                capabilities: capabilities ?? .rainCurtain,
+                reducedMotion: reducedMotion
+            )
+        case .truchetFlow:
+            return proceduralRenderParameters(
+                family: .truchetFlow,
+                from: intent,
+                capabilities: capabilities ?? .truchetFlow,
                 reducedMotion: reducedMotion
             )
         case .waveTerrain:
@@ -764,22 +884,86 @@ enum IntentToRenderParametersMapper {
         )
 
         switch family {
+        case .bloomingCircuits:
+            return .bloomingCircuits(parameters)
+        case .cellularBloom:
+            return .cellularBloom(parameters)
+        case .chromaticBloom:
+            return .proceduralPattern(.chromaticBloom, parameters)
+        case .chladniPlate:
+            return .chladniPlate(parameters)
+        case .circuitTracer:
+            return .circuitTracer(parameters)
         case .closedFlowParticles:
             return .closedFlowParticles(parameters)
+        case .constellationDrift:
+            return .constellationDrift(parameters)
+        case .crystalLattice:
+            return .crystalLattice(parameters)
+        case .dataMesh:
+            return .dataMesh(parameters)
+        case .electricStorm:
+            return .electricStorm(parameters)
         case .sdfTunnel:
             return .sdfTunnel(parameters)
         case .feedbackSynth:
             return .feedbackSynth(parameters)
+        case .fireworksShow:
+            return .fireworksShow(parameters)
+        case .fluidNodes:
+            return .fluidNodes(parameters)
+        case .fourierKnots:
+            return .fourierKnots(parameters)
         case .guillocheRose:
             return .guillocheRose(parameters)
+        case .growingNetwork:
+            return .growingNetwork(parameters)
         case .instancedGeometry:
             return .instancedGeometry(parameters)
+        case .labyrinthTrace:
+            return .proceduralPattern(.labyrinthTrace, parameters)
+        case .laserRibbons:
+            return .laserRibbons(parameters)
+        case .luminousStrings:
+            return .proceduralPattern(.luminousStrings, parameters)
+        case .luminousBubbles:
+            return .luminousBubbles(parameters)
         case .metaballField:
             return .metaballField(parameters)
+        case .moireRings:
+            return .moireRings(parameters)
+        case .neonVortex:
+            return .neonVortex(parameters)
+        case .particleFountain:
+            return .particleFountain(parameters)
+        case .photonStreams:
+            return .proceduralPattern(.photonStreams, parameters)
         case .penroseTiling:
             return .penroseTiling(parameters)
+        case .pulseNetwork:
+            return .pulseNetwork(parameters)
+        case .quantumFoam:
+            return .proceduralPattern(.quantumFoam, parameters)
+        case .radialOscilloscope:
+            return .radialOscilloscope(parameters)
+        case .rainCurtain:
+            return .rainCurtain(parameters)
+        case .ribbonCascade:
+            return .ribbonCascade(parameters)
+        case .scanlineTopography:
+            return .scanlineTopography(parameters)
+        case .schoolingSwarm:
+            return .schoolingSwarm(parameters)
+        case .stardustVortex:
+            return .proceduralPattern(.stardustVortex, parameters)
+        case .truchetFlow:
+            return .truchetFlow(parameters)
+        case .vortexLattice:
+            return .proceduralPattern(.vortexLattice, parameters)
         case .waveTerrain:
             return .waveTerrain(parameters)
+        case .wireframeMorph:
+            return .wireframeMorph(parameters)
         default:
             return .defaultParameters(for: family)
         }
@@ -834,20 +1018,44 @@ enum IntentToRenderParametersMapper {
         feedback: Double
     ) {
         switch family {
+        case .chladniPlate:
+            return (0.16, 1.0, 0.08, 0.08, -0.04)
+        case .circuitTracer:
+            return (0.18, 2.0, 0.12, 0.10, 0.06)
         case .closedFlowParticles:
             return (0.20, 0.0, 0.10, 0.10, 0.00)
+        case .crystalLattice:
+            return (0.14, 2.0, 0.04, 0.12, -0.04)
+        case .electricStorm:
+            return (0.28, 2.0, 0.18, 0.18, 0.10)
         case .sdfTunnel:
             return (0.00, 1.0, 0.04, 0.22, 0.04)
         case .feedbackSynth:
             return (0.08, 1.0, 0.14, 0.10, 0.24)
+        case .fourierKnots:
+            return (-0.12, 2.0, 0.10, -0.04, -0.06)
         case .guillocheRose:
             return (-0.12, 3.0, 0.02, -0.12, -0.04)
+        case .growingNetwork:
+            return (0.24, 1.0, 0.10, 0.14, 0.08)
         case .instancedGeometry:
             return (0.28, 1.0, 0.08, 0.10, 0.02)
+        case .laserRibbons:
+            return (-0.18, 2.0, 0.18, -0.02, 0.08)
         case .metaballField:
             return (-0.10, 0.0, 0.14, 0.08, 0.10)
+        case .moireRings:
+            return (0.04, 3.0, 0.08, -0.06, -0.04)
+        case .neonVortex:
+            return (0.18, 2.0, 0.18, 0.20, 0.08)
         case .penroseTiling:
             return (0.18, 2.0, -0.04, -0.04, -0.06)
+        case .radialOscilloscope:
+            return (0.04, 2.0, 0.12, -0.04, -0.06)
+        case .rainCurtain:
+            return (0.22, 0.0, 0.08, 0.16, 0.04)
+        case .truchetFlow:
+            return (0.06, 1.0, 0.08, -0.10, -0.06)
         case .waveTerrain:
             return (0.10, 1.0, 0.08, 0.22, 0.00)
         default:

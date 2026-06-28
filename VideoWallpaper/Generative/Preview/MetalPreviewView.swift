@@ -4,6 +4,7 @@
 //
 
 import MetalKit
+import QuartzCore
 import SwiftUI
 
 struct MetalPreviewView: NSViewRepresentable {
@@ -80,6 +81,8 @@ extension MetalPreviewView {
         private var requestedFrameIndex: Int?
         private var lastAppliedRequestedFrameIndex: Int?
         private var frameIndex = 0
+        private var playbackFrameOffset = 0
+        private var playbackStartTime = CACurrentMediaTime()
         private weak var view: MTKView?
         private weak var observedWindow: NSWindow?
         private var windowObservers: [NSObjectProtocol] = []
@@ -107,12 +110,15 @@ extension MetalPreviewView {
             isPlaying: Bool,
             requestedFrameIndex: Int?
         ) {
+            let wasPlaying = self.isPlaying
             if seed != self.seed ||
                 parameters.rendererFamily != self.parameters.rendererFamily ||
                 exportSettings.fps != self.exportSettings.fps ||
                 exportSettings.loopSeconds != self.exportSettings.loopSeconds {
                 renderer?.resetAccumulation()
                 frameIndex = 0
+                playbackFrameOffset = 0
+                playbackStartTime = CACurrentMediaTime()
                 lastAppliedRequestedFrameIndex = nil
             }
             self.parameters = parameters
@@ -120,6 +126,16 @@ extension MetalPreviewView {
             self.exportSettings = exportSettings
             self.isPlaying = isPlaying
             self.requestedFrameIndex = requestedFrameIndex
+            if wasPlaying != isPlaying {
+                let clock = RenderClock(fps: exportSettings.fps, loopSeconds: exportSettings.loopSeconds)
+                if isPlaying {
+                    playbackFrameOffset = frameIndex
+                    playbackStartTime = CACurrentMediaTime()
+                } else {
+                    frameIndex = currentPlaybackFrame(clock: clock)
+                    playbackFrameOffset = frameIndex
+                }
+            }
             updatePausedState(redrawPausedFrame: true)
         }
 
@@ -146,8 +162,12 @@ extension MetalPreviewView {
             let clock = RenderClock(fps: exportSettings.fps, loopSeconds: exportSettings.loopSeconds)
             if requestedFrameIndex != lastAppliedRequestedFrameIndex, let requestedFrameIndex {
                 frameIndex = clock.wrappedFrameIndex(requestedFrameIndex)
+                playbackFrameOffset = frameIndex
+                playbackStartTime = CACurrentMediaTime()
                 renderer?.resetAccumulation()
                 lastAppliedRequestedFrameIndex = requestedFrameIndex
+            } else if isPlaying {
+                frameIndex = currentPlaybackFrame(clock: clock)
             }
 
             renderer?.render(
@@ -159,11 +179,14 @@ extension MetalPreviewView {
                 commandBuffer: commandBuffer,
                 renderPassDescriptor: renderPassDescriptor
             )
-            if isPlaying {
-                frameIndex = clock.wrappedFrameIndex(frameIndex + 1)
-            }
             commandBuffer.present(drawable)
             commandBuffer.commit()
+        }
+
+        private func currentPlaybackFrame(clock: RenderClock) -> Int {
+            let elapsedSeconds = max(0, CACurrentMediaTime() - playbackStartTime)
+            let elapsedFrames = Int((elapsedSeconds * Double(clock.fps)).rounded(.down))
+            return clock.wrappedFrameIndex(playbackFrameOffset + elapsedFrames)
         }
 
         private func refreshWindowObserversIfNeeded() {

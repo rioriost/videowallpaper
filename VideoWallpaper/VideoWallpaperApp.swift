@@ -19,18 +19,18 @@ struct VideoWallpaperApp: App {
     
     var body: some Scene {
         MenuBarExtra("Video Wallpaper", systemImage: "film") {
-            Button("About VideoWallpaper...") {
+            Button(AppLocalization.string("About VideoWallpaper...")) {
                 NSApp.orderFrontStandardAboutPanel(nil)
                 NSApp.activate(ignoringOtherApps: true)
             }
             Divider()
-            Button("Settings...") {
+            Button(AppLocalization.string("Settings...")) {
                 openSettings()
                 NSApp.activate(ignoringOtherApps: true)
             }
             .keyboardShortcut(",", modifiers: [.command])
             Divider()
-            Button("Quit VideoWallpaper") {
+            Button(AppLocalization.string("Quit VideoWallpaper")) {
                 NSApp.terminate(nil)
             }
             .keyboardShortcut("q", modifiers: [.command])
@@ -120,7 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             shouldShowDiagnosticsWarning = true
         } else {
             os_log("動画ファイルの選択がキャンセルされました")
-            showAlert(message: "動画ファイルが選択されませんでした。アプリを終了します。")
+            showAlert(message: AppLocalization.string("No video file was selected. The app will quit."))
             NSApp.terminate(nil)
             return
         }
@@ -186,7 +186,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // コントローラ未初期化時のハンドリング
         guard let controller = videoWindowController else {
             os_log("VideoWindowController が未初期化のため URL 更新できません")
-            showAlert(message: "動画ウィンドウがまだ初期化されていません。")
+            showAlert(message: AppLocalization.string("The video window has not been initialized yet."))
             return
         }
         guard let assignments = saveVideoSelection(newURL) else { return }
@@ -223,7 +223,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func changeVideoForDisplay() {
         let screens = NSScreen.screens
         guard !screens.isEmpty else {
-            showAlert(message: "利用可能なディスプレイが見つかりません。")
+            showAlert(message: AppLocalization.string("No available displays were found."))
             return
         }
         guard let selectedScreen = promptForDisplay(screens) else {
@@ -243,7 +243,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         guard !assignments.perDisplaySelections.isEmpty else {
-            showAlert(message: "現在、ディスプレイ別の割り当てはありません。")
+            showAlert(message: AppLocalization.string("There are no per-display assignments."))
             return
         }
         assignments.perDisplaySelections.removeAll()
@@ -276,7 +276,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let screens = NSScreen.screens
         guard !screens.isEmpty else {
-            showAlert(message: "利用可能なディスプレイが見つかりません。")
+            showAlert(message: AppLocalization.string("No available displays were found."))
             return
         }
 
@@ -315,7 +315,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func promptForVideo() -> URL? {
         let panel = NSOpenPanel()
-        panel.title = "動画ファイルを選択してください"
+        panel.title = AppLocalization.string("Choose a video file")
         if #available(macOS 12.0, *) {
             panel.allowedContentTypes = [.movie]
         } else {
@@ -327,10 +327,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func promptForDisplay(_ screens: [NSScreen]) -> NSScreen? {
         let alert = NSAlert()
-        alert.messageText = "ディスプレイを選択"
-        alert.informativeText = "この動画を設定するディスプレイを選択してください。"
-        alert.addButton(withTitle: "選択")
-        alert.addButton(withTitle: "キャンセル")
+        alert.messageText = AppLocalization.string("Choose Display")
+        alert.informativeText = AppLocalization.string("Choose the display where this video will be set.")
+        alert.addButton(withTitle: AppLocalization.string("Choose"))
+        alert.addButton(withTitle: AppLocalization.string("Cancel"))
 
         let popup = NSPopUpButton(frame: NSRect(x: 0, y: 0, width: 320, height: 28), pullsDown: false)
         for (index, screen) in screens.enumerated() {
@@ -350,7 +350,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func assignVideo(_ url: URL, promptsForDisplay: Bool) -> StoredDisplayWallpaperAssignments? {
         let screens = NSScreen.screens
         guard !screens.isEmpty else {
-            showAlert(message: "利用可能なディスプレイが見つかりません。")
+            showAlert(message: AppLocalization.string("No available displays were found."))
             return nil
         }
         guard let selectedScreen = promptsForDisplay ? promptForDisplay(screens) : screens.first else {
@@ -365,7 +365,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func assignVideo(_ url: URL, toDisplayID displayID: String) -> StoredDisplayWallpaperAssignments? {
         guard var assignments = currentDisplayAssignments() else {
-            showAlert(message: "まず全ディスプレイ用の動画を選択してください。")
+            showAlert(message: AppLocalization.string("Choose a video for all displays first."))
             return nil
         }
         guard let selection = makeStoredSelection(for: url) else {
@@ -503,14 +503,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return StoredWallpaperSelection(url: url, bookmarkData: bookmarkData, isGenerated: false)
         } catch {
             os_log("動画ブックマークの保存に失敗: %{public}@", String(describing: error))
-            showAlert(message: "選択した動画ファイルの保存に失敗しました。別の動画を選択してください。")
+            showAlert(message: AppLocalization.string("Failed to save the selected video file. Choose another video."))
             return nil
         }
     }
 
     private func persistDisplayAssignments(_ assignments: StoredDisplayWallpaperAssignments) -> Bool {
         guard startAccessingVideoSelections(assignments.allSelections()) else {
-            showAlert(message: "選択した動画ファイルへアクセスできませんでした。別の動画を選択してください。")
+            showAlert(message: AppLocalization.string("The selected video file could not be accessed. Choose another video."))
             return false
         }
 
@@ -518,7 +518,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             try displayAssignmentStore.save(assignments)
         } catch {
             os_log("ディスプレイ別動画割り当ての保存に失敗: %{public}@", String(describing: error))
-            showAlert(message: "動画割り当ての保存に失敗しました。")
+            showAlert(message: AppLocalization.string("Failed to save video assignments."))
             return false
         }
 
@@ -648,7 +648,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let alert = NSAlert()
             alert.messageText = title
             alert.informativeText = message
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: AppLocalization.string("OK"))
             alert.runModal()
         }
     }
@@ -795,7 +795,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 guard showsWarnings, !diagnostics.warnings.isEmpty else { return }
                 await MainActor.run { [weak self] in
                     self?.showAlert(
-                        title: "動画の負荷が高い可能性があります",
+                        title: AppLocalization.string("This video may be expensive to play"),
                         message: diagnostics.warnings.joined(separator: "\n")
                     )
                 }

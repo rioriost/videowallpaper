@@ -174,8 +174,56 @@ enum WallpaperProjectSanitizer {
                 capabilities.superformulaMorphLimits.clamped(parameters),
                 reducedMotion: reducedMotion
             ))
+        case .bloomingCircuits(let parameters):
+            return .bloomingCircuits(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .cellularBloom(let parameters):
+            return .cellularBloom(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .chladniPlate(let parameters):
+            return .chladniPlate(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .circuitTracer(let parameters):
+            return .circuitTracer(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
         case .closedFlowParticles(let parameters):
             return .closedFlowParticles(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .constellationDrift(let parameters):
+            return .constellationDrift(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .crystalLattice(let parameters):
+            return .crystalLattice(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .dataMesh(let parameters):
+            return .dataMesh(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .electricStorm(let parameters):
+            return .electricStorm(sanitizedProceduralPatternParameters(
                 parameters,
                 capabilities: capabilities,
                 reducedMotion: reducedMotion
@@ -192,8 +240,92 @@ enum WallpaperProjectSanitizer {
                 capabilities: capabilities,
                 reducedMotion: reducedMotion
             ))
+        case .fireworksShow(let parameters):
+            return .fireworksShow(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .auroraCurtain(let parameters):
+            return .auroraCurtain(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .cityLightsBokeh(let parameters):
+            return .cityLightsBokeh(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .digitalSand(let parameters):
+            return .digitalSand(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .inkInWater(let parameters):
+            return .inkInWater(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .origamiTessellation(let parameters):
+            return .origamiTessellation(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .sakuraDrift(let parameters):
+            return .sakuraDrift(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .snowfallDepth(let parameters):
+            return .snowfallDepth(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .solarCorona(let parameters):
+            return .solarCorona(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .underwaterCaustics(let parameters):
+            return .underwaterCaustics(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .volumetricNebula(let parameters):
+            return .volumetricNebula(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .fluidNodes(let parameters):
+            return .fluidNodes(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .fourierKnots(let parameters):
+            return .fourierKnots(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
         case .guillocheRose(let parameters):
             return .guillocheRose(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .growingNetwork(let parameters):
+            return .growingNetwork(sanitizedProceduralPatternParameters(
                 parameters,
                 capabilities: capabilities,
                 reducedMotion: reducedMotion
@@ -204,8 +336,38 @@ enum WallpaperProjectSanitizer {
                 capabilities: capabilities,
                 reducedMotion: reducedMotion
             ))
+        case .laserRibbons(let parameters):
+            return .laserRibbons(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .luminousBubbles(let parameters):
+            return .luminousBubbles(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
         case .metaballField(let parameters):
             return .metaballField(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .moireRings(let parameters):
+            return .moireRings(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .neonVortex(let parameters):
+            return .neonVortex(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .particleFountain(let parameters):
+            return .particleFountain(sanitizedProceduralPatternParameters(
                 parameters,
                 capabilities: capabilities,
                 reducedMotion: reducedMotion
@@ -216,12 +378,71 @@ enum WallpaperProjectSanitizer {
                 capabilities: capabilities,
                 reducedMotion: reducedMotion
             ))
+        case .pulseNetwork(let parameters):
+            return .pulseNetwork(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .radialOscilloscope(let parameters):
+            return .radialOscilloscope(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .rainCurtain(let parameters):
+            return .rainCurtain(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .ribbonCascade(let parameters):
+            return .ribbonCascade(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .scanlineTopography(let parameters):
+            return .scanlineTopography(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .schoolingSwarm(let parameters):
+            var sanitized = sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            )
+            sanitized.harmonicA = min(max(parameters.harmonicA, 0), 15)
+            return .schoolingSwarm(sanitized)
+        case .truchetFlow(let parameters):
+            return .truchetFlow(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
         case .waveTerrain(let parameters):
             return .waveTerrain(sanitizedProceduralPatternParameters(
                 parameters,
                 capabilities: capabilities,
                 reducedMotion: reducedMotion
             ))
+        case .wireframeMorph(let parameters):
+            return .wireframeMorph(sanitizedProceduralPatternParameters(
+                parameters,
+                capabilities: capabilities,
+                reducedMotion: reducedMotion
+            ))
+        case .proceduralPattern(let family, let parameters):
+            return .proceduralPattern(
+                family,
+                sanitizedProceduralPatternParameters(
+                    parameters,
+                    capabilities: capabilities,
+                    reducedMotion: reducedMotion
+                )
+            )
         }
     }
 
