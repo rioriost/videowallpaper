@@ -24,7 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4AA7A47F2DF166BA00E9036E /* VideoWallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoWallpaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AA7A47F2DF166BA00E9036E /* RioVideoWallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RioVideoWallpaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA7A48D2DF166BB00E9036E /* VideoWallpaperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoWallpaperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA7A4972DF166BB00E9036E /* VideoWallpaperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoWallpaperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,7 +98,7 @@
 		4AA7A4802DF166BA00E9036E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4AA7A47F2DF166BA00E9036E /* VideoWallpaper.app */,
+				4AA7A47F2DF166BA00E9036E /* RioVideoWallpaper.app */,
 				4AA7A48D2DF166BB00E9036E /* VideoWallpaperTests.xctest */,
 				4AA7A4972DF166BB00E9036E /* VideoWallpaperUITests.xctest */,
 			);
@@ -126,8 +126,8 @@
 			name = VideoWallpaper;
 			packageProductDependencies = (
 			);
-			productName = VideoWallpaper;
-			productReference = 4AA7A47F2DF166BA00E9036E /* VideoWallpaper.app */;
+			productName = RioVideoWallpaper;
+			productReference = 4AA7A47F2DF166BA00E9036E /* RioVideoWallpaper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4AA7A48C2DF166BB00E9036E /* VideoWallpaperTests */ = {
@@ -433,7 +433,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = st.rio.VideoWallpaper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = VideoWallpaper;
+				INFOPLIST_KEY_CFBundleDisplayName = RioVideoWallpaper;
+				INFOPLIST_KEY_CFBundleName = RioVideoWallpaper;
+				PRODUCT_NAME = RioVideoWallpaper;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -466,7 +469,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = st.rio.VideoWallpaper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = VideoWallpaper;
+				INFOPLIST_KEY_CFBundleDisplayName = RioVideoWallpaper;
+				INFOPLIST_KEY_CFBundleName = RioVideoWallpaper;
+				PRODUCT_NAME = RioVideoWallpaper;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -487,7 +493,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoWallpaper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VideoWallpaper";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RioVideoWallpaper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RioVideoWallpaper";
 			};
 			name = Debug;
 		};
@@ -506,7 +512,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoWallpaper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VideoWallpaper";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RioVideoWallpaper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RioVideoWallpaper";
 			};
 			name = Release;
 		};

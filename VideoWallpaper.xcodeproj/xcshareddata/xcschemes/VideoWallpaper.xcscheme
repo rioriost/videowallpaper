@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4AA7A47E2DF166BA00E9036E"
-               BuildableName = "VideoWallpaper.app"
+               BuildableName = "RioVideoWallpaper.app"
                BlueprintName = "VideoWallpaper"
                ReferencedContainer = "container:VideoWallpaper.xcodeproj">
             </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4AA7A47E2DF166BA00E9036E"
-            BuildableName = "VideoWallpaper.app"
+            BuildableName = "RioVideoWallpaper.app"
             BlueprintName = "VideoWallpaper"
             ReferencedContainer = "container:VideoWallpaper.xcodeproj">
          </BuildableReference>
@@ -86,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4AA7A47E2DF166BA00E9036E"
-            BuildableName = "VideoWallpaper.app"
+            BuildableName = "RioVideoWallpaper.app"
             BlueprintName = "VideoWallpaper"
             ReferencedContainer = "container:VideoWallpaper.xcodeproj">
          </BuildableReference>
