@@ -1,6 +1,6 @@
-# VideoWallpaper
+# RioVideoWallpaper
 
-`VideoWallpaper` は、macOS のデスクトップ壁紙として動画を再生できるメニューバーアプリです。
+`RioVideoWallpaper` は、macOS のデスクトップ壁紙として動画を再生できるメニューバーアプリです。
 
 選択した動画を壁紙の背面でループ再生し、複数ディスプレイ環境でも各画面に表示します。  
 通常のアプリウィンドウは表示されず、メニューバーから操作します。
@@ -26,15 +26,15 @@
 Homebrew でインストールできます。
 
 ```sh
-brew install --cask rioriost/cask/videowallpaper
+brew install --cask rioriost/cask/riovideowallpaper
 ```
 
 ## 使い方
 
-1. `VideoWallpaper` を起動します。
+1. `RioVideoWallpaper` を起動します。
 2. 初回起動時に、壁紙として使いたい動画ファイルを選択します。
 3. 選択した動画がデスクトップの背面で再生されます。
-4. 動画を変更したい場合は、メニューバーの `Video Wallpaper` から `動画を変更…` を選びます。
+4. 動画を変更したい場合は、メニューバーの `RioVideoWallpaper` から `動画を変更…` を選びます。
 5. アプリを終了したい場合は、メニューバーから `終了` を選びます。
 
 ## こんなとき
@@ -60,7 +60,7 @@ brew install --cask rioriost/cask/videowallpaper
 
 ## プロファイリング
 
-Xcode Instruments の Time Profiler で CPU 使用量を確認できます。良好な状態では、処理時間の多くは AVFoundation/CoreMedia などのシステム側に出て、`VideoWallpaper` 自体の self time は小さくなります。1画面と複数画面を比較して、共有再生パイプラインで負荷が増えにくいことを確認してください。CPU time が十分低い場合は、独自レンダラを検討する前に Energy Log や GPU/Metal profiling で確認します。
+Xcode Instruments の Time Profiler で CPU 使用量を確認できます。良好な状態では、処理時間の多くは AVFoundation/CoreMedia などのシステム側に出て、`RioVideoWallpaper` 自体の self time は小さくなります。1画面と複数画面を比較して、共有再生パイプラインで負荷が増えにくいことを確認してください。CPU time が十分低い場合は、独自レンダラを検討する前に Energy Log や GPU/Metal profiling で確認します。
 
 ## ライセンス
 

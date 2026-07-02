@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT_DIR"
 
-APP_NAME="${APP_NAME:-VideoWallpaper}"
+APP_NAME="${APP_NAME:-RioVideoWallpaper}"
 CONFIGURATION="${CONFIGURATION:-Release}"
 DERIVED_DATA="${DERIVED_DATA:-$ROOT_DIR/build/DerivedData}"
 BUILD_PRODUCTS="$DERIVED_DATA/Build/Products/$CONFIGURATION"
@@ -12,7 +12,7 @@ APP_PATH="${APP_PATH:-$BUILD_PRODUCTS/$APP_NAME.app}"
 
 TAG="${1:-${TAG:-}}"
 if [[ -z "$TAG" ]]; then
-  TAG="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$ROOT_DIR/VideoWallpaper/Info.plist" 2>/dev/null || true)"
+  TAG="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$ROOT_DIR/RioVideoWallpaper/Info.plist" 2>/dev/null || true)"
 fi
 if [[ -z "$TAG" ]]; then
   echo "ERROR: No release tag found. Pass a tag as an argument or set TAG env."

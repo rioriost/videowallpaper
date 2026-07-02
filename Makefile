@@ -1,4 +1,4 @@
-APP_NAME := VideoWallpaper
+APP_NAME := RioVideoWallpaper
 SCHEME := $(APP_NAME)
 PROJECT := $(APP_NAME).xcodeproj
 CONFIGURATION := Release

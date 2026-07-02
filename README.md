@@ -1,6 +1,6 @@
-# VideoWallpaper
+# RioVideoWallpaper
 
-VideoWallpaper is a lightweight macOS menu bar app that lets you play a video as your desktop wallpaper.
+RioVideoWallpaper is a lightweight macOS menu bar app that lets you play a video as your desktop wallpaper.
 
 ## Features
 
@@ -23,12 +23,12 @@ VideoWallpaper is a lightweight macOS menu bar app that lets you play a video as
 Install with Homebrew:
 
 ```sh
-brew install --cask rioriost/cask/videowallpaper
+brew install --cask rioriost/cask/riovideowallpaper
 ```
 
 ## How to use
 
-1. Launch `VideoWallpaper`.
+1. Launch `RioVideoWallpaper`.
 2. When prompted, choose a video file from your Mac.
 3. The selected video will start playing as your wallpaper.
 4. To change the video later, click the menu bar icon and choose `Change Video...`.
@@ -44,7 +44,7 @@ brew install --cask rioriost/cask/videowallpaper
 
 ## Profiling
 
-Use Xcode Instruments Time Profiler to confirm CPU usage. A healthy run should spend most time in AVFoundation/CoreMedia system threads with little self time in `VideoWallpaper`; compare one display versus multiple displays to verify the shared playback pipeline. If CPU time is already low, use Energy Log or GPU/Metal profiling before considering a custom renderer.
+Use Xcode Instruments Time Profiler to confirm CPU usage. A healthy run should spend most time in AVFoundation/CoreMedia system threads with little self time in `RioVideoWallpaper`; compare one display versus multiple displays to verify the shared playback pipeline. If CPU time is already low, use Energy Log or GPU/Metal profiling before considering a custom renderer.
 
 ## License
 

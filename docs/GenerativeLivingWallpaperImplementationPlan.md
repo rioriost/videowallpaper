@@ -11,7 +11,7 @@ The intended product is not only a video wallpaper player. It is a generative vi
 3. Swift/Metal renders an interactive real-time preview.
 4. The user adjusts parameters directly until the result feels right.
 5. The same renderer exports a full-resolution seamless loop video.
-6. The generated video is passed to the existing VideoWallpaper playback/wallpaper system.
+6. The generated video is passed to the existing RioVideoWallpaper playback/wallpaper system.
 
 The core product value is the semantic translation layer: turning ambiguous human mood words into stable, reproducible rendering parameters.
 
@@ -58,7 +58,7 @@ GenerativeRenderer
           MP4/MOV file
              |
              v
-          VideoWallpaper playback/wallpaper layer
+          RioVideoWallpaper playback/wallpaper layer
 ```
 
 The same `GenerativeRenderer` must be used for both preview and export. Preview and export may use different output resolution and timing mechanics, but they must share shader code, parameter interpretation, random seed handling, and loop logic.
@@ -70,7 +70,7 @@ The same `GenerativeRenderer` must be used for both preview and export. Preview 
 Technology:
 
 - SwiftUI for the main UI.
-- AppKit where required for window behavior, file dialogs, and integration with the existing VideoWallpaper app.
+- AppKit where required for window behavior, file dialogs, and integration with the existing RioVideoWallpaper app.
 - `MTKView` embedded in SwiftUI for live Metal preview.
 
 Responsibilities:
@@ -304,7 +304,7 @@ Steps:
 5. Append frames to `AVAssetWriter`.
 6. Finalize file.
 7. Register output in local library.
-8. Optionally set it as wallpaper through the VideoWallpaper playback system.
+8. Optionally set it as wallpaper through the RioVideoWallpaper playback system.
 
 Do not append a duplicate first frame at the end. Seamless video loops should contain exactly `fps * loopSeconds` frames. Duplicating frame 0 creates a visible pause.
 
@@ -331,7 +331,7 @@ Quality controls:
 
 ### 9. Wallpaper Integration
 
-The app should not rely on `NSWorkspace.setDesktopImageURL` for video wallpapers. That API is for desktop images. For generated videos, reuse or integrate with the VideoWallpaper playback approach:
+The app should not rely on `NSWorkspace.setDesktopImageURL` for video wallpapers. That API is for desktop images. For generated videos, reuse or integrate with the RioVideoWallpaper playback approach:
 
 - Place a borderless, non-activating window behind desktop icons or at the appropriate desktop level.
 - One player per screen.
@@ -344,13 +344,13 @@ The generative app should export a video and hand it to the wallpaper playback l
 
 Potential integration shapes:
 
-- Monorepo module: VideoWallpaper playback code becomes a framework target consumed by the generative app.
-- Companion app: generative app exports to a shared application support folder and asks VideoWallpaper to set the asset.
-- Unified app: VideoWallpaper gains a "Generate" tab and uses the existing playback engine.
+- Monorepo module: RioVideoWallpaper playback code becomes a framework target consumed by the generative app.
+- Companion app: generative app exports to a shared application support folder and asks RioVideoWallpaper to set the asset.
+- Unified app: RioVideoWallpaper gains a "Generate" tab and uses the existing playback engine.
 
 Recommended direction:
 
-Start by adding the generative workflow as a new feature area in VideoWallpaper if the codebase is clean enough. If the current VideoWallpaper project is intentionally small, create a separate `GenerativeWallpaperKit` framework and import it.
+Start by adding the generative workflow as a new feature area in RioVideoWallpaper if the codebase is clean enough. If the current RioVideoWallpaper project is intentionally small, create a separate `GenerativeWallpaperKit` framework and import it.
 
 ## LLM Integration Plan
 
@@ -646,7 +646,7 @@ Exit criteria:
 - Exported loop has no visible seam.
 - Preview and exported video match within expected resolution differences.
 
-### Phase 2: VideoWallpaper Integration
+### Phase 2: RioVideoWallpaper Integration
 
 Goal:
 
@@ -744,13 +744,13 @@ Exit criteria:
 
 ## Concrete Execution Roadmap
 
-This section turns the architecture above into implementation-sized work. It assumes the first production path is a unified app: the current VideoWallpaper app gains a generative workflow while preserving the existing "choose local video and play it as wallpaper" behavior.
+This section turns the architecture above into implementation-sized work. It assumes the first production path is a unified app: the current RioVideoWallpaper app gains a generative workflow while preserving the existing "choose local video and play it as wallpaper" behavior.
 
 ### Product And Architecture Decisions For The First Build
 
 Decisions:
 
-- Build inside the existing `VideoWallpaper` app first.
+- Build inside the existing `RioVideoWallpaper` app first.
 - Add a normal SwiftUI editor window opened from the menu bar.
 - Keep the current wallpaper playback path as the final "Set as wallpaper" mechanism.
 - Build one renderer family first: `FieldLinesRenderer`.
@@ -769,9 +769,9 @@ Initial non-decisions:
 Keep the current app small by grouping the new feature under a clear folder boundary:
 
 ```text
-VideoWallpaper/
+RioVideoWallpaper/
   App/
-    VideoWallpaperApp.swift
+    RioVideoWallpaperApp.swift
     AppDelegate.swift                  # later split out from current app file
   WallpaperPlayback/
     VideoWindowController.swift
@@ -910,7 +910,7 @@ Make room for the larger feature without changing current wallpaper behavior.
 
 Tasks:
 
-- Split `AppDelegate` out of `VideoWallpaperApp.swift` when practical.
+- Split `AppDelegate` out of `RioVideoWallpaperApp.swift` when practical.
 - Extract existing playback operations behind a small facade:
   - `setVideoURL(_:)`
   - `restoreSavedVideoURL()`
@@ -1403,7 +1403,7 @@ Local project data:
 
 ### macOS Wallpaper Mechanics
 
-There is no simple public API for setting arbitrary custom video as the native wallpaper. The project should reuse the existing VideoWallpaper playback strategy rather than depend on desktop image APIs.
+There is no simple public API for setting arbitrary custom video as the native wallpaper. The project should reuse the existing RioVideoWallpaper playback strategy rather than depend on desktop image APIs.
 
 ### LLM Variability
 
@@ -1427,7 +1427,7 @@ If using hidden desktop windows for wallpaper playback, test review implications
 
 ## Open Questions
 
-- Should this be a new app, or a feature area inside VideoWallpaper?
+- Should this be a new app, or a feature area inside RioVideoWallpaper?
 - Should OpenAI be user-key based, backend based, or omitted from App Store builds?
 - What is the minimum macOS target?
 - Should generated videos be H.264 by default, with HEVC as optional?

@@ -3,7 +3,7 @@
 ## English
 
 ```text
-VideoWallpaper is a macOS menu bar utility that plays a user-selected local video, or a locally generated video, behind the user's desktop icons as a wallpaper.
+RioVideoWallpaper is a macOS menu bar utility that plays a user-selected local video, or a locally generated video, behind the user's desktop icons as a wallpaper.
 
 No account, registration, login, subscription, in-app purchase, user-generated content service, social feature, or account deletion flow is included.
 
@@ -18,7 +18,7 @@ If a review screen recording is requested, the recording should begin by launchi
 Generated wallpaper projects, thumbnails, and exported videos are stored locally and can be removed from the generated wallpaper library or by deleting the app's local Application Support files.
 
 Typical review flow:
-1. Launch VideoWallpaper.
+1. Launch RioVideoWallpaper.
 2. Use the menu bar item to choose a local video file and confirm it appears as the desktop wallpaper.
 3. Open Generate Wallpaper from the menu bar.
 4. Enter a prompt such as "calm blue cosmic long trail" and click Generate.
@@ -29,7 +29,7 @@ Typical review flow:
 ## Japanese
 
 ```text
-VideoWallpaper は、ユーザーが選択したローカル動画、またはアプリ内でローカル生成した動画を、デスクトップアイコンの背面で壁紙として再生する macOS メニューバーユーティリティです。
+RioVideoWallpaper は、ユーザーが選択したローカル動画、またはアプリ内でローカル生成した動画を、デスクトップアイコンの背面で壁紙として再生する macOS メニューバーユーティリティです。
 
 アカウント登録、ログイン、サブスクリプション、アプリ内課金、ユーザー生成コンテンツサービス、ソーシャル機能、アカウント削除フローは含まれていません。
 
@@ -44,7 +44,7 @@ VideoWallpaper は、ユーザーが選択したローカル動画、または�
 生成壁紙プロジェクト、サムネイル、書き出し動画はローカルに保存され、生成壁紙ライブラリからの削除、またはアプリのローカル Application Support ファイル削除により取り除けます。
 
 典型的な審査手順:
-1. VideoWallpaper を起動します。
+1. RioVideoWallpaper を起動します。
 2. メニューバー項目からローカル動画ファイルを選択し、デスクトップ壁紙として表示されることを確認します。
 3. メニューバーから Generate Wallpaper を開きます。
 4. "calm blue cosmic long trail" などのプロンプトを入力して Generate をクリックします。
