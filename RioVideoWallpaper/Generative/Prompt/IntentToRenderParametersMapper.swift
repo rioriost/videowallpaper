@@ -884,6 +884,8 @@ enum IntentToRenderParametersMapper {
         )
 
         switch family {
+        case .auroraCurtain:
+            return .auroraCurtain(parameters)
         case .bloomingCircuits:
             return .bloomingCircuits(parameters)
         case .cellularBloom:
@@ -894,6 +896,8 @@ enum IntentToRenderParametersMapper {
             return .chladniPlate(parameters)
         case .circuitTracer:
             return .circuitTracer(parameters)
+        case .cityLightsBokeh:
+            return .cityLightsBokeh(parameters)
         case .closedFlowParticles:
             return .closedFlowParticles(parameters)
         case .constellationDrift:
@@ -902,6 +906,8 @@ enum IntentToRenderParametersMapper {
             return .crystalLattice(parameters)
         case .dataMesh:
             return .dataMesh(parameters)
+        case .digitalSand:
+            return .digitalSand(parameters)
         case .electricStorm:
             return .electricStorm(parameters)
         case .sdfTunnel:
@@ -920,6 +926,8 @@ enum IntentToRenderParametersMapper {
             return .growingNetwork(parameters)
         case .instancedGeometry:
             return .instancedGeometry(parameters)
+        case .inkInWater:
+            return .inkInWater(parameters)
         case .labyrinthTrace:
             return .proceduralPattern(.labyrinthTrace, parameters)
         case .laserRibbons:
@@ -934,6 +942,8 @@ enum IntentToRenderParametersMapper {
             return .moireRings(parameters)
         case .neonVortex:
             return .neonVortex(parameters)
+        case .origamiTessellation:
+            return .origamiTessellation(parameters)
         case .particleFountain:
             return .particleFountain(parameters)
         case .photonStreams:
@@ -950,14 +960,24 @@ enum IntentToRenderParametersMapper {
             return .rainCurtain(parameters)
         case .ribbonCascade:
             return .ribbonCascade(parameters)
+        case .sakuraDrift:
+            return .sakuraDrift(parameters)
         case .scanlineTopography:
             return .scanlineTopography(parameters)
         case .schoolingSwarm:
             return .schoolingSwarm(parameters)
+        case .snowfallDepth:
+            return .snowfallDepth(parameters)
+        case .solarCorona:
+            return .solarCorona(parameters)
         case .stardustVortex:
             return .proceduralPattern(.stardustVortex, parameters)
         case .truchetFlow:
             return .truchetFlow(parameters)
+        case .underwaterCaustics:
+            return .underwaterCaustics(parameters)
+        case .volumetricNebula:
+            return .volumetricNebula(parameters)
         case .vortexLattice:
             return .proceduralPattern(.vortexLattice, parameters)
         case .waveTerrain:

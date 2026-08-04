@@ -176,7 +176,11 @@ enum ExportPreset: String, CaseIterable, Identifiable {
         allCases.first { preset in
             guard let baseSettings = preset.baseSettings else { return false }
             return baseSettings.width == settings.width &&
-                baseSettings.height == settings.height
+                baseSettings.height == settings.height &&
+                baseSettings.fps == settings.fps &&
+                baseSettings.loopSeconds == settings.loopSeconds &&
+                baseSettings.quality == settings.quality &&
+                baseSettings.warmupLoops == settings.warmupLoops
         } ?? .custom
     }
 

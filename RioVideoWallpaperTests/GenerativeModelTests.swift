@@ -477,7 +477,7 @@ struct GenerativeModelTests {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
-        #expect(RendererFamily.allCases.count == 60)
+        #expect(RendererFamily.allCases.count == 67)
 
         for rendererFamily in RendererFamily.allCases {
             let project = WallpaperProject.newProject(rendererFamily: rendererFamily, appVersion: "test")
@@ -1694,7 +1694,7 @@ struct GenerativeModelTests {
         let capabilities = RendererCapabilities.catalog(preferred: .fieldLines)
         let catalogFamilies = capabilities.rendererCatalog.map(\.family)
 
-        #expect(RendererFamily.allCases.count == 60)
+        #expect(RendererFamily.allCases.count == 67)
         #expect(capabilities.supportedRendererFamilies == RendererFamily.allCases)
         #expect(catalogFamilies == RendererFamily.allCases)
 
@@ -1719,6 +1719,7 @@ struct GenerativeModelTests {
             .volumetricNebula,
             .bloomingCircuits,
             .cellularBloom,
+            .chromaticBloom,
             .chladniPlate,
             .circuitTracer,
             .closedFlowParticles,
@@ -1734,20 +1735,26 @@ struct GenerativeModelTests {
             .growingNetwork,
             .guillocheRose,
             .instancedGeometry,
+            .labyrinthTrace,
             .laserRibbons,
             .luminousBubbles,
+            .luminousStrings,
             .metaballField,
             .moireRings,
             .neonVortex,
             .particleFountain,
             .penroseTiling,
+            .photonStreams,
             .pulseNetwork,
+            .quantumFoam,
             .radialOscilloscope,
             .rainCurtain,
             .ribbonCascade,
             .scanlineTopography,
             .schoolingSwarm,
+            .stardustVortex,
             .truchetFlow,
+            .vortexLattice,
             .waveTerrain,
             .wireframeMorph
         ]
@@ -1811,6 +1818,9 @@ struct GenerativeModelTests {
                     .waveTerrain(let parameters),
                     .wireframeMorph(let parameters):
                 #expect(renderParameters.rendererFamily == rendererFamily)
+                assertProceduralParameters(parameters, capabilities: capabilities)
+            case .proceduralPattern(let family, let parameters):
+                #expect(family == rendererFamily)
                 assertProceduralParameters(parameters, capabilities: capabilities)
             default:
                 Issue.record("Expected procedural render parameters for \(rendererFamily.displayName)")

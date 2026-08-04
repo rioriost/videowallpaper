@@ -100,9 +100,7 @@ struct GeneratedAssetLibrary {
             try ensureDirectories()
 
             let normalizedExtension = fileExtension.trimmingCharacters(in: CharacterSet(charactersIn: "."))
-            let fileURL = videosDirectoryURL.appendingPathComponent(
-                Self.exportFileName(for: project, fileExtension: "")
-            )
+            let fileURL = videosDirectoryURL.appendingPathComponent(project.id.uuidString)
             return normalizedExtension.isEmpty ? fileURL : fileURL.appendingPathExtension(normalizedExtension)
         }
     }
@@ -352,11 +350,12 @@ struct GeneratedAssetLibrary {
         for project: WallpaperProject,
         date: Date = Date()
     ) -> String {
-        exportFileName(
+        let timestampedName = exportFileName(
             for: project,
             date: date,
-            fileExtension: WallpaperProjectFileStore.fileExtension
+            fileExtension: ""
         )
+        return "\(timestampedName)-\(project.id.uuidString).\(WallpaperProjectFileStore.fileExtension)"
     }
 
     private static func sanitizedFileNameComponent(_ value: String) -> String {
